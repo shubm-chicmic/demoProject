@@ -1,0 +1,71 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900&display=swap');
+
+/*
+* =====================================================
+*     DEFAULT CSS 
+* =====================================================
+*/
+.shadow_bg{	box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.25);}
+.earn-money a.btn-primary:hover, .earn-money .a-default:hover, .earn-money .a-default:hover svg path{color: #000;  fill: #000; }
+.earn-money img{width: 100%}
+.careers-listing-serach input:focus{box-shadow: none}
+.careers-listing-serach{border-radius: 10px;}
+
+/*
+/*
+* =====================================================
+*     Careers-Detail
+* =====================================================
+*/
+.carer_sec .carer-block {max-width: 27%;}
+.career-blog h6{opacity: 0.5}
+.new-people .a-default{position: relative;padding:20px 15px;}
+.new-people .a-default:before{position: absolute; content:""; left: 0; top:40%; border-radius:100%; width: 5px; height: 5px; background:#e99c34}
+.careers_slide h4{font-weight:300}
+.careers_slide ul li{position:relative; padding-left:45px;}
+.careers_slide ul{counter-reset: section;}
+.careers_slide ul li h3:before{counter-increment: section; content: "0" counter(section) " "; font-weight: 500; font-size: 28px;padding-right: 12px; color: #ccc; left: -5px; position: absolute;opacity:0.5}
+.available-service .text-left .img-fluid {
+    width: 100%;
+}
+.earn-money summary{list-style: none}
+.careers_slide .carousel-indicators{left: inherit; right: 0}
+.careers_slide .carousel-indicators li{width: 11px; height: 11px;border-radius: 100%;border: 0}
+.slider-nav button {
+  display: inline-block;
+  width: 38px;
+  height: 38px;  
+  background: #e4e4e4;
+  color: #0e0e0e;  
+  cursor: pointer;
+  font: 18px/36px FontAwesome;
+  text-align: center;
+  transition: all 0.5s;
+  font-size: 0;
+  position: absolute;
+  bottom: 0;
+  border: 0px;
+}
+.slider-nav button:hover, .slider-nav button:focus{box-shadow: none; outline: none}
+.slider-nav button.slick-prev.slick-arrow{
+	 right: 75px;
+}
+.slider-nav button.slick-next.slick-arrow{
+	 right: 22px;
+}
+.slider-nav button.slick-next.slick-arrow:before {
+  content: '\f105';
+      font-size: 25px;
+	 
+}
+
+.slider-nav button.slick-prev.slick-arrow:before {
+  content: '\f104';
+      font-size: 25px;
+}
+@media(max-width: 992px){
+	.carer_sec .carer-block  {max-width: 42%;margin: auto;}
+}
+@media(max-width: 768px){
+	.carer_sec .carer-block  {max-width: 100%;}
+}

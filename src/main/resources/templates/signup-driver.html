@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/header :: html_head">
+<!--	<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>-->
+</head>
+<body>
+	<main>
+		<!-- navbar-->
+		<header class="header">
+
+			<!-- Navbar -->
+			<div th:replace="fragments/header :: navbar3"></div>
+			
+			<!-- Start Signin Modal -->
+			<div class="sign_sec modal_signup">
+				<div class="container">
+					
+					<div class="front-sign-sec">
+						<div class="close_btn">
+							<svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"><title>Navigation close menu</title><path d="M21.1 5.1l-2.2-2.2-6.9 7-6.9-7-2.2 2.2 7 6.9-7 6.9 2.2 2.2 6.9-7 6.9 7 2.2-2.2-7-6.9 7-6.9z" fill="currentColor"></path></svg>
+						</div>
+						
+						<a href="/driverRegister" class="box bg-white d-inline-block text-left">
+							<h2>Sign Up to <br> Drive</h2>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd" fill="rgb(0, 0, 0)" d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"></path></svg>
+						</a>
+						<a href="/riderRegister" class="box bg-gold d-inline-block text-left">
+							<h2>Sign Up to <br> Ride</h2>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd" fill="rgb(0, 0, 0)" d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"></path></svg>
+						</a>
+					</div>					
+				</div>
+			</div>		
+			<!-- End Signup Modal -->
+			
+			
+			<!-- Start Login Modal -->
+			<div class="sign_sec modal_login">
+				<div class="container">
+					
+					<div class="front-sign-sec">
+						<div class="close-login">
+							<svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"><title>Navigation close menu</title><path d="M21.1 5.1l-2.2-2.2-6.9 7-6.9-7-2.2 2.2 7 6.9-7 6.9 2.2 2.2 6.9-7 6.9 7 2.2-2.2-7-6.9 7-6.9z" fill="currentColor"></path></svg>
+						</div>
+						
+						<a href="/driverLogin" class="box bg-white d-inline-block text-left">
+							<h2>Drive Login</h2>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd" fill="rgb(0, 0, 0)" d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"></path></svg>
+						</a>
+						<a href="/riderLogin" class="box bg-gold d-inline-block text-left">
+							<h2>Rider Login</h2>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd" fill="rgb(0, 0, 0)" d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"></path></svg>
+						</a>
+					</div>					
+				</div>
+			</div>		
+			<!-- End Login Modal -->
+		</header>
+		<!-- End Header -->
+		
+		<div class="layout_fixed">
+		
+			<div class="d-flex align-items-end flex-column inner_banner driver_bg py-5">
+								
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-5">
+							<div class="stories_box title_inner bg-gold py-4 px-4 px-sm-5">
+								<div class="titleB">
+									<h3 class="text-left d-block my-4">Drive with Mevron. Go places with us!</h3>
+								</div>						
+							</div><!-- End Title Box -->
+						</div>	
+						
+						<div class="col-lg-7 pt-4">
+							<div class="bg-white p-5">
+								<h3 class="text-left font-weight-bold mb-4">Sign Up!</h3>
+								<form id="myForm" action="/processDriverRegister" rel="" class="form-sign">
+									<div class="row">
+										<div class="col-md-6 px-2">
+											<div class="form-group">
+												<input type="text" name="fname" placeholder="First Name" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6 px-2">
+											<div class="form-group">						
+												<input type="text" name="lname" placeholder="Last Name" class="form-control">
+											</div>
+										</div>
+									</div> 
+									
+									<div class="row">
+										<div class="col-md-6 px-2">
+											<div class="form-group">
+												<input type="email" id="email" name="email" placeholder="Email" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6 px-2">
+											<div class="form-group">						
+												<input type="text" name="phone" placeholder="Phone" class="form-control">
+											</div>
+										</div>
+									</div> 
+									
+									<div class="row">
+										<div class="col-md-6 px-2">
+											<div class="form-group">
+												<input type="password" name="password" placeholder="Password" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6 px-2">
+											<div class="form-group">						
+												<input type="text" name="city" placeholder="City" class="form-control">
+											</div>
+										</div>
+									</div> 
+									
+									<div class="row">
+										<div class="col-md-6 px-2">
+											<div class="form-group">
+												<input type="text" name="inviteCode" placeholder="Invite Code (Optional)" class="form-control">
+											</div>
+										</div>
+									</div> 
+									
+									<div class="row mb-3">
+										<div class="col-md-12 px-2">
+											<div class="form-group">
+												<span class="legal-term">By proceeding, I agree to Mevron's <a href="#" class="a-default">Terms of Use</a> and acknowledge that I have read the <a href="#" class="a-default">Privacy Policy.</a></span>
+											</div>
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-md-12 px-2">
+											<div class="form-group text-left">									
+												<input type="submit" value="Submit" class="btn btn-lg btn-primary">
+											</div>
+										</div>
+									</div>
+									
+									<div class="row mt-3">
+										<div class="col-md-12 px-2">
+											Already have an account? <a href="driver-login.html" class="a-default">Sign In</a>
+										</div>
+									</div>	
+								</form>
+							</div>	
+						</div>
+					</div>					
+				
+				</div>
+			</div><!-- Front Banner -->
+									
+			
+			<section class="bg-black">
+				<div class="ang_sec py-5 px-4 px-sm-0">
+					<div class="container">		
+						<div class="row mb-0 mb-lg-3">
+							<div class="col-md-12">
+								<div class="titleB text-center grey_bar">
+									<h2 class="text-white text-left d-inline-block">Drive when you want <br/> Make as much money as you need</h2>
+								</div>
+							</div>
+						</div>
+						<div class="row py-0 py-sm-3 justify-content-center">
+							<div class="col-lg-4 col-md-6 text-white pt-5 pt-lg-2">	
+								<i class="d-block"><img src="img/money_icon.svg" alt=""></i>
+								<h4 class="d-inline-block font-weight-bold">Make great money</h4>
+								<p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+							</div>
+							<div class="col-lg-4 col-md-6 text-white pt-5 pt-lg-2">
+								<i class="d-block"><img src="img/schedule_icon.svg" alt=""></i>
+								<h4 class="d-inline-block font-weight-bold">Set your own schedule</h4>
+								<p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+							</div>
+							<div class="col-lg-4 col-md-6 text-white pt-5 pt-lg-2">
+								<i class="d-block"><img src="img/safety_icon.png" alt=""></i>
+								<h4 class="d-inline-block font-weight-bold">Safety behind the wheel</h4>
+								<p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+							</div>
+						</div>
+					</div>
+				</div>				
+			</section><!-- End safety Experience -->	
+											
+		</div><!-- End layout_fixed -->
+		
+		<div class="clearfix"></div>
+
+
+		<div th:replace="fragments/footer :: footer1">
+		</div>
+
+	</main>
+	
+	
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+	<!-- Animate JS -->
+	<script src="vendor/wow/wow.min.js"></script>
+	<!-- Custom JS -->
+    <script src="js/custom.js"></script>
+	<script>
+		jQuery("#myForm").validate({
+			rules:{
+				email:"required",
+				fname:"required",
+				password:{
+				          required:true,
+				          minlength:2
+				          },
+				phone:{
+				required:true,
+				minlength:10
+				}
+			}
+			,messages:{
+				email:"Email is a required field!",
+				fname:"First name is required",
+				password:{
+					required:"Password cannot be empty",
+					minlength:"At least 2 characters needed"
+				},
+				phone:{
+					required:"Phone number Required",
+					minlength:"Phone number should at least be 10 digits"
+				}
+			},
+				highlight: function (element) {
+            	$(element).parent().addClass('error')
+        		},
+        		unhighlight: function (element) {
+           		 $(element).parent().removeClass('error')
+        	}
+		});
+
+	</script>
+</body>
+</html>

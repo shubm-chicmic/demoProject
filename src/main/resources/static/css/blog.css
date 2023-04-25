@@ -1,0 +1,55 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900&display=swap');
+
+/*
+* =====================================================
+*     DEFAULT CSS 
+* =====================================================
+*/
+.shadow_bg{	box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.25);}
+.earn-money a.btn-primary:hover, .earn-money .a-default:hover, .earn-money .a-default:hover svg path{color: #fff;  fill: #000; }
+.earn-money img{width: 100%}
+.btn-transparent{min-width: 110px;color: #000;background-color: #fff;border-color: #e99c34;}
+.btn-bordered-white{min-width: 110px;color: #fff;background-color: transparent;border-color: #fff;}
+.btn-bordered-white .cls-1{fill: #fff;fill-rule: evenodd;}
+a.btn-bordered-white:hover .cls-1, a.btn-bordered-white:hover path{fill: #e99c34;fill-rule: evenodd;}
+.btn-bordered-white:hover{color: #e99c34;}
+/*
+* =====================================================
+*     Blog 
+* =====================================================
+*/
+
+.calender-details li:first-child{ list-style: disc; padding-right: 25px;display: flex;align-items: center;}
+.calender-details li{ list-style: disc;}
+.calender-details li span{opacity: 0.7;}
+.calender-details li:first-child{list-style: none;}
+.calender-details li:last-child{padding-right: 0;}
+.calender-details li svg path{opacity: 1}
+.earn-money .dropdown.show a:focus, .earn-money .dropdown.show a {
+    color: #000!important;
+}
+.blogs-page a:hover{color: #000!important}
+.earn-money .dropdown.show a i{color: #e99c34}
+.recent-posts a{color: #000}
+.recent-posts a:hover{color: #000}
+.recent-posts .calender-details li{display: block; position: relative;}
+.recent-posts .calender-details li:first-child:before {display: none;}
+.recent-posts .calender-details li:before {
+    position: absolute;
+    left: -15px;
+    top: 0;
+    content: "-";
+}
+.dropdown.share-icn a:after {display: none;}
+.earn-money .btn-cancel {background: #e4e4e4; color: #000; border-color: #e4e4e4;}
+/*
+* =====================================================
+*     Blog DETAILS
+* =====================================================
+*/
+.breadcrumb-nav li { padding-right: 30px; position: relative; color: #fff; list-style: disc;position: relative;}
+.breadcrumb-nav li a{ opacity: 0.6; color: #fff;}
+.breadcrumb-nav li:first-child{list-style: none;}
+.breadcrumb-nav li:last-child{padding-right: 0}
+.breadcrumb-nav li a.active{opacity: 1}
+	

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: html_head">
+</head>
+<body>
+<!-- Navbar -->
+<div th:replace="fragments/header :: navbar2"></div>
+        <h3> Error ! (Hint : Your Password Does Not Matched with Your Confirmed Password) </h3>
+<div th:replace="fragments/footer :: footer1"></div>
+
+</body>
+<script>
+        $("div").css("background-color","red");
+</script>
+</html>

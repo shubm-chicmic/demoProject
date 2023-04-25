@@ -1,0 +1,29 @@
+﻿/*
+* =====================================================
+*     DEFAULT CSS 
+* =====================================================
+*/
+.shadow_bg{	box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.25);}
+.earn-money a.btn-primary:hover, .earn-money .a-default:hover, .earn-money .a-default:hover svg path{color: #000;  fill: #000; }
+.earn-money img{width: 100%}
+
+/*
+/*
+* =====================================================
+*     Careers Listing
+* =====================================================
+*/
+.black_bg{background: url(../img/careers/blck_bg.jpg)no-repeat; background-size: cover; background-position: center;}
+.careers-listing-serach input:focus{box-shadow: none}
+.careers-listing-serach{border-radius: 10px;}
+.careers-listing-detail a{color: #000}
+.careers-listing-detail h4 + svg {min-width:50px;}
+.career-list .careers-listing-detail{border-radius:10px;}
+@media (min-width: 991px){
+.career-list li:nth-child(odd){padding-right:45px; }
+.career-list li:nth-child(even){padding-left:45px; }	
+}
+.career-list h5{opacity: 0.5}
+
+
+
