@@ -9,6 +9,7 @@ import com.example.demoProject.Repository.UserRoleRepository;
 import com.example.demoProject.Service.EmailService;
 import com.example.demoProject.Service.OtpService;
 import com.example.demoProject.Service.UserService;
+import com.example.demoProject.Service.UsersRolesService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,8 @@ import java.util.Random;
 public class RestController {
     @Autowired
     UserService userService;
+    @Autowired
+    UsersRolesService usersRolesService;
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -98,7 +101,7 @@ public class RestController {
             Users users = Users.builder()
                     .firstName(role[index] + i)
                     .lastName("")
-                    .email(role[index] + i + "@gmail.com")
+                    .email(role[index] + i + "@yopmail.com")
                     .password("123456")
                     .phoneNo("9876543210")
                     .city("Mohali")
@@ -117,6 +120,39 @@ public class RestController {
 
 
         return "Success";
+    }
+
+    @RequestMapping("/getTotalDrivers")
+    public Integer getTotalDrivers(){
+        String role = "DRIVER";
+        int roleId = usersRolesService.findIdByRole(role);
+        Integer count = (int) roleRepository.countByRoleId(roleId);
+        return count;
+    }
+    @RequestMapping("/getTotalRiders")
+    public Integer getTotalRiders(){
+        String role = "RIDER";
+        int roleId = usersRolesService.findIdByRole(role);
+        Integer count = (int) roleRepository.countByRoleId(roleId);
+        return count;
+    }
+    @RequestMapping("/getTotalUsers")
+    public Integer getTotalUser(){
+
+        Integer count = (int) roleRepository.count();
+        return count;
+    }
+    @RequestMapping("/getTotalActiveUsers")
+    public Integer getTotalActiveUsers(){
+
+        Integer count = userService.getTotalActiveUsers();
+        return count;
+    }
+    @RequestMapping("/getTotalSoftDeletedUsers")
+    public Integer getTotalSoftDeletedUsers(){
+
+        Integer count = userService.getTotalSoftDeletedUsers();
+        return count;
     }
 
 

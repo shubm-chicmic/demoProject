@@ -18,4 +18,6 @@ public interface RoleRepository extends JpaRepository<Roles, Integer> {
 
     )
     List<Integer> findUserIdByRoleId(@Param("roleId") int roleId);
+
+    Integer countByRoleId(int roleId);
 }

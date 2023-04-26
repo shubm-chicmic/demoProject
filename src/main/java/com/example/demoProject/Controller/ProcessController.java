@@ -101,7 +101,7 @@ public class ProcessController {
         }
         log.info("\u001B[33m" + email + "\u001B[0m");
 
-        return "driver-documentation";
+        return "redirect:/driverLogin?email=" + email;
     }
     @RequestMapping("/processRiderRegister")
     public String processRiderRegister(HttpServletRequest request) {
@@ -143,8 +143,24 @@ public class ProcessController {
         String value = request.getParameter("mob");
        // System.out.println("///////////////" + value);
        Users users =  userService.getUsersByEmailorPhoneNo(value, value);
-       if(users == null)return "driver-login";
+
+       if(users == null){
+           model.addAttribute("email", value);
+           model.addAttribute("isEmailNull", "true");
+
+           model.addAttribute("isEmailVerify", "false");
+           return "driver-login";
+       }
+       if(!users.getIsEmailVerify()) {
+           model.addAttribute("email", value);
+           model.addAttribute("isEmailNull", "false");
+           model.addAttribute("isEmailVerify", "false");
+           return "driver-login";
+       }
         model.addAttribute("email", value);
+        model.addAttribute("isEmailNull", "false");
+        model.addAttribute("isEmailVerify", "true");
+
         System.out.println("Model1 = " + model.getAttribute("email"));
         emailDto.setEmail(users.getEmail());
 

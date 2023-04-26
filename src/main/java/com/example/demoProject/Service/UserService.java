@@ -181,5 +181,13 @@ public class UserService {
         return roleRepository.findRolesByUserId(userId);
     }
 
+    // Count Values
+    public Integer getTotalActiveUsers() {
+        return userrepo.getTotalActiveUsers();
+    }
+    public Integer getTotalSoftDeletedUsers() {
+        return userrepo.getTotalSoftDeletedUsers();
+    }
+
 
 }

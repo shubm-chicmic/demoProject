@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -18,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import java.io.IOException;
 import java.util.UUID;
 
-
+@Slf4j
 public class Authentication extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
@@ -40,8 +41,10 @@ public class Authentication extends UsernamePasswordAuthenticationFilter {
         String password = request.getParameter("lpassword");
         System.out.println(password+"]]]]");
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-      return authenticationManager.authenticate(authenticationToken);
-      //  return authenticationToken;
+        org.springframework.security.core.Authentication authentication = authenticationManager.authenticate(authenticationToken);
+        log.info("autho==",authentication);
+        return authentication;
+        //  return authenticationToken;
     }
 
     @Override
@@ -65,7 +68,7 @@ public class Authentication extends UsernamePasswordAuthenticationFilter {
        //  new ObjectMapper().writeValue(response.getOutputStream(),"Logged in " + uuid.toString());
       //  processController.processDriverPasswordLogin();
          //  new ObjectMapper().writeValue(response.getOutputStream(),uuid.toString());
-        String redirectUrl = "http://localhost:8080/driverProfile";
+        String redirectUrl = "/driverProfile";
 //        response.addHeader("Authorization","Subham Kumar");
         Cookie cookie = new Cookie("Authorization", uuid.toString());
         cookie.setMaxAge(24*60*60);

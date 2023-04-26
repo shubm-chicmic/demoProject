@@ -5,6 +5,7 @@ import com.example.demoProject.Dto.EmailDto;
 import com.example.demoProject.Models.Users;
 import com.example.demoProject.Service.RolesService;
 import com.example.demoProject.Service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,8 @@ public class UserController {
         return "signup-rider";
     }
     @RequestMapping("/driverLogin")
-    public String driverLogin() {
+    public String driverLogin(HttpServletRequest request, Model model) {
+        model.addAttribute("email", request.getParameter("email"));
         return "driver-login";
     }
     @RequestMapping("/riderLogin")
@@ -75,6 +77,13 @@ public class UserController {
         List<Users> UsersList = userService.getAllUsers(pageNumber, pageSize, target, sortBy, order);
 
         return UsersList;
+    }
+    @RequestMapping("/getUserById/{id}")
+    @ResponseBody
+    public Users getUserById(@PathVariable("id") Integer id) {
+        Users users = userService.getUserById(id);
+        System.out.println("\u001B[31m" + "inside getuserById = "+ users + "\u001B[0m");
+        return users;
     }
 
 }

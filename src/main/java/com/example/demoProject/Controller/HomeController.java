@@ -24,5 +24,10 @@ public class HomeController {
         return "Hello World";
     }
 
+    @RequestMapping("/driverDocumentation")
+    public String driverDocumentation(){
+        return "driver-documentation";
+    }
+
 
 }

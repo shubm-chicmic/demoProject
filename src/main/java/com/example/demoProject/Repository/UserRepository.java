@@ -53,6 +53,14 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
             value = "Update Users us Set us.isEmailVerify = ?2 Where us.email = ?1"
     )
     void setUsersIsEmailVerifyByEmail(String email, Boolean isEmailVerify);
+    @Query(
+          "select count(us) from Users us where us.isSuspend = false and us.isDelete = false"
+    )
+    Integer getTotalActiveUsers();
+    @Query(
+            "select count(us) from Users us where us.isDelete = true"
+    )
+    Integer getTotalSoftDeletedUsers();
 
 
 //
