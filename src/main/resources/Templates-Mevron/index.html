@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: html_head">
+
+</head>
+<body>
+	<main>
+		<!-- navbar-->
+		<header class="header">
+		 <!-- Navbar -->
+		  <div th:replace="fragments/header :: navbar1"></div>
+
+			<!-- Start Signin Modal -->
+			<div class="sign_sec modal_signup">
+				<div class="container">
+
+					<div class="front-sign-sec">
+						<div class="close_btn">
+							<svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"><title>Navigation close menu</title><path d="M21.1 5.1l-2.2-2.2-6.9 7-6.9-7-2.2 2.2 7 6.9-7 6.9 2.2 2.2 6.9-7 6.9 7 2.2-2.2-7-6.9 7-6.9z" fill="currentColor"></path></svg>
+						</div>
+
+						<a href="/driverRegister" class="box bg-white d-inline-block text-left">
+							<h2>Sign Up to <br> Drive</h2>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd" fill="rgb(0, 0, 0)" d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"></path></svg>
+						</a>
+						<a href="/riderRegister" class="box bg-gold d-inline-block text-left">
+							<h2>Sign Up to <br> Ride</h2>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd" fill="rgb(0, 0, 0)" d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"></path></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- End Signup Modal -->
+
+
+			<!-- Start Login Modal -->
+			<div class="sign_sec modal_login">
+				<div class="container">
+
+					<div class="front-sign-sec">
+						<div class="close-login">
+							<svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"><title>Navigation close menu</title><path d="M21.1 5.1l-2.2-2.2-6.9 7-6.9-7-2.2 2.2 7 6.9-7 6.9 2.2 2.2 6.9-7 6.9 7 2.2-2.2-7-6.9 7-6.9z" fill="currentColor"></path></svg>
+						</div>
+
+						<a href="/driverLogin" class="box bg-white d-inline-block text-left">
+							<h2>Drive Login</h2>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd" fill="rgb(0, 0, 0)" d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"></path></svg>
+						</a>
+						<a href="/riderLogin" class="box bg-gold d-inline-block text-left">
+							<h2>Rider Login</h2>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd" fill="rgb(0, 0, 0)" d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"></path></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- End Login Modal -->
+		</header>
+		<!-- End Header -->
+
+		<div class="layout_fixed">
+
+			<div class="d-flex align-items-end main_banner">
+
+				<div class="container">
+					<div class="row align-items-end" id="mevon_nav_tabs">
+						<div class="col-md-12">
+							<div class="tab-content">
+								<div class="tab-pane fade show active" id="drive" role="tabpanel" aria-labelledby="drive-tab">
+									<div class="row">
+										<div class="col-md-5">
+											<div class="tab_box p-4">
+												<h3 class="mb-3">Drive and Earn More.</h2>
+												<p>With Mevron, you're not a commodity—you're in control of your earnings.</p>
+												<a href="/driverRegister" class="btn btn-primary my-3">SIGN UP to drive</a>
+												<a href="safety.html" class="a-default d-block">Learn More about driving and delivering <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="15px"><path fill-rule="evenodd" fill="rgb(255, 255, 255)" d="M19.207,13.820 C18.914,14.102 18.453,14.102 18.161,13.820 C17.878,13.549 17.878,13.097 18.161,12.826 L23.466,7.734 L0.743,7.734 C0.335,7.734 -0.000,7.422 -0.000,7.030 C-0.000,6.639 0.335,6.317 0.743,6.317 L23.466,6.317 L18.161,1.234 C17.878,0.953 17.878,0.501 18.161,0.230 C18.453,-0.051 18.914,-0.051 19.207,0.230 L25.768,6.528 C26.051,6.800 26.051,7.251 25.768,7.522 L19.207,13.820 Z"></path></svg></a>
+										  </div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tab-pane fade" id="ride" role="tabpanel" aria-labelledby="ride-tab">
+									<div class="row">
+										<div class="col-md-5">
+											<div class="tab_box p-4">
+												<h3 class="mb-3">Want a comfortable Ride at affordable prices?</h2>
+												<p>Request a ride now and get 25% off your next 10 rides</p>
+												<a href="book-ride.html" class="btn btn-primary my-3">Request a ride now</a>
+										  </div>
+										</div>
+										<div class="col-md-7">
+											<div class="rider_map">
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tab-pane fade" id="bike" role="tabpanel" aria-labelledby="bike-tab">
+									<div class="row">
+										<div class="col-md-5">
+											<div class="tab_box p-4">
+												<h3 class="mb-3">Stuck in traffic?</h2>
+												<p>Zip through traffic with Mevron Bike and get 25% off your next 10 bikes</p>
+												<a href="/driverRegister" class="btn btn-primary my-3">SIGN UP to drive</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tab-pane fade" id="wheeler" role="tabpanel" aria-labelledby="wheeler-tab">
+									<div class="row">
+										<div class="col-md-5">
+											<div class="tab_box p-4">
+												<h3 class="mb-3">Want a quick, cheap local transport?</h2>
+												<p>Request Keke Napep now and get 25% off your next 10 bikes</p>
+												<a href="/driverRegister" class="btn btn-primary my-3">SIGN UP to drive</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tab-pane fade" id="eat" role="tabpanel" aria-labelledby="eat-tab">
+									<div class="row">
+										<div class="col-md-5">
+											<div class="tab_box p-4">
+												<h3 class="mb-3">You're hungry?</h2>
+												<p>No worries! We've all been there! Mevron brings the food to you!</p>
+												<p>Coming soon</p>
+												<!-- <a href="#" class="btn btn-primary my-3">SIGN UP to drive</a>  -->
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tab-pane fade" id="freight" role="tabpanel" aria-labelledby="freight-tab">
+									<div class="row">
+										<div class="col-md-5">
+											<div class="tab_box p-4">
+												<h3 class="mb-3">Getting the things you care about where they need to go just got easier!</h2>
+												<p> It's great to get where you want to go, but Mevron doesn't stop there. We can also get the things you care about where they need to go. From delivering packages to heavier freight, give us a call</p>
+												<!-- <a href="#" class="btn btn-primary my-3">SIGN UP to drive</a> -->
+												<!-- <a href="safety.html" class="a-default d-block">See all safety features <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="15px"><path fill-rule="evenodd" fill="rgb(255, 255, 255)" d="M19.207,13.820 C18.914,14.102 18.453,14.102 18.161,13.820 C17.878,13.549 17.878,13.097 18.161,12.826 L23.466,7.734 L0.743,7.734 C0.335,7.734 -0.000,7.422 -0.000,7.030 C-0.000,6.639 0.335,6.317 0.743,6.317 L23.466,6.317 L18.161,1.234 C17.878,0.953 17.878,0.501 18.161,0.230 C18.453,-0.051 18.914,-0.051 19.207,0.230 L25.768,6.528 C26.051,6.800 26.051,7.251 25.768,7.522 L19.207,13.820 Z"></path></svg></a> -->
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tab-pane fade" id="charter" role="tabpanel" aria-labelledby="charter-tab">
+									<div class="row">
+										<div class="col-md-5">
+											<div class="tab_box p-4">
+												<h3 class="mb-3">The Mevron platform isn't just for moving people! </h2>
+												<p> The same dynamic request management and real-time tracking is useful for industrial equipment and transportation needs as well. </p>
+												<!-- <a href="#" class="btn btn-primary my-3">SIGN UP to drive</a>
+												<a href="safety.html" class="a-default d-block">See all safety features <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="15px"><path fill-rule="evenodd" fill="rgb(255, 255, 255)" d="M19.207,13.820 C18.914,14.102 18.453,14.102 18.161,13.820 C17.878,13.549 17.878,13.097 18.161,12.826 L23.466,7.734 L0.743,7.734 C0.335,7.734 -0.000,7.422 -0.000,7.030 C-0.000,6.639 0.335,6.317 0.743,6.317 L23.466,6.317 L18.161,1.234 C17.878,0.953 17.878,0.501 18.161,0.230 C18.453,-0.051 18.914,-0.051 19.207,0.230 L25.768,6.528 C26.051,6.800 26.051,7.251 25.768,7.522 L19.207,13.820 Z"></path></svg></a> -->
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tab-pane fade" id="sBus" role="tabpanel" aria-labelledby="sBus-tab">
+									<div class="row">
+										<div class="col-md-5">
+											<div class="tab_box p-4">
+												<h3 class="mb-3">Bus</h2>
+												<p> Why drive your kids to school, and get caught in all that traffic? We'll get your kids to school, with full tracking.</p>
+												<a href="#" class="btn btn-primary my-3">SIGN UP to drive</a>
+												<!-- <a href="safety.html" class="a-default d-block">See all safety features <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="15px"><path fill-rule="evenodd" fill="rgb(255, 255, 255)" d="M19.207,13.820 C18.914,14.102 18.453,14.102 18.161,13.820 C17.878,13.549 17.878,13.097 18.161,12.826 L23.466,7.734 L0.743,7.734 C0.335,7.734 -0.000,7.422 -0.000,7.030 C-0.000,6.639 0.335,6.317 0.743,6.317 L23.466,6.317 L18.161,1.234 C17.878,0.953 17.878,0.501 18.161,0.230 C18.453,-0.051 18.914,-0.051 19.207,0.230 L25.768,6.528 C26.051,6.800 26.051,7.251 25.768,7.522 L19.207,13.820 Z"></path></svg></a> -->
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tab-pane fade" id="business" role="tabpanel" aria-labelledby="business-tab">
+									<div class="row">
+										<div class="col-md-5">
+											<div class="tab_box p-4">
+												<h3 class="mb-3">Business</h2>
+												<p>  Get a well-appointed professional driver for your business pickups and journeys.</p>
+												<a href="#" class="btn btn-primary my-3">SIGN UP to drive</a>
+												<a href="safety.html" class="a-default d-block">See all safety features <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="15px"><path fill-rule="evenodd" fill="rgb(255, 255, 255)" d="M19.207,13.820 C18.914,14.102 18.453,14.102 18.161,13.820 C17.878,13.549 17.878,13.097 18.161,12.826 L23.466,7.734 L0.743,7.734 C0.335,7.734 -0.000,7.422 -0.000,7.030 C-0.000,6.639 0.335,6.317 0.743,6.317 L23.466,6.317 L18.161,1.234 C17.878,0.953 17.878,0.501 18.161,0.230 C18.453,-0.051 18.914,-0.051 19.207,0.230 L25.768,6.528 C26.051,6.800 26.051,7.251 25.768,7.522 L19.207,13.820 Z"></path></svg></a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<ul class="nav flex-row justify-content-between menu_tab" role="tablist">
+								<li class="active">
+									<a class="" id="drive-tab" data-toggle="tab" href="#drive" role="tab" aria-controls="drive" aria-selected="true" title="Drive"><i><img src="static-mevron/img/driver_icon.png" alt=""></i> Drive</a>
+								</li>
+							   <li>
+									<a class="" id="ride-tab" data-toggle="tab" href="#ride" role="tab" aria-controls="ride" aria-selected="false" title="Ride"><i><img src="static-mevron/img/front/ride_icon.svg" alt=""></i> Ride</a>
+								</li>
+								<li>
+									<a class="" id="bike-tab" data-toggle="tab" href="#bike" role="tab" aria-controls="bike" aria-selected="false" title="bike"><i><img src="static-mevron/img/front/bike_icon.svg" alt=""></i> Bike</a>
+								</li>
+								<li>
+									<a class="" id="wheeler-tab" data-toggle="tab" href="#wheeler" role="tab" aria-controls="wheeler" aria-selected="false" title="3-Wheeler"><i><img src="static-mevron/img/front/wheeler_icon.svg" alt=""></i> 3-Wheeler</a>
+								</li>
+								<li>
+									<a class="" id="eat-tab" data-toggle="tab" href="#eat" role="tab" aria-controls="wheeler" aria-selected="false" title="Coming Soon"><i><img src="static-mevron/img/front/eat_icon.svg" alt=""></i> Eat</a>
+								</li>
+								<li>
+									<a class="" id="freight-tab" data-toggle="tab" href="#freight" role="tab" aria-controls="freight" aria-selected="false" title="Coming Soon"><i><img src="static-mevron/img/front/freight_icon.svg" alt=""></i> Freight</a>
+								</li>
+								<li>
+									<a class="" id="charter-tab" data-toggle="tab" href="#charter" role="tab" aria-controls="freight" aria-selected="false" title="Coming Soon"><i><img src="static-mevron/img/front/charter_icon.svg" alt=""></i> Charter</a>
+								</li>
+								<li>
+									<a class="" id="sBus-tab" data-toggle="tab" href="#sBus" role="tab" aria-controls="freight" aria-selected="false" title="Coming Soon"><i><img src="static-mevron/img/front/school_bus_icon.svg" alt=""></i> Bus</a>
+								</li>
+							<!-- 	<li>
+									<a class="" id="transit-tab" data-toggle="tab" href="#transit" role="tab" aria-controls="transit" aria-selected="false" class="Transit"><i><img src="static-mevron/img/front/transit_icon.svg" alt=""></i> Transit</a>
+								</li> -->
+								<li>
+									<a class="" id="business-tab" data-toggle="tab" href="#business" role="tab" aria-controls="business" aria-selected="false" title="Coming Soon"><i><img src="static-mevron/img/front/business_icon.png" alt=""></i> Business</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+
+					<div class="cover_img">
+						<img src="static-mevron/img/front/home_banner.jpg" alt="" />
+					</div>
+
+					<!-- <video autoplay="" loop="" playsinline="">
+						<source src="https://www.uber-assets.com/video/upload/vc_auto,q_auto,w_1920,h_1080/v1557268182/videos/webloops/1920x1080/WEBM/Ellis_ANTHEM_WebLoop_1920x1080_h264_.webmhd.webm" type="video/webm">
+						<source src="https://www.uber-assets.com/video/upload/vc_auto,q_auto,w_1920,h_1080/v1557268063/videos/webloops/1920x1080/H264/Ellis_ANTHEM_WebLoop_1920x1080_h264.mp4" type="video/mp4">
+					</video> -->
+				</div>
+
+			</div><!-- Front Banner -->
+
+			<!-- Start Motion Section-->
+			<section class="motion-sec my-lg-5 pt-4 wow fadeInUp" data-wow-delay="0.4s">
+				<div class="container">
+					<div class="moton_inner bg-white text-center py-5">
+						<div class="titleB text-center wow fadeInDown" data-wow-delay="0.4s">
+							<h2 class="text-left d-inline-block">Moving the World One<br/>  City at a Time</h2>
+						</div>
+						<figure class="d-inline-block "><img src="static-mevron/img/front/motion.png" class="img-fluid" alt=""></figure>
+					</div>
+				</div>
+			</section>
+			<!-- End Motion Section-->
+
+			<!-- Start Story Section-->
+			<section class="story-sec my-lg-4 my-md-5 py-5 my-sm-0">
+
+				<div class="row align-items-center flex-row-reverse no-gutters">
+					<div class="col-lg-7 story_pic ml-auto">
+						<figure class="wow slideInRight" data-wow-delay="0.3s"><img src="static-mevron/img/front/story_pic.jpg" class="img-fluid" alt=""></figure>
+					</div>
+
+					<div class="box_watch">
+						<div class="stories_box bg-gold px-5 py-5">
+							<div class="titleB">
+								<h3 class="text-left d-inline-block">Unlock the <br/>Possibilities</h3>
+							</div>
+							<summary class="pt-lg-0">
+								<p>For business, travel, or a simple trip across town, Mevron puts you in the driver’s seat. Two, three, or four wheels … let’s get moving!</p>
+							</summary>
+						</div><!-- End Stories Box -->
+					</div>
+
+				</div>
+
+			</section>
+			<!-- End Story Section-->
+
+			<!-- Start Money Pocket Section-->
+			<section class="story-sec my-lg-4 my-md-5 py-5 my-sm-0">
+
+				<div class="row align-items-center no-gutters">
+					<div class="col-lg-7 story_pic mr-auto">
+						<figure class="wow slideInLeft" data-wow-delay="0.3s"><img src="static-mevron/img/front/pocket_pic.jpg" class="img-fluid" alt=""></figure>
+					</div>
+
+					<div class="box_watch box_reverse">
+						<div class="stories_box bg-gold px-5 py-5">
+							<div class="titleB">
+								<h3 class="text-left d-inline-block">Keep More of  <br>What YOU Earn</h3>
+							</div>
+							<summary class="pt-lg-0">
+								<p>Our drivers are the lifeblood of everything we do. That’s why we designed a system where you keep more of what you earn. Decide how often and how far. Control your schedule. Determine how much Mevron gets! </p>
+
+								<hr/>
+
+								<div class="text-right story_btn">
+									<a href="javascript:void(0);">See the stories <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="15px"><path fill-rule="evenodd"  fill="rgb(0, 0, 0)" d="M19.207,13.820 C18.914,14.102 18.453,14.102 18.161,13.820 C17.878,13.549 17.878,13.097 18.161,12.826 L23.466,7.734 L0.743,7.734 C0.335,7.734 -0.000,7.422 -0.000,7.030 C-0.000,6.639 0.335,6.317 0.743,6.317 L23.466,6.317 L18.161,1.234 C17.878,0.953 17.878,0.501 18.161,0.230 C18.453,-0.051 18.914,-0.051 19.207,0.230 L25.768,6.528 C26.051,6.800 26.051,7.251 25.768,7.522 L19.207,13.820 Z"/></svg></a>
+								</div>
+
+								<!-- <div class="watch_video pt-3" data-toggle="modal" data-target="#story-video">
+									<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34px" height="41px"> <path fill-rule="evenodd"  fill="rgb(255, 255, 255)"
+									d="M30.718,14.932 C30.145,14.565 29.390,14.744 29.033,15.333 C28.676,15.921 28.851,16.695 29.424,17.061 C30.758,17.915 31.554,19.387 31.554,21.000 C31.554,22.613 30.758,24.085 29.424,24.939 L9.363,37.773 C7.948,38.679 6.232,38.723 4.774,37.893 C3.316,37.063 2.446,35.545 2.446,33.834 L2.446,8.166 C2.446,6.455 3.316,4.938 4.774,4.107 C6.232,3.277 7.948,3.322 9.363,4.227 L21.041,11.698 C21.615,12.065 22.369,11.886 22.726,11.297 C23.084,10.709 22.909,9.935 22.336,9.568 L10.658,2.098 C8.477,0.703 5.835,0.634 3.587,1.913 C1.341,3.192 -0.000,5.529 -0.000,8.166 L-0.000,33.834 C-0.000,36.471 1.341,38.808 3.588,40.087 C4.658,40.696 5.817,41.000 6.975,41.000 C8.247,41.000 9.516,40.633 10.658,39.903 L30.718,27.068 C32.773,25.753 34.000,23.485 34.000,21.000 C34.000,18.515 32.773,16.247 30.718,14.932 Z"/></svg></i>
+									Watch the video
+								</div> -->
+
+							</summary>
+						</div><!-- End Stories Box -->
+					</div>
+
+				</div>
+
+			</section>
+			<!-- End Story Section-->
+
+			<section class="bg-black">
+
+				<div class="community_sec py-4 py-md-5">
+					<div class="container">
+						<div class="row align-items-center">
+							<div class="col-md-6 text-left">
+								<figure class="m-md-0 mb-4"><img src="static-mevron/img/front/safe_pic.jpg" class="img-fluid" alt=""></figure>
+							</div>
+							<div class="col-md-6 text-white">
+								<div class="titleB">
+									<h2 class="text-left text-white d-inline-block">Safety Is Our <br/> Top Priority</h2>
+								</div>
+
+								<summary>
+									<p>Using advanced technology, careful vetting processes, and a clear review system, we strive to ensure all of our drivers and riders are safe on every trip. Discover our commitment through Mevron’s <a href="javascript:void(0);" class="a-default">Safety Program</a>.</p>
+								</summary>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<hr/>
+
+				<div class="ang_sec py-4 py-sm-5">
+					<div class="container">
+						<div class="row py-3">
+							<div class="col-lg-4 text-white py-3">
+								<i class="d-block"><img src="static-mevron/img/front/about_icon.svg" alt=""></i>
+								<h4 class="d-inline-block font-weight-bold">Awesome Drivers. Great Riders.</h4>
+								<p>Mevron Drivers keep more of what they earn. This leads to happier drivers. That means more satisfied riders.</p>
+								<a href="about.html" class="a-default">Learn more <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="15px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M19.207,13.820 C18.914,14.102 18.453,14.102 18.161,13.820 C17.878,13.549 17.878,13.097 18.161,12.826 L23.466,7.734 L0.743,7.734 C0.335,7.734 -0.000,7.422 -0.000,7.030 C-0.000,6.639 0.335,6.317 0.743,6.317 L23.466,6.317 L18.161,1.234 C17.878,0.953 17.878,0.501 18.161,0.230 C18.453,-0.051 18.914,-0.051 19.207,0.230 L25.768,6.528 C26.051,6.800 26.051,7.251 25.768,7.522 L19.207,13.820 Z"/></svg></a>
+							</div>
+							<div class="col-lg-4 text-white py-3">
+								<i class="d-block"><img src="static-mevron/img/front/newsroom_icon.svg" alt=""></i>
+								<h4 class="d-inline-block font-weight-bold">Safe and Secure.</h4>
+								<p>Our advanced technology and 24/7 operations staff mean riders and drivers will have a safer and more secure experience.</p>
+								<!-- <a href="javascript:void(0);" class="a-default">Learn more <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="15px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M19.207,13.820 C18.914,14.102 18.453,14.102 18.161,13.820 C17.878,13.549 17.878,13.097 18.161,12.826 L23.466,7.734 L0.743,7.734 C0.335,7.734 -0.000,7.422 -0.000,7.030 C-0.000,6.639 0.335,6.317 0.743,6.317 L23.466,6.317 L18.161,1.234 C17.878,0.953 17.878,0.501 18.161,0.230 C18.453,-0.051 18.914,-0.051 19.207,0.230 L25.768,6.528 C26.051,6.800 26.051,7.251 25.768,7.522 L19.207,13.820 Z"/></svg></a> -->
+							</div>
+							<div class="col-lg-4 text-white py-3">
+								<i class="d-block"><img src="static-mevron/img/front/citizen_icon.svg" alt=""></i>
+								<h4 class="d-inline-block font-weight-bold">Be Part of the Revolution</h4>
+								<p>Mevron is changing the way people commute and work. We offer amazing support for all your questions, comments, or concerns.</p>
+								<!-- <a href="javascript:void(0);" class="a-default">Learn more <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="15px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M19.207,13.820 C18.914,14.102 18.453,14.102 18.161,13.820 C17.878,13.549 17.878,13.097 18.161,12.826 L23.466,7.734 L0.743,7.734 C0.335,7.734 -0.000,7.422 -0.000,7.030 C-0.000,6.639 0.335,6.317 0.743,6.317 L23.466,6.317 L18.161,1.234 C17.878,0.953 17.878,0.501 18.161,0.230 C18.453,-0.051 18.914,-0.051 19.207,0.230 L25.768,6.528 C26.051,6.800 26.051,7.251 25.768,7.522 L19.207,13.820 Z"/></svg></a>  -->
+							</div>
+						</div>
+					</div>
+				</div><!-- End -->
+			</section>
+
+			<section class="sign_sec">
+				<div class="container">
+					<div class="front-sign-sec">
+						<a href="signup-driver.html" class="box bg-white d-inline-block text-left">
+							<h3>Sign Up to <br> Drive</h3>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd"  fill="rgb(13, 13, 13)"
+							d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"/></svg>
+						</a>
+						<a href="signup-rider.html" class="box bg-gold d-inline-block text-left">
+							<h3>Sign Up to <br> Ride</h3>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
+							d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"/></svg>
+						</a>
+					</div>
+				</div>
+			</section>
+
+		</div><!-- End layout_fixed -->
+
+		<div class="clearfix"></div>
+		<div th:replace="fragments/footer :: main_footer"></div>
+
+
+	</main>
+
+	<!-- Modal-video -->
+	<!--div class="modal fade video_modal" id="story-video" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+
+		  <div class="modal-body text-center">
+			<h3 class="text-uppercase font-weight-bold" style="text-decoration:underline">
+				Profoundly Better Deal
+			</h3>
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/zKL5FuZia-E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div-->
+
+    <!-- JavaScript files-->
+    <script src="static-mevron/vendor/jquery/jquery.min.js"></script>
+    <script src="static-mevron/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Animate JS -->
+    <script src="static-mevron/vendor/wow/wow.min.js"></script>
+	<!-- Custom JS -->
+    <script src="static-mevron/js/custom.js"></script>
+<script>
+	console.log("Javascript Loaded!!!");
+</script>
+</body>
+</html>

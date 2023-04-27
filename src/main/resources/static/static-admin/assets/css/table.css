@@ -1,0 +1,122 @@
+.sort_icon {
+    position: absolute;
+    right: 5px;
+    top: 14px;
+    cursor: pointer;
+}
+
+.sort_icon img {
+    width: 15px;
+}
+
+.table {
+    margin-bottom: 0;
+}
+.table thead tr th,
+.table tbody tr td {
+    padding: 1rem 1.5rem;
+}
+
+.table thead tr th {
+    padding-right: 25px;
+    font-weight: 600;
+    position: relative;
+    background: var(--grey-light-color-100);
+    text-transform: capitalize;
+    white-space: nowrap;
+    border-top: 1px solid var(--grey-color-500);
+    border-bottom: 1px solid var(--grey-color-500) !important;
+    color: var(--black-color-300);
+}
+
+.table thead tr th:first-child {
+    border-left-width: 1px;
+    border-left-color: var(--grey-color-500);
+}
+
+.table thead tr th:last-child {
+    border-right-width: 1px;
+    border-right-color: var(--grey-color-500);
+}
+
+table tbody tr td {
+    border-bottom: 0;
+    vertical-align: middle;
+    padding: .40rem 1.5rem;
+    font-size: 14px;
+}
+
+.actions .btn {
+    padding: .35rem .40rem;
+}
+
+.actions .btn img {
+    max-height: 16px;
+    height: 13px;
+    min-width: 12px;
+}
+.search_form {
+    max-width: 310px;
+}
+.search_form .form-control {
+    border-color: var(--grey-color-500);
+}
+
+/* Badge */
+.badge {
+    padding: .50rem 1rem;
+    min-width: 70px;
+    border-width: 1px;
+    border-style: solid;
+    font-weight: 600;
+}
+
+.badge.bg-success {
+    background: rgba(40, 219, 11, 0.1) !important;
+    border-color: #28DB0B !important;
+    color: #28DB0B;
+}
+
+.badge.bg-progress {
+    background: rgba(254, 148, 50, 0.14) !important;
+    border-color: #FE9432 !important;
+    color: #FE9432;
+}
+
+.badge.bg-warning {
+    background: rgba(251, 200, 19, 0.14) !important;
+    border-color: #FBC813 !important;
+    color: #FBC813;
+}
+ 
+/* Pagination */
+.pre_arrow img {
+    margin-right: 5px;
+}
+.next_arrow img {
+    margin-left: 5px;
+}
+.pagination li {
+    margin: 0 2px;
+}
+.pagination li a {
+    border: 0;
+    min-width: 30px; 
+    font-size: 14px;
+    border-radius: 6px;
+    color: var(--black-color);
+    box-shadow: none !important;
+}
+
+.pagination li:hover .page-link,
+.pagination li.active .page-link {
+    background: var(--black-color);
+    border-color: var(--black-color);
+    color: var(--white-color);
+}
+
+.pagination li:hover .page-link img,
+.pagination li.active .page-link img{
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
+}

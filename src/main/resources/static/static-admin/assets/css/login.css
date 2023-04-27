@@ -1,0 +1,28 @@
+.front_logo {margin: 100px 0 0;}
+.front_logo img{width: 249px; pointer-events: none;}
+.ls_form { width:500px; padding: 30px; }
+@media (max-width:1200px) {
+    .ls_form {max-width: 100%; width:100%; padding: 0;}
+}
+@media (max-width:767px) {
+    .ls_form {max-width: 480px; margin: 0 auto;}
+    .front_logo {margin:0 0 20px; background: var(--black-color); display: inline-block; border-radius: 10px; padding: 20px;}
+}
+.form_logo img {width: 116px;}
+.ls_form a {font-weight: 500;}
+.ls_form .btn {font-weight: 500;}
+.ls_form a:hover {text-decoration: underline;}
+.already_acc a {text-decoration: underline;}
+.already_acc a:hover {text-decoration: none;}
+.login_bg { 
+    padding: 35px;  
+    background-color: var(--primary-color);
+    background-image: url(../img/login_layer.png);
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: 100%;
+}  
+.ls_form .form-control {box-shadow: 4px 6px 15px rgba(0, 0, 0, 0.06);}
+
+.show_hide_pwd {position: absolute; top: calc(50% - 27px / 2); right: 10px; border: 0; background: transparent;}
+.show_hide_pwd img {width: 20px;}

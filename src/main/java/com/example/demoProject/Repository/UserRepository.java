@@ -1,5 +1,6 @@
 package com.example.demoProject.Repository;
 
+import com.example.demoProject.Dto.UserDto;
 import com.example.demoProject.Models.Roles;
 import com.example.demoProject.Models.Users;
 import org.springframework.data.domain.Page;
@@ -23,12 +24,19 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
     )
     Users findUsersByEmailorPhoneNo(@Param("email") String email, @Param("phoneNo") String phoneNo);
 
+//    @Transactional
+//    @Modifying
+//    @Query(
+//            value = "Update Users us Set us.firstName = :firstName, us.lastName = :lastName, us.phoneNo = :phoneNo Where us.email = :email"
+//    )
+//    void updateUserByEmail(@Param("email") String email, @Param("firstName") String firstName, @Param("lastName") String lastName, @Param("phoneNo") String phoneNo);//, @Param("lName") String lName, @Param("phone") String phone);
     @Transactional
     @Modifying
     @Query(
-            value = "Update Users us Set us.firstName = :firstName, us.lastName = :lastName, us.phoneNo = :phoneNo Where us.email = :email"
+            value = "Update Users us Set us.firstName = :#{#userDto.firstName},us.lastName = :#{#userDto.lastName}," +
+                    " us.phoneNo = :#{#userDto.phone}, us.city = :#{#userDto.city} , us.imageUrl = :#{#userDto.url} Where us.email = :email"
     )
-    void updateUserByEmail(@Param("email") String email, @Param("firstName") String firstName, @Param("lastName") String lastName, @Param("phoneNo") String phoneNo);//, @Param("lName") String lName, @Param("phone") String phone);
+    void updateUserByEmail(@Param("email") String email, @Param("userDto") UserDto userDto);
     Users findUsersById(@Param("id") int id);
     @Transactional
     @Modifying

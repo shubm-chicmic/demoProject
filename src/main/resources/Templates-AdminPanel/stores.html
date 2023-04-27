@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments-admin/header :: html_head">
+
+</head>
+<body>
+    <div class="position-relative d-flex p-0" id="top">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-light position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Sidebar Start -->
+        <aside class="sidebar pb-3">
+            <button class="d-lg-none close_btn"><img src="static-admin/assets/img/icons/close_icon.svg" alt="Close"
+                    width="30" /></button>
+            <nav class="navbar text-left">
+                <a href="dashboard.html" class="navbar-brand my-4 pt-2 pb-4 m-auto text-center">
+                    <img src="static-admin/assets/img/logo.svg" alt="Sbrigit" width="144" class="img-fluid" />
+                </a>
+
+                <ul class="navbar-nav w-100">
+                    <li><a href="dashboard.html" class="nav-link"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/dashboard_icon.svg" width="24" alt="" /></i>
+                            Dashboard </a></li>
+                    <li class="nav-item">
+                        <a href="retailers.html" class="nav-link active"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/retailor_icon.svg" width="23" alt="" /></i>
+                            Retailers
+                        </a>
+                    </li>
+                    <li><a href="drivers.html" class="nav-link"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/driver_icon.svg" width="23" alt="" /></i>
+                            Drivers</a></li>
+                    <li class="nav-item">
+                        <a href="no-rules.html" class="nav-link"><i
+                                class="me-2"><img src="static-admin/assets/img/icons/menu_icons/rules_icon.svg" width="23"
+                                    alt="" /></i>
+                            Rules</a>
+                    </li>
+                    <li><a href="fee-setup.html" class="nav-link"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/feeSetup_icon.svg" width="23" alt="" /></i> Fee
+                            setup</a>
+                    </li>
+                </ul>
+                <div class="logout_menu"><a href="index.html" class="nav-link"><i class="me-2"><img
+                                src="static-admin/assets/img/icons/menu_icons/logout_icon.svg" width="24" alt="Logout" /></i> Log Out
+                    </a>
+                </div>
+            </nav>
+
+        </aside>
+        <!-- Sidebar End -->
+
+        <!-- Content Start -->
+        <div class="content pb-3">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand navbar-dark px-3 px-lg-4 py-3 top_header">
+
+                <a href="#" class="sidebar-toggler flex-shrink-0 me-2 d-lg-none">
+                    <img src="static-admin/assets/img/icons/hamburger_icon.svg" alt="" width="30" />
+                </a>
+
+                <div class="d-none d-md-block title_hd">
+                    <span class="h6 mb-0 text-capitalize">Hello Danielle</span>
+                    <small class="d-block f-small text-mute">11:45 am 22 Dec 2022</small>
+                </div>
+
+                <div class="navbar-nav align-items-center ms-auto">
+
+                    <div class="nav-item dropdown ms-4 p_pic">
+                        <a href="#" class="d-flex align-items-center dropdown-toggle text-decoration-none"
+                            data-bs-toggle="dropdown">
+                            <em class="me-2 avtar avtar-30 border-0"><img src="static-admin/assets/img/avatar.jpg" alt=""
+                                    width="30" /></em>
+                            <span class="me-2">Danielle Campbell </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end border-0 m-0 w-100">
+                            <a href="#Password" class="dropdown-item">My Profile</a>
+                            <a href="index.html" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+            <!-- Navbar End -->
+            
+            <div class="alert alert-success text-center rounded-0 d-none" role="alert" id="alertPayment">
+                Payout request has been sent successfully!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2501 0.750022C10.8359 0.335793 10.1643 0.335753 9.75009 0.749934L5.99947 4.5L2.24987 0.750067C1.83566 0.335827 1.16407 0.335827 0.749867 0.750066C0.335716 1.16425 0.335716 1.83575 0.749867 2.24993L4.4996 6L0.749868 9.75007C0.335717 10.1643 0.335716 10.8357 0.749867 11.2499C1.16407 11.6642 1.83566 11.6642 2.24987 11.2499L5.99947 7.5L9.75009 11.2501C10.1643 11.6642 10.8359 11.6642 11.2501 11.25C11.6643 10.8358 11.6643 10.1642 11.2501 9.75002L7.5004 6L11.2501 2.24998C11.6643 1.83577 11.6643 1.16423 11.2501 0.750022Z" fill="#3AAF85"/>
+                    </svg>
+                    </button>
+            </div>
+            <!-- End Success Alert -->
+
+            <!-- Start Content -->
+            <div class="container-fluid py-2 px-3 mt-3">
+                <div class="card-panel bg-white p-4 radius-10 body_height">
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center">
+                        
+                        <nav class="nav-breadcrumb" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="retailers.html">Retailers</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Robin Matts/Stores</li>
+                            </ol>
+                        </nav>
+
+                        <div class="d-flex align-items-center mb-2 text-right">
+                            <span class="store_price d-none px-2">$2430</span>
+                            <a href="#" class="btn btn-md btn-primary text-capitalize" data-bs-toggle="modal" data-bs-target="#requestPayout">Request Payout</a>
+                        </div>
+                    </div>
+                                         
+                    <div class="store_block">
+                        <div class="page-header">
+                            <h1 class="h2 mb-4">Stores</h1>
+                            <div class="custom_checkbox">
+                                <input type="checkbox" id="selectAll">
+                                <label for="selectAll">Select checkbox to view the amount</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mt-2 mt-md-4">
+                                <div class="card-body h-100">
+                                    <div class="d-flex justify-content-between mb-4 store_title">
+                                        <h3 class="h5 mb-0">Store Name 1</h3>
+                                        <div class="d-flex item_action">
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="2FA">
+                                                <label for="2FA">Toggle</label>
+                                            </div>
+                                            <div class="custom_checkbox ms-3">
+                                                <input type="checkbox" id="1">
+                                                <label for="1"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>25 Regent Street,Melbourne, 2325, Australia</p>
+                                    <a href="retailer-overview.html" class="btn btn-sm btn-white">View</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-2 mt-md-4">
+                                <div class="card-body h-100">
+                                    <div class="d-flex justify-content-between mb-4 store_title">
+                                        <h3 class="h5 mb-0">Store Name 1</h3>
+                                        <div class="d-flex item_action">
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="2FA">
+                                                <label for="2FA">Toggle</label>
+                                            </div>
+                                            <div class="custom_checkbox ms-3">
+                                                <input type="checkbox" id="2">
+                                                <label for="2"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>25 Regent Street,Melbourne, 2325, Australia</p>
+                                    <a href="retailer-overview.html" class="btn btn-sm btn-white">View</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-2 mt-md-4">
+                                <div class="card-body h-100">
+                                    <div class="d-flex justify-content-between mb-4 store_title">
+                                        <h3 class="h5 mb-0">Store Name 1</h3>
+                                        <div class="d-flex item_action">
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="2FA">
+                                                <label for="2FA">Toggle</label>
+                                            </div>
+                                            <div class="custom_checkbox ms-3">
+                                                <input type="checkbox" id="3">
+                                                <label for="3"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>25 Regent Street,Melbourne, 2325, Australia</p>
+                                    <a href="retailer-overview.html" class="btn btn-sm btn-white">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- End Content  -->
+    </div>
+
+    <!-- Start Request Payout -->
+     
+    <div class="modal fade" id="requestPayout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Request Payout?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+              <p>Are you sure you want to request the payout for all the stores?</p>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-md btn-outline-primary" data-bs-dismiss="modal">No</button>
+              <button type="button" class="btn btn-md btn-primary" data-bs-dismiss="modal" onclick="alertPayment()">Yes</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="static-admin/assets/js/cookie.js"></script>
+    <!-- Template Javascript -->
+    <script src="static-admin/assets/js/main.js"></script>
+    <script>
+        $('#selectAll').click(function (e) {
+            $(this).closest('.store_block').find('.custom_checkbox input:checkbox').prop('checked', this.checked);
+        }); 
+        $('input:checkbox').change(function(){
+            if($(this).is(":checked")) {
+                $('.store_price').addClass("d-block");
+                $('.store_price').removeClass("d-none");
+            } else {
+                $('.store_price').removeClass("d-block");
+            }
+        });
+
+        function alertPayment() {
+          var element = document.getElementById("alertPayment");
+            element.classList.remove("d-none");
+        }
+    </script>
+</body>
+
+</html>

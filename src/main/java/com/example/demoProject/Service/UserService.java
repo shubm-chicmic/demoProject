@@ -1,5 +1,6 @@
 package com.example.demoProject.Service;
 
+import com.example.demoProject.Dto.UserDto;
 import com.example.demoProject.Models.Roles;
 import com.example.demoProject.Models.Users;
 import com.example.demoProject.Models.UserUuid;
@@ -10,6 +11,7 @@ import com.example.demoProject.Repository.UserUuidRepository;
 import jakarta.transaction.Transactional;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,12 +24,7 @@ import java.util.List;
 
 @Service
 public class UserService {
-    List<Users> list = new ArrayList<>();
-    //    @Bean
-//    public userService makingbean() {
-//        userService us = new userService();
-//        return us;
-//    }
+
     @Autowired
     UserRepository userrepo;
     @Autowired
@@ -37,11 +34,27 @@ public class UserService {
 
     @Autowired
     UserRoleRepository userRoleRepository;
+    @Autowired
+    UserUuidRepository uuidRepo;
+    @Value("${image.path}")
+    String imagePath;
 
-    public void addDriver(Users user) {
+    // REGISTER WORK
+    public void addAdmin(Users user) {
+        String role = "ADMIN";
         userrepo.save(user);
-        String role = "DRIVER";
         int userId = userrepo.findByEmail(user.getEmail()).getId();
+        int roleId = userRoleRepository.findIdByRoles(role);
+        Roles roles = Roles.builder()
+                .roleId(roleId)
+                .userId(userId)
+                .build();
+        roleRepository.save(roles);
+    }
+    public void addDriver(Users user) {
+        int userId= userrepo.save(user).getId();
+        String role = "DRIVER";
+//        int userId = userrepo.findByEmail(user.getEmail()).getId();
         int roleId = userRoleRepository.findIdByRoles(role);
         Roles roles = Roles.builder()
                 .roleId(roleId)
@@ -50,14 +63,7 @@ public class UserService {
         roleRepository.save(roles);
 
     }
-    public void updateDriver(Users users) {
-        System.out.println("inside updateDriver " + users);
-        int userId = userrepo.findByEmail(users.getEmail()).getId();
 
-        userrepo.updateUserByEmail(users.getEmail(), users.getFirstName(), users.getLastName(), users.getPhoneNo());//, users.getLastName(), users.getPhoneNo());
-        System.out.println("inside updateDrive second ///// " + userrepo.findByEmail(users.getEmail()).getFirstName());
-
-    }
     public void addRider(Users user) {
         userrepo.save(user);
         String role = "RIDER";
@@ -85,7 +91,25 @@ public class UserService {
     }
 
      */
+    //UPDATE WORK
+    public Users updateUserByEmail(String email, UserDto userDto, String fileName) {
+        userDto.setImageUrl(imagePath + fileName);
 
+        userrepo.updateUserByEmail(email, userDto);
+
+        Users users = userrepo.findByEmail(email);
+
+        return users;
+    }
+    public void updateDriver(Users users) {
+        System.out.println("inside updateDriver " + users);
+        int userId = userrepo.findByEmail(users.getEmail()).getId();
+        users.setId(userId);
+        userrepo.save(users);
+        //userrepo.updateUserByEmail(users.getEmail(), users.getFirstName(), users.getLastName(), users.getPhoneNo());//, users.getLastName(), users.getPhoneNo());
+        System.out.println("inside updateDrive second ///// " + userrepo.findByEmail(users.getEmail()).getFirstName());
+
+    }
     public Users getUserByEmail(String Email) {
         System.out.println("userservice " + " 5 " + Email);
         return userrepo.findByEmail(Email);
@@ -152,8 +176,7 @@ public class UserService {
     }
 
     // Token work
-    @Autowired
-    UserUuidRepository uuidRepo;
+
     public UserUuid CreateToken(UserUuid uuidEntity){
         System.out.println(uuidEntity);
         if (uuidRepo==null) System.out.println("null");

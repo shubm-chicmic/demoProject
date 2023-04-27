@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments-admin/header :: html_head">
+
+</head>
+<body>
+    <!--  Start Login Page -->
+    <div class="overflow-hidden front_form">
+        <div class="row g-0">
+            <div class="d-none d-md-flex col-md-6 login_bg">
+                <div class="front_logo">
+                    <img src="static-admin/assets/img/logo.svg" alt="Sbrigit" width="249"/>
+                </div>
+            </div>
+            <div class="col-md-6"> 
+                <div class="d-flex flex-column align-items-start justify-content-center px-3 px-md-5 min-vh-100">
+                    <div class="ls_form">
+                        <div class="d-md-none front_logo">
+                            <img src="static-admin/assets/img/logo.svg" alt="Sbrigit" width="249"/>
+                        </div>
+                        <form class="w-100" action="admin/adminLogin" method="post">
+                            <div class="title_group text-left mb-4 pb-3"> 
+                                <h1 class="h1 mb-3">Login</h1>
+                                <p>Welcome back! Please enter your details.</p>
+                            </div>
+
+                            <div class="mb-4"> 
+                                <div class="position-relative">
+                                    <input type="text" name="email" class="form-control" placeholder="Enter Username" th:value="${userName}" required />
+                                </div>
+                            </div>
+                            <div class="mb-4"> 
+                                <div class="position-relative">
+                                    <input type="password" name="password" class="form-control" placeholder="Password" th:value="${password}" required id="pwd" />
+                                    <button type="button" class="show_hide_pwd" onclick="show()"><img src="static-admin/assets/img/icons/hide_password.svg" id="EYE" width="16" /></button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 text-end">
+                                <a href="forgot-password.html">Forgot Password?</a>
+                            </div>
+
+                            <div class="pt-3">
+                                <button class="py-md-3 w-100 btn btn-lg btn-primary" type="submit">
+                                    Login 
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <!--  End Login Page -->
+
+    <!-- Script -->
+    <script>
+        function show() {
+            var a = document.getElementById("pwd");
+            var b = document.getElementById("EYE");
+            if (a.type == "password") {
+                a.type = "text";
+                b.src = "static-admin/assets/img/icons/show_password.svg";
+            } else {
+                a.type = "password";
+                b.src = "static-admin/assets/img/icons/hide_password.svg";
+            }
+        }
+        function deleteAllCookies() {
+        const cookies = document.cookie.split(";");
+
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            const eqPos = cookie.indexOf("=");
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+         }
+    }
+    deleteAllCookies();
+    </script>
+    
+</body>
+
+</html>

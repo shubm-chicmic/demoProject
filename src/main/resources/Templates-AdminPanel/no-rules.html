@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments-admin/header :: html_head">
+
+</head>
+<body>
+    <div class="position-relative d-flex p-0" id="top">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-light position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Sidebar Start -->
+        <aside class="sidebar pb-3">
+            <button class="d-lg-none close_btn"><img src="static-admin/assets/img/icons/close_icon.svg" alt="Close"
+                    width="30" /></button>
+            <nav class="navbar text-left">
+                <a href="dashboard.html" class="navbar-brand my-4 pt-2 pb-4 m-auto text-center">
+                    <img src="static-admin/assets/img/logo.svg" alt="Sbrigit" width="144" class="img-fluid" />
+                </a>
+
+                <ul class="navbar-nav w-100">
+                    <li><a href="dashboard.html" class="nav-link"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/dashboard_icon.svg" width="24" alt="Dashboard" /></i>
+                            Dashboard </a></li>
+                    <li class="nav-item">
+                        <a href="retailers.html" class="nav-link"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/retailor_icon.svg" width="23" alt="Retailers" /></i>
+                            Retailers
+                        </a>
+                    </li>
+                    <li><a href="drivers.html" class="nav-link"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/driver_icon.svg" width="23" alt="Drivers" /></i>
+                            Drivers</a></li>
+                    <li class="nav-item">
+                        <a href="no-rules.html" class="nav-link active"><i
+                                class="me-2"><img src="static-admin/assets/img/icons/menu_icons/rules_icon.svg" width="23"
+                                    alt="Rules" /></i>
+                            Rules</a>
+                    </li>
+                    <li><a href="fee-setup.html" class="nav-link"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/feeSetup_icon.svg" width="23" alt="Fee Setup" /></i> Fee
+                            setup</a>
+                    </li>
+                </ul>
+                <div class="logout_menu"><a href="index.html" class="nav-link"><i class="me-2"><img
+                                src="static-admin/assets/img/icons/menu_icons/logout_icon.svg" width="24" alt="Logout" /></i> Log Out
+                    </a>
+                </div>
+            </nav>
+
+        </aside>
+        <!-- Sidebar End -->
+
+        <!-- Content Start -->
+        <div class="content pb-3">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand navbar-dark px-3 px-lg-4 py-3 top_header">
+
+                <a href="#" class="sidebar-toggler flex-shrink-0 me-2 d-lg-none">
+                    <img src="static-admin/assets/img/icons/hamburger_icon.svg" alt="" width="30" />
+                </a>
+
+                <div class="d-none d-md-block title_hd">
+                    <span class="h6 mb-0 text-capitalize">Hello Danielle</span>
+                    <small class="d-block f-small text-mute">11:45 am 22 Dec 2022</small>
+                </div>
+
+                <div class="navbar-nav align-items-center ms-auto">
+
+                    <div class="nav-item dropdown ms-4 p_pic">
+                        <a href="#" class="d-flex align-items-center dropdown-toggle text-decoration-none"
+                            data-bs-toggle="dropdown">
+                            <em class="me-2 avtar avtar-30 border-0"><img src="static-admin/assets/img/avatar.jpg" alt=""
+                                    width="30" /></em>
+                            <span class="me-2">Danielle Campbell </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end border-0 m-0 w-100">
+                            <a href="#Password" class="dropdown-item">My Profile</a>
+                            <a href="index.html" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+            <!-- Start Content -->
+            <div class="container-fluid py-2 px-3 mt-3">
+                <div class="card-panel bg-white p-4 radius-10 body_height">
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center page-header">
+                        <h1 class="h2 mb-2">Add Rules</h1>
+                        <div class="mb-2 text-right">
+                            <button data-bs-toggle="modal" data-bs-target="#addRules" class="btn btn-md btn-primary text-capitalize">Add Rules</button>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center align-items-center no_data_found_sec">
+                        <div class="p-4 w-100 text-center">
+                            <svg width="43" height="51" viewBox="0 0 43 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M42.8445 36.629C42.8677 37.8908 42.3856 39.1098 41.5051 40.0138C40.6242 40.9183 39.4189 41.4329 38.1567 41.4431C36.8949 41.4534 35.6811 40.9585 34.7856 40.0686L23.3848 27.8078C24.0283 27.3288 24.6363 26.8035 25.2031 26.2358C26.0871 25.45 26.9239 24.6132 27.7093 23.7292C28.2916 23.1534 28.8336 22.5377 29.331 21.8868L41.3209 33.2877C42.2759 34.1378 42.8295 35.3505 42.8445 36.629Z" fill="#BEBEBE"/>
+                                <path d="M11.3481 32.5011C12.043 33.1935 12.9839 33.5822 13.9646 33.5822C14.9454 33.5822 15.8864 33.1935 16.5812 32.5011L17.2201 31.8379C18.0804 30.9951 18.4588 29.7765 18.2274 28.5949C19.4463 27.8129 20.6118 26.9509 21.7164 26.0147C22.3591 25.516 22.9744 24.983 23.5593 24.4178C24.3948 23.656 25.181 22.8698 25.9424 22.0346C26.5076 21.4493 27.0411 20.8345 27.5397 20.1918C28.4699 19.0825 29.3315 17.9175 30.1195 16.7027C30.3372 16.7516 30.5596 16.7764 30.7828 16.7764C31.7584 16.7687 32.6929 16.381 33.3874 15.6954L34.0263 15.0321C34.7221 14.344 35.1133 13.4062 35.1133 12.4275C35.1133 11.4493 34.7217 10.5114 34.0258 9.82334L26.2372 2.03469C25.5379 1.36072 24.6043 0.9841 23.633 0.9841C22.6617 0.9841 21.7281 1.36072 21.0284 2.03469L20.3651 2.69796C19.674 3.38865 19.2849 4.32527 19.2841 5.30214C19.2832 5.61963 19.3329 5.93455 19.4315 6.23619C14.7947 9.30019 10.8253 13.2699 7.7608 17.9069C6.4994 17.5693 5.15321 17.9244 4.22252 18.8405L3.55925 19.5038C2.87457 20.1979 2.49023 21.1332 2.49023 22.1084C2.49023 23.0831 2.87457 24.0189 3.55925 24.7126L11.3481 32.5011Z" fill="#BEBEBE"/>
+                                <path d="M5.43089 37.823C4.7792 37.823 4.15403 38.0818 3.69345 38.5428C3.23286 39.0034 2.97363 39.6286 2.97363 40.2799V41.8155H20.2778L20.2783 40.2799C20.2783 39.6286 20.0195 39.0034 19.5584 38.5428C19.0978 38.0818 18.4727 37.823 17.821 37.823H5.43089Z" fill="#BEBEBE"/>
+                                <path d="M20.7965 44.2629H2.45683C1.80514 44.2629 1.18041 44.5217 0.719392 44.9823C0.258794 45.4433 0 46.068 0 46.7197V48.8646C0 49.1907 0.129398 49.503 0.359905 49.7336C0.589995 49.9641 0.902767 50.0935 1.22841 50.0935H22.0217C22.3478 50.0935 22.6602 49.9641 22.8907 49.7336C23.1208 49.503 23.2502 49.1907 23.2502 48.8646V46.7197C23.2502 46.068 22.9914 45.4433 22.5308 44.9823C22.0697 44.5217 21.445 44.2629 20.7933 44.2629H20.7965Z" fill="#BEBEBE"/>
+                            </svg>                                
+                            <h2 class="h5 my-4 text-capitalize">No rules added</h2>
+                            <p>Click to the above button to add rules.</p>
+                        </div>    
+                    </div> 
+
+                </div>
+            </div>
+
+        </div>
+        <!-- End Content  -->
+    </div>
+    <!-- End -->
+
+    <!-- Start Add Rules -->
+    <div class="modal fade" id="addRules" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-capitalize" id="staticBackdropLabel">Add Rule</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="rules.html">
+                    <div class="modal-body p-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Country</label>
+                                <div class="mb-4">
+                                    <select class="form-control">
+                                        <option>Australia</option>
+                                        <option>Newzeland</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Rule Name</label>
+                                <div class="mb-4">
+                                    <input type="text" placeholder="Type here" class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Type</label>
+                                <div class="mb-4">
+                                    <select class="form-control">
+                                        <option>Fixed</option>
+                                        <option>Percentage</option>
+                                    </select>   
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Value</label>
+                                <div class="mb-4">
+                                    <input type="number" placeholder="Type here" class="form-control" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-md btn-outline-primary"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-md btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End End Rules -->
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="static-admin/assets/js/main.js"></script>
+    <script>
+        $('#selectAll').click(function (e) {
+            $(this).closest('table').find('td input:checkbox').prop('checked', this.checked);
+        });
+    </script>
+</body>
+
+</html>

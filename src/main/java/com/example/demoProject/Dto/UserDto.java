@@ -12,18 +12,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-
     String firstName;
     String lastName;
+    String phone;
     String email;
-    String phoneNo;
-    String password;
+    String imageUrl = "";
     String city;
+    String password;
     String role;
-    String imageUrl;
+    Boolean isSuspend;
+    Boolean isDelete;
 
 }
 

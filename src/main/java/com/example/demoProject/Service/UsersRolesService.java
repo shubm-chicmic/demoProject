@@ -12,4 +12,9 @@ public class UsersRolesService {
     public int findIdByRole(String role) {
         return userRoleRepository.findIdByRoles(role);
     }
+    public String findRoleById(int id) {
+
+        return userRoleRepository.findRolesById(id);
+    }
+
 }

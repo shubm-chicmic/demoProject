@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments-admin/header :: html_head">
+
+</head>
+<body>
+    <div class="position-relative d-flex p-0" id="top">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-light position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Sidebar Start -->
+        <aside class="sidebar pb-3">
+            <button class="d-lg-none close_btn"><img th:src="@{/static-admin/assets/img/icons/close_icon.svg}" alt="Close"
+                    width="30" /></button>
+            <nav class="navbar text-left">
+                <a th:href="@{dashboard}" class="navbar-brand my-4 pt-2 pb-4 m-auto text-center">
+                    <img th:src="@{/static-admin/assets/img/logo.svg}" alt="Sbrigit" width="144" class="img-fluid" />
+                </a>
+
+                <ul class="navbar-nav w-100">
+                    <li><a th:href="@{dashboard}" class="nav-link"><i class="me-2"><img
+                                    th:src="@{/static-admin/assets/img/icons/menu_icons/dashboard_icon.svg}" width="24" alt="" /></i>
+                            Dashboard </a></li>
+
+                    <li><a th:href="@{users}" class="nav-link active"><i class="me-2"><img
+                                    th:src="@{/static-admin/assets/img/icons/menu_icons/driver_icon.svg}" width="23" alt="" /></i>
+                            Users</a></li>
+
+                </ul>
+                <div class="logout_menu"><a href="logout" class="nav-link"><i class="me-2"><img
+                                th:src="@{/static-admin/assets/img/icons/menu_icons/logout_icon.svg}" width="24" alt="Logout" /></i> Log Out
+                    </a>
+                </div>
+            </nav>
+
+        </aside>
+        <!-- Sidebar End -->
+
+        <!-- Content Start -->
+        <div class="content pb-3">
+            <!-- Navbar Start -->
+            <div th:replace="fragments-admin/header :: navbar">
+
+            </div>
+            <!-- Navbar End -->
+
+            <!-- Start Content -->
+            <div class="container-fluid py-2 px-3 mt-3">
+                <div class="card-panel bg-white p-4 radius-10">
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center page-header">
+                        <h1 class="h2 mb-2">Users</h1>
+                        <div class="mb-2 text-right">
+                            <a th:href="@{/addDriver}" class="btn btn-md btn-primary text-capitalize">Add Driver</a>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <form th:action="@{/searchData?(sortBy=firstName,order=${order}, pageNumber=${currentPage})}" rel="">
+                            <div class="search_form">
+                                <input type="search" name="search" placeholder="Search any retailer..." class="form-control" />
+                            </div>
+                        </form>
+<!--                        <div class="mb-2 text-right">-->
+<!--                            <a href="#" class="btn btn-md btn-primary text-capitalize">Sort Users By Name</a>-->
+<!--                        </div>-->
+                    </div>
+
+                     <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="30">
+                                        <div class="custom_checkbox">
+                                            <input type="checkbox" id="selectAll">
+                                            <label for="selectAll"></label>
+                                        </div>
+                                    </th>
+                                    <th scope="col">Name <span class="sort_icon"><a th:href="@{sortData?(sortBy=firstName,order=${order},search=${searchValue}, pageNumber=${currentPage})}" ><img
+                                                th:src="@{/static-admin/assets/img/icons/sort_icon.svg}" alt="" width="8" /></a></span></th>
+                                    <th scope="col">Email <span class="sort_icon"><a th:href="@{sortData(sortBy=email,order=${order},search=${searchValue}, pageNumber=${currentPage})}" ><img
+                                                th:src="@{/static-admin/assets/img/icons/sort_icon.svg}" alt="" width="8" /></a></span></th>
+                                    <th scope="col">Phone <span class="sort_icon"><a th:href="@{sortData(sortBy=phoneNo,order=${order},search=${searchValue}, pageNumber=${currentPage})}" ><img
+                                                th:src="@{/static-admin/assets/img/icons/sort_icon.svg}" alt="" width="8" /></a></span></th>
+                                    <th scope="col">Status <span class="sort_icon"><a th:href="@{sortData(sortBy=isSuspend,order=${order},search=${searchValue}, pageNumber=${currentPage})}" ><img
+                                                th:src="@{/static-admin/assets/img/icons/sort_icon.svg}" alt="" width="8" /></a></span></th>
+                                    <th scope="col" width="80">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="tempDriver : ${Drivers}">
+                                    <td data-label="" >
+                                        <div class="custom_checkbox">
+                                            <input type="checkbox" id="1">
+                                            <label for="1"></label>
+                                        </div>
+                                    </td>
+<!--                                    assets/img/avatar1.jpg-->
+                                    <td data-label="Account">
+                                        <div class="d-flex user_pic">
+                                            <figure class="mb-0 me-2 avtar_pic avatar-30"><img
+                                                    th:src="${tempDriver.imageUrl}" alt="" width="30" /></figure>
+                                            <div class="user_info"><span class="text-capitalize">[[${tempDriver.firstName}]] [[${tempDriver.lastName}]]</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-label="Email" th:text="${tempDriver.email}"></td>
+                                    <td data-label="Phone" th:text="${tempDriver.phoneNo}"></td>
+                                    <td data-label="Status">
+                                        <span th:if="${tempDriver.isSuspend}" class="rounded-pill badge badge bg-warning">Inactive</span>
+                                        <span th:if="${!tempDriver.isSuspend}" class="rounded-pill badge badge bg-success">Active</span>
+
+                                    </td>
+                                    <td data-label="Action">
+                                        <div class="d-flex actions">
+                                            <a href="driverOverview" class="btn btn-transparent"><img
+                                                    th:src="@{/static-admin/assets/img/icons/view_icon.svg}" width=""
+                                                    height="10" /></a>
+                                            <a th:href="@{/userProfile?id={uid}(uid=${tempDriver.id})}" class="btn btn-transparent driver_update"><img
+                                                    th:src="@{/static-admin/assets/img/icons/edit_icon.svg}" width=""
+                                                    height="10" /></a>
+                                            <a th:if="${tempDriver.isSuspend}" th:href="@{/suspend?(id=${tempDriver.id},search=${searchValue}, pageNumber=${currentPage},sortBy=firstName,order=${order})}" class="btn btn-transparent"><img
+                                                    th:src="@{/static-admin/assets/img/icons/lock-icon.svg}" width="50"
+                                                    height="50" /></a>
+                                            <a th:if="${!tempDriver.isSuspend}" th:href="@{/suspend?(id=${tempDriver.id},search=${searchValue}, pageNumber=${currentPage},sortBy=firstName,order=${order})}" class="btn btn-transparent"><img
+                                                    th:src="@{/static-admin/assets/img/icons/unlocked-icon.svg}" width="50"
+                                                    height="50" /></a>
+                                            <a th:href="@{/softDelete?id={uid}(uid=${tempDriver.id})}" class="btn btn-transparent"><img
+                                                    th:src="@{/static-admin/assets/img/icons/trash_icon.svg}" width=""
+                                                    height="10" /></a>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+ 
+                        <nav aria-label="Page navigation" class="mt-4 w-100 text-center">
+                            <ul class="pagination justify-content-center mb-0">
+                                <li th:if="${currentPage != '0'}"class="page-item"><a class="page-link arrows pre_arrow" th:href="@{users?pageNumber={pn}(pn=${currentPage} - 1)}" enable><img src="/static-admin/assets/img/icons/pre_arrow.svg" alt="Previous" width="6px">Previous</a></li>
+                                <th:block th:each="loopele,state : ${totalPages}">
+                                <li th:classappend="${currentPage} eq ${state.index} ?'active':''" class="page-item"><a  class="page-link" th:href="@{users?(sortBy=firstName,order=${order},search=${searchValue}, pageNumber=${state.index})}"  th:utext="${state.count}"></a></li>
+
+                                </th:block>
+
+
+
+
+                                <li th:if="${currentPage} neq ${maxPage} - 1" class="page-item"><a class="page-link next_arrow" th:href="@{users?pageNumber={pn}(pn=${currentPage} + 1)}">Next <img src="/static-admin/assets/img/icons/next_arrow.svg" alt="Next" width="6px"> </a></li>
+                            </ul>
+                        </nav> 
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- End Content  -->
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/static-admin/assets/js/cookie.js"></script>
+    <!-- Template Javascript -->
+    <script src="/static-admin/assets/js/main.js"></script>
+    <script>
+        $('#selectAll').click(function (e) {
+            $(this).closest('table').find('td input:checkbox').prop('checked', this.checked);
+        });
+
+    </script>
+</body>
+
+</html>

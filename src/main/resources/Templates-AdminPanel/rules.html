@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sbrigit - Rules</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="static-admin/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static-admin/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static-admin/assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="static-admin/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="static-admin/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="static-admin/assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" rel="preload">
+
+    <!-- Template Stylesheet -->
+    <link href="static-admin/assets/css/style.css" rel="stylesheet" rel="preload">
+</head>
+
+<body>
+    <div class="position-relative d-flex p-0" id="top">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-light position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Sidebar Start -->
+        <aside class="sidebar pb-3">
+            <button class="d-lg-none close_btn"><img src="static-admin/assets/img/icons/close_icon.svg" alt="Close"
+                    width="30" /></button>
+            <nav class="navbar text-left">
+                <a href="dashboard.html" class="navbar-brand my-4 pt-2 pb-4 m-auto text-center">
+                    <img src="static-admin/assets/img/logo.svg" alt="Sbrigit" width="144" class="img-fluid" />
+                </a>
+
+                <ul class="navbar-nav w-100">
+                    <li><a href="dashboard.html" class="nav-link"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/dashboard_icon.svg" width="24" alt="" /></i>
+                            Dashboard </a></li>
+                    <li class="nav-item">
+                        <a href="retailers.html" class="nav-link"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/retailor_icon.svg" width="23" alt="" /></i>
+                            Retailers
+                        </a>
+                    </li>
+                    <li><a href="drivers.html" class="nav-link"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/driver_icon.svg" width="23" alt="" /></i>
+                            Drivers</a></li>
+                    <li class="nav-item">
+                        <a href="no-rules.html" class="nav-link active"><i
+                                class="me-2"><img src="static-admin/assets/img/icons/menu_icons/rules_icon.svg" width="23"
+                                    alt="" /></i>
+                            Rules</a>
+                    </li>
+                    <li><a href="fee-setup.html" class="nav-link"><i class="me-2"><img
+                                    src="static-admin/assets/img/icons/menu_icons/feeSetup_icon.svg" width="23" alt="" /></i> Fee
+                            setup</a>
+                    </li>
+                </ul>
+                <div class="logout_menu"><a href="index.html" class="nav-link"><i class="me-2"><img
+                                src="static-admin/assets/img/icons/menu_icons/logout_icon.svg" width="24" alt="Logout" /></i> Log Out
+                    </a>
+                </div>
+            </nav>
+
+        </aside>
+        <!-- Sidebar End -->
+
+        <!-- Content Start -->
+        <div class="content pb-3">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand navbar-dark px-3 px-lg-4 py-3 top_header">
+
+                <a href="#" class="sidebar-toggler flex-shrink-0 me-2 d-lg-none">
+                    <img src="static-admin/assets/img/icons/hamburger_icon.svg" alt="" width="30" />
+                </a>
+
+                <div class="d-none d-md-block title_hd">
+                    <span class="h6 mb-0 text-capitalize">Hello Danielle</span>
+                    <small class="d-block f-small text-mute">11:45 am 22 Dec 2022</small>
+                </div>
+
+                <div class="navbar-nav align-items-center ms-auto">
+
+                    <div class="nav-item dropdown ms-4 p_pic">
+                        <a href="#" class="d-flex align-items-center dropdown-toggle text-decoration-none"
+                            data-bs-toggle="dropdown">
+                            <em class="me-2 avtar avtar-30 border-0"><img src="static-admin/assets/img/avatar.jpg" alt=""
+                                    width="30" /></em>
+                            <span class="me-2">Danielle Campbell </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end border-0 m-0 w-100">
+                            <a href="#Password" class="dropdown-item">My Profile</a>
+                            <a href="index.html" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+            <!-- Start Content -->
+            <div class="container-fluid py-2 px-3 mt-3">
+                <div class="card-panel bg-white p-4 radius-10">
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center page-header">
+                        <h1 class="h2 mb-4">Rules</h1>
+                        <div class="mb-4 text-right">
+                            <button data-bs-toggle="modal" data-bs-target="#addRules" class="btn btn-md btn-primary text-capitalize">Add Rules</button>
+                        </div>
+                    </div>
+ 
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr> 
+                                    <th scope="col">Country <span class="sort_icon"><img
+                                                src="static-admin/assets/img/icons/sort_icon.svg" alt="" width="8" /></span></th>
+                                    <th scope="col">Rule <span class="sort_icon"><img
+                                                src="static-admin/assets/img/icons/sort_icon.svg" alt="" width="8" /></span></th>
+                                    <th scope="col">Fixed or Percentage <span class="sort_icon"><img
+                                                src="static-admin/assets/img/icons/sort_icon.svg" alt="" width="8" /></span></th>
+                                    <th scope="col">Value <span class="sort_icon"><img
+                                                src="static-admin/assets/img/icons/sort_icon.svg" alt="" width="8" /></span></th>
+                                    <th scope="col" width="80">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr> 
+                                    <td data-label="Country">Australia</td>
+                                    <td data-label="Rule">GST</td>
+                                    <td data-label="Fixed or Percentage">Fixed</td>                                    
+                                    <td data-label="Value">5%</td>
+                                    <td data-label="Action">
+                                        <div class="d-flex align-items-center actions">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editRules" class="btn btn-transparent"><img
+                                                    src="static-admin/assets/img/icons/edit_icon.svg" width=""
+                                                        height="10" /></a>
+                                            <a href="#" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/trash_icon.svg" width=""
+                                                height="10" /></a>
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="active" checked>
+                                                <label for="active"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr> 
+                                    <td data-label="Country">Newzeland</td>
+                                    <td data-label="Rule">IST</td>
+                                    <td data-label="Fixed or Percentage">Fixed</td>                                    
+                                    <td data-label="Value">10%</td>
+                                    <td data-label="Action">
+                                        <div class="d-flex align-items-center actions">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editRules" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/edit_icon.svg" width=""
+                                                    height="10" /></a>
+                                            <a href="#" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/trash_icon.svg" width=""
+                                                height="10" /></a>
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="active2" checked>
+                                                <label for="active2"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>                                
+                                <tr> 
+                                    <td data-label="Country">Newzeland</td>
+                                    <td data-label="Rule">VAT</td>
+                                    <td data-label="Fixed or Percentage">Percentage</td>                                    
+                                    <td data-label="Value">5%</td>
+                                    <td data-label="Action">
+                                        <div class="d-flex align-items-center actions">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editRules" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/edit_icon.svg" width=""
+                                                    height="10" /></a>
+                                            <a href="#" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/trash_icon.svg" width=""
+                                                height="10" /></a>
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="active3" checked>
+                                                <label for="active3"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>                                
+                                <tr> 
+                                    <td data-label="Country">Canada</td>
+                                    <td data-label="Rule">VAT</td>
+                                    <td data-label="Fixed or Percentage">Percentage</td>                                    
+                                    <td data-label="Value">10%</td>
+                                    <td data-label="Action">
+                                        <div class="d-flex align-items-center actions">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editRules" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/edit_icon.svg" width=""
+                                                    height="10" /></a>
+                                            <a href="#" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/trash_icon.svg" width=""
+                                                height="10" /></a>
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="active4" checked>
+                                                <label for="active4"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>                                
+                                <tr> 
+                                    <td data-label="Country">USA</td>
+                                    <td data-label="Rule">VAT</td>
+                                    <td data-label="Fixed or Percentage">Percentage</td>                                    
+                                    <td data-label="Value">%6</td>
+                                    <td data-label="Action">
+                                        <div class="d-flex align-items-center actions">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editRules" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/edit_icon.svg" width=""
+                                                    height="10" /></a>
+                                            <a href="#" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/trash_icon.svg" width=""
+                                                height="10" /></a>
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="active5" checked>
+                                                <label for="active5"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>                                
+                                <tr> 
+                                    <td data-label="Country">Denmark</td>
+                                    <td data-label="Rule">GST</td>
+                                    <td data-label="Fixed or Percentage">Percentage</td>                                    
+                                    <td data-label="Value">6%</td>
+                                    <td data-label="Action">
+                                        <div class="d-flex align-items-center actions">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editRules" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/edit_icon.svg" width=""
+                                                    height="10" /></a>
+                                            <a href="#" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/trash_icon.svg" width=""
+                                                height="10" /></a>
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="active6" checked>
+                                                <label for="active6"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>                                
+                                <tr> 
+                                    <td data-label="Country">Newzeland</td>
+                                    <td data-label="Rule">South Korea</td>
+                                    <td data-label="Fixed or Percentage">Percentage</td>                                    
+                                    <td data-label="Value">6%</td>
+                                    <td data-label="Action">
+                                        <div class="d-flex align-items-center actions">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editRules" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/edit_icon.svg" width=""
+                                                    height="10" /></a>
+                                            <a href="#" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/trash_icon.svg" width=""
+                                                height="10" /></a>
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="active7" checked>
+                                                <label for="active7"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>                                
+                                <tr> 
+                                    <td data-label="Country">UAE</td>
+                                    <td data-label="Rule">VAT</td>
+                                    <td data-label="Fixed or Percentage">Percentage</td>                                    
+                                    <td data-label="Value">5%</td>
+                                    <td data-label="Action">
+                                        <div class="d-flex align-items-center actions">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editRules" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/edit_icon.svg" width=""
+                                                    height="10" /></a>
+                                            <a href="#" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/trash_icon.svg" width=""
+                                                height="10" /></a>
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="active8" checked>
+                                                <label for="active8"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>                               
+                                <tr> 
+                                    <td data-label="Country">Netherlands</td>
+                                    <td data-label="Rule">GST</td>
+                                    <td data-label="Fixed or Percentage">Percentage</td>                                    
+                                    <td data-label="Value">4%</td>
+                                    <td data-label="Action">
+                                        <div class="d-flex align-items-center actions">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editRules" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/edit_icon.svg" width=""
+                                                    height="10" /></a>
+                                            <a href="#" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/trash_icon.svg" width=""
+                                                height="10" /></a>
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="active9" checked>
+                                                <label for="active9"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>                             
+                                <tr> 
+                                    <td data-label="Country">Netherlands</td>
+                                    <td data-label="Rule">GST</td>
+                                    <td data-label="Fixed or Percentage">Fixed</td>                                    
+                                    <td data-label="Value">4%</td>
+                                    <td data-label="Action">
+                                        <div class="d-flex align-items-center actions">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editRules" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/edit_icon.svg" width=""
+                                                    height="10" /></a>
+                                            <a href="#" class="btn btn-transparent"><img
+                                                src="static-admin/assets/img/icons/trash_icon.svg" width=""
+                                                height="10" /></a>
+                                            <div class="switch-toggle ms-2">
+                                                <input type="checkbox" id="active9" checked>
+                                                <label for="active9"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+ 
+                        <nav aria-label="Page navigation" class="mt-4 w-100 text-center">
+                            <ul class="pagination justify-content-center mb-0">
+                                <li class="page-item"><a class="page-link arrows pre_arrow" href="#" disabled><img src="static-admin/assets/img/icons/pre_arrow.svg" alt="Previous" width="6px">Previous</a></li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                                <li class="page-item"><a class="page-link" href="#">150</a></li>
+                                <li class="page-item"><a class="page-link next_arrow" href="#">Next <img src="static-admin/assets/img/icons/next_arrow.svg" alt="Next" width="6px"> </a></li>
+                            </ul>
+                        </nav> 
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- End Content  -->
+    </div>
+
+    <!-- Start Add Rules -->
+    <div class="modal fade" id="addRules" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-capitalize" id="staticBackdropLabel">Add Rule</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="rules.html">
+                    <div class="modal-body p-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Country</label>
+                                <div class="mb-4">
+                                    <select class="form-control">
+                                        <option>Australia</option>
+                                        <option>Newzeland</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Rule Name</label>
+                                <div class="mb-4">
+                                    <input type="text" placeholder="Type here" class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Type</label>
+                                <div class="mb-4">
+                                    <select class="form-control">
+                                        <option>Fixed</option>
+                                        <option>Percentage</option>
+                                    </select>   
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Value</label>
+                                <div class="mb-4">
+                                    <input type="number" placeholder="Type here" class="form-control" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-md btn-outline-primary"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-md btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End End Rules -->
+
+    <!-- Start Edit Rules -->
+    <div class="modal fade" id="editRules" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-capitalize" id="staticBackdropLabel">Edit Rule</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="rules.html">
+                    <div class="modal-body p-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Country</label>
+                                <div class="mb-4">
+                                    <select class="form-control">
+                                        <option>Australia</option>
+                                        <option>Newzeland</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Rule Name</label>
+                                <div class="mb-4">
+                                    <input type="text" value="GST" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Type</label>
+                                <div class="mb-4">
+                                    <select class="form-control">
+                                        <option>Fixed</option>
+                                        <option>Percentage</option>
+                                    </select>   
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 text-capitalize">Value (%)</label>
+                                <div class="mb-4">
+                                    <input type="number" value="5" class="form-control" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-md btn-outline-primary"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-md btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End End Rules -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="static-admin/assets/js/main.js"></script>
+    <script>
+        $('#selectAll').click(function (e) {
+            $(this).closest('table').find('td input:checkbox').prop('checked', this.checked);
+        });
+    </script>
+</body>
+
+</html>

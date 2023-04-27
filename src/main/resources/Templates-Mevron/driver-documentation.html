@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: html_head">
+</head>
+<body>
+	<main>
+		<!-- navbar-->
+		<header class="header">
+			<!-- Navbar -->
+			<div th:replace="fragments/header :: navbar2"></div>
+		  
+			<!-- Start Signin Modal -->
+			<div class="sign_sec modal_signup">
+				<div class="container">
+					
+					<div class="front-sign-sec">
+						<div class="close_btn">
+							<svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"><title>Navigation close menu</title><path d="M21.1 5.1l-2.2-2.2-6.9 7-6.9-7-2.2 2.2 7 6.9-7 6.9 2.2 2.2 6.9-7 6.9 7 2.2-2.2-7-6.9 7-6.9z" fill="currentColor"></path></svg>
+						</div>
+						
+						<a href="signup-driver.html" class="box bg-white d-inline-block text-left">
+							<h2>Sign Up to <br> Drive</h2>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd" fill="rgb(13, 13, 13)" d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"></path></svg>
+						</a>
+						<a href="#rider-sigup.html" class="box bg-gold d-inline-block text-left">
+							<h2>Sign Up to <br> Ride</h2>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="32px"> <path fill-rule="evenodd" fill="rgb(255, 255, 255)" d="M44.352,31.519 C43.676,32.161 42.612,32.161 41.936,31.519 C41.283,30.898 41.283,29.866 41.936,29.248 L54.187,17.614 L1.715,17.614 C0.773,17.614 -0.000,16.903 -0.000,16.008 C-0.000,15.113 0.773,14.379 1.715,14.379 L54.187,14.379 L41.936,2.767 C41.283,2.125 41.283,1.091 41.936,0.473 C42.612,-0.169 43.676,-0.169 44.352,0.473 L59.504,14.860 C60.157,15.481 60.157,16.513 59.504,17.131 L44.352,31.519 Z"></path></svg>
+						</a>
+					</div>					
+				</div>
+			</div>		
+			<!-- End Signup Modal -->
+		</header>
+		<!-- End Header -->
+		
+		<div class="layout_fixed">
+		
+			<div class="d-flex flex-wrap min_height py-5">
+								
+				<div class="container">
+					<div class="row mt-0 my-sm-3">
+						<div class="col-md-10 offset-md-1">
+							<div class="bg-white">					
+							
+								<div class="row">
+									<div class="stepwizard col-md-4">
+										<input type="hidden" id="last-active" value="0">
+										<div class="stepwizard-row setup-panel py-5 pl-5">
+										  <div class="stepwizard-step">
+											<a href="#step-1" type="button" class="active_tab rounded-circle">1 <i><img src="static-mevron/img/check_icon.svg" alt=""></i></a>
+											<span>Driver’s License</span>
+										  </div>
+										  <div class="stepwizard-step">
+											<a href="#step-2" type="button" class="btn-default rounded-circle" disabled="disabled">2 <i><img src="static-mevron/img/check_icon.svg" alt=""></i></a>
+											<span>Vehicle Insurance</span>
+										  </div>
+										  <div class="stepwizard-step">
+											<a href="#step-3" type="button" class="btn-default rounded-circle" disabled="disabled">3 <i><img src="static-mevron/img/check_icon.svg" alt=""></i></a>
+											<span>Vehicle Registration</span>
+										  </div>
+										  <div class="stepwizard-step">
+											<a href="#step-4" type="button" class="btn-default rounded-circle" disabled="disabled">4 <i><img src="static-mevron/img/check_icon.svg" alt=""></i></a>
+											<span>Profile Photo</span>
+										  </div>
+										</div>
+									</div>
+									
+									<div class="col-md-8" style="border-left:1px solid #dddddd;">
+									  
+										<form role="form" action="/registerSuccess" method="post" class="py-5 pr-5 pl-3">
+											<div class="row setup-content" id="step-1">
+												<div class="col-md-12">
+												  <h4 class="font-weight-bold">Take a photo of your Driver’s License</h4>
+												  <small>Make sure your Driver’s License is not expired and avoid using the flash so that your information is clear and visible.</small>
+												  
+													<div class="row">
+														<div class="col-md-8">
+															<figure class="license_pic mt-5 mb-3">
+																<img src="static-mevron/img/license_pic.jpg" alt="" class="img-fluid">
+															</figure>
+														
+															<div class="advance_upload lic_drag text-center p-5 mt-0 mb-4">
+																<h5>Drag & Drop to upload</h5>
+																<span>  or 
+																	<div class="choose_file">
+																		<input type="file" id="license_id" class="imgInp custom-file-input" aria-describedby="inputGroupFileAddon01">
+																		<label>browse</label>
+																	</div> to choose file 
+																</span>
+															</div>
+															
+															<figure class="license_pic upload_license">
+																<span class="remove_pic"><img src="static-mevron/img/close_icon.svg"></span>
+																<!-- <img src="static-mevron/img/license_pic.jpg" alt="" class="img-fluid"> -->
+																<img id="blah" align='middle' src="" alt="" title="" class="img-fluid"/>
+															</figure>
+														
+															<hr/>
+															
+															<button class="btn btn-primary nextBtn float-right" type="button">Next</button>
+														</div>	
+													</div>	
+												  
+												</div>											 
+											</div>
+											<div class="row setup-content" id="step-2">
+												<div class="col-md-12">
+												  <h4 class="font-weight-bold">Take a photo of your Vehicle Insurance</h4>
+												  <small>Make sure your name, VIN, insurance company, and expiration date are clear and visible.</small>
+												  
+													<div class="row">
+														<div class="col-md-8">
+																												
+															<div class="advance_upload text-center p-5 mt-5 mb-4">
+																<h5>Drag & Drop to upload</h5>
+																<span>  or 
+																	<div class="choose_file"><input type="file" />
+																		<label>browse</label>
+																	</div> to choose file 
+																</span>
+															</div>
+															
+															<figure class="license_pic upload_license">
+																<span class="remove_pic"><img src="static-mevron/img/close_icon.svg"></span>
+																<img src="static-mevron/img/vechical_pic.jpg" alt="" class="img-fluid">
+															</figure>
+														
+															<hr/>
+															<div class="btn_group">
+																<button class="btn prevBtn float-left" type="button">Back</button>
+																
+																<button class="btn btn-primary nextBtn float-right" type="button">Next</button>
+															</div>	
+														</div>	
+													</div>	
+												  
+												</div>	
+											</div>
+											
+											<div class="row setup-content" id="step-3">
+											  
+												<div class="col-md-12">
+												  <h4 class="font-weight-bold">Take a photo of your Vehicle Registration</h4>
+												  <small>Make sure your vehicle’s make, model, year, license plate, VIN, and expiration are clear and visible.</small>
+												  
+													<div class="row">
+														<div class="col-md-8">
+																												
+															<div class="advance_upload text-center p-5 mt-5 mb-4">
+																<h5>Drag & Drop to upload</h5>
+																<span>  or 
+																	<div class="choose_file"><input type="file" />
+																		<label>browse</label>
+																	</div> to choose file 
+																</span>
+															</div>
+															
+															<figure class="license_pic upload_license">
+																<span class="remove_pic"><img src="static-mevron/img/close_icon.svg"></span>
+																<img src="static-mevron/img/registration_pic.jpg" alt="" class="img-fluid">
+															</figure>
+														
+															<hr/>
+															<div class="btn_group">
+																<button class="btn prevBtn float-left" type="button">Back</button>
+																
+																<button class="btn btn-primary nextBtn float-right" type="button">Next</button>
+															</div>	
+														</div>	
+													</div>	
+												  
+												</div>	
+											  
+											</div>
+											
+											<div class="row setup-content" id="step-4">
+											  
+												<div class="col-md-12">
+												  <h4 class="font-weight-bold">Take a photo of your Vehicle Registration</h4>
+												  <small>Make sure your vehicle’s make, model, year, license plate, VIN, and expiration are clear and visible.</small>
+												  
+													<div class="row">
+														<div class="col-md-8">
+																												
+															<div class="advance_upload text-center p-5 mt-5 mb-4">
+																<h5>Drag & Drop to upload</h5>
+																<span>  or 
+																	<div class="choose_file"><input type="file" />
+																		<label>browse</label>
+																	</div> to choose file 
+																</span>
+															</div>
+															
+															<figure class="license_pic upload_license">
+																<span class="remove_pic"><img src="static-mevron/img/close_icon.svg"></span>
+																<img src="static-mevron/img/driver_pic.jpg" alt="" class="img-fluid">
+															</figure>
+														
+															<hr/>
+															<div class="btn_group">
+																<button class="btn prevBtn float-left" type="button">Back</button>
+																
+																<input type="submit" class="btn btn-primary float-right" value="Submit">
+															</div>	
+														</div>	
+													</div>	
+												  
+												</div>	
+											  
+											</div>
+											
+										</form>
+									</div>	
+								</div>	
+								  
+							</div>	
+						</div>
+					</div>		
+
+				</div>	
+				
+				</div>
+			</div><!-- Front Banner -->
+			
+		</div><!-- End layout_fixed -->
+	
+	</main>	
+	
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Animate JS -->
+    <script src="vendor/wow/wow.min.js"></script>
+	<!-- Custom JS -->
+    <script src="js/custom.js"></script>
+	
+	<script>
+		$(document).ready(function () {
+		  var navListItems = $('div.setup-panel div a'),
+				  allWells = $('.setup-content'),
+				  allNextBtn = $('.nextBtn'),
+				  allPrevBtn = $('.prevBtn');
+
+		  allWells.hide();
+
+		  navListItems.click(function (e) {
+			  e.preventDefault();
+			  var $target = $($(this).attr('href')),
+					  $item = $(this);
+
+			  if (!$item.hasClass('disabled')) {
+				  navListItems.addClass('btn-default');				  
+				  $item.addClass('active_tab');
+				  allWells.hide();
+				  $target.show();
+				  $target.find('input:eq(0)').focus();
+			  }
+		  });
+		  
+		  allPrevBtn.click(function(){
+			  var curStep = $(this).closest(".setup-content"),
+				  curStepBtn = curStep.attr("id"),
+				  prevStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().prev().children("a");
+
+				  prevStepWizard.removeAttr('disabled').trigger('click');
+				  //navListItems.removeClass('active_tab');		
+
+		  });
+
+		  allNextBtn.click(function(){
+			var lastSelected=$('last-active').val();
+			var incrementLastSelected=lastSelected+1;
+			//alert(incrementLastSelected);
+			$('last-active').val(incrementLastSelected);
+			  var curStep = $(this).closest(".setup-content"),
+				  curStepBtn = curStep.attr("id"),
+				  nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+				  curInputs = curStep.find("input[type='text'],input[type='url']"),
+				  isValid = true;
+
+				  $(".form-group").removeClass("has-error");
+				  for(var i=0; i<curInputs.length; i++){
+					  if (!curInputs[i].validity.valid){
+						  isValid = false;
+						  $(curInputs[i]).closest(".form-group").addClass("has-error");
+					  }
+				  }
+			  
+			  
+
+			  if (isValid)
+				  nextStepWizard.removeAttr('disabled').trigger('click');
+		  });
+		  
+		  
+			if ($(this).hasClass("active_tab")) {	
+				//$(".stepwizard-step").addClass('selected');
+				//$(this).parent('stepwizard-step').addClass('selected');
+				$('.stepwizard-step a').closest('.stepwizard-step').prev().addClass('test-class');
+				$('.stepwizard-step').prevAll('.stepwizard-step').addClass('previous');
+
+			} 
+
+		  $('div.setup-panel div a.active_tab').trigger('click');
+		});
+	</script>
+	
+	<script>
+		// Upload File 
+		$("#license_id").change(function(event) {  
+		  RecurFadeIn();
+		  readURL(this);    
+		});
+		$("#license_id").on('click',function(event){
+		  RecurFadeIn();
+		});
+		function readURL(input) {    
+		  if (input.files && input.files[0]) {   
+			var reader = new FileReader();
+			var filename = $("#license_id").val();
+			filename = filename.substring(filename.lastIndexOf('\\')+1);
+			reader.onload = function(e) {
+			  debugger;      
+			  $('#blah').attr('src', e.target.result);
+			  $('.upload_license').show();
+			  $('#blah').hide();
+			  $('.lic_drag').hide();
+			  $('#blah').fadeIn(500);      
+			 // $('.choose_file').text(filename);             
+			}
+			reader.readAsDataURL(input.files[0]);    
+		  } 
+		  $(".alert").removeClass("loading").hide();
+		}
+		function RecurFadeIn(){ 
+		  console.log('ran');
+		  FadeInAlert("Wait for it...");  
+		}
+		function FadeInAlert(text){
+		  $(".alert").show();
+		  $(".alert").text(text).addClass("loading");  
+		}
+		
+		var control = $("#license_id");
+		$(".remove_pic").click(function(){
+			$('.upload_license').hide();
+			$('.lic_drag').show();	
+			//control.replaceWith( control.val('').clone( true ) );
+		})
+	
+	</script>
+	
+</body>
+</html>

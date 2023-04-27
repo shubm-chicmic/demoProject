@@ -1,0 +1,39 @@
+.switch-toggle {position: relative;}
+.switch-toggle input[type=checkbox]{height: 0; width: 0; visibility: hidden; position: absolute; }
+.switch-toggle label {cursor: pointer; text-indent: -9999px; width: 50px; height:26px; background: var(--white-color); display: block; border-radius: 30px; position: relative; border: 2px solid var(--grey-color-600);}
+.switch-toggle label:after { 
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 3px;
+	width: 18px;
+	height: 18px;
+	background: var(--black-color);
+	border-radius: 30px;
+	transition: 0.3s;
+	-webkit-transition: 0.3s;
+}
+.switch-toggle input:checked + label {
+	background: var(--grey-color-600); 
+}
+.switch-toggle input:checked + label:after {
+    background: var(--primary-color);
+	left: calc(100% - 3px);
+	transform: translateX(-100%);
+	-webkit-transform: translateX(-100%);
+}
+.switch-toggle label:active:after {
+	width: 17px;
+}
+/* Table Switch */
+.table .switch-toggle label {width: 44px; height:22px;}
+.table .switch-toggle label:after {
+	width: 14px;
+	height: 14px;
+}
+.table .switch-toggle label:active:after {
+	width: 13px;
+}
+
+.collapse-block { display: none; transition: all 2s linear;  }
+.selected .collapse-block { display: block; }

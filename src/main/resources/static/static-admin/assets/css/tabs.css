@@ -1,0 +1,20 @@
+.nav-tabs {
+    border-bottom: 1px solid var(--grey-color-400);
+    padding: 0 20px;
+}
+.nav-tabs .nav-link {
+    font-weight: 400;
+    border-width:0 0 2px;
+    border-style:  solid;
+    border-color: transparent;
+    background: transparent;
+    color: var(--black-color);
+    min-width: 120px;
+    text-align: center;
+}
+.nav-tabs .nav-link.active {
+    font-weight: 700;
+    background: transparent;
+    color: var(--black-color);
+    border-color:var(--primary-color);
+}

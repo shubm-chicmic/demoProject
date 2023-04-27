@@ -70,9 +70,8 @@ public class Authentication extends UsernamePasswordAuthenticationFilter {
          //  new ObjectMapper().writeValue(response.getOutputStream(),uuid.toString());
         String redirectUrl = "/driverProfile";
 //        response.addHeader("Authorization","Subham Kumar");
-        Cookie cookie = new Cookie("Authorization", uuid.toString());
-        cookie.setMaxAge(24*60*60);
-        response.addCookie(cookie);
+
+        request.getSession().setAttribute("Authorization", uuid.toString());
 
         new DefaultRedirectStrategy().sendRedirect(request,response,redirectUrl);
 

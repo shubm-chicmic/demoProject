@@ -32,15 +32,16 @@ public class AuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //filterChain.doFilter(request,response);
-         System.out.println("Authorization ----->");
+         System.out.println("\u001B[33m" + "Authorization -----> " + request.getServletPath() +"\u001B[0m");
 
         if(request.getServletPath().equals("/driverProfile")){
             log.info("Else Block {}",request.getServletPath());
-        String AuthorizationHeader = Arrays.stream(request.getCookies())
-                    .filter(c -> c.getName().equals("Authorization"))
-                    .findFirst()
-                    .map(Cookie::getValue)
-                    .orElse(null);
+//        String AuthorizationHeader = Arrays.stream(request.getCookies())
+//                    .filter(c -> c.getName().equals("Authorization"))
+//                    .findFirst()
+//                    .map(Cookie::getValue)
+//                    .orElse(null);
+            String AuthorizationHeader = (String)request.getSession().getAttribute("Authorization");
             System.out.println("Authorization header = " + AuthorizationHeader);
             System.out.println(UserService.getToken(AuthorizationHeader.substring(0)));
             UserUuid userUuid = UserService.getToken(AuthorizationHeader.substring(0));

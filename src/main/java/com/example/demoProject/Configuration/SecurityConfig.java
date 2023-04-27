@@ -54,6 +54,7 @@ public class SecurityConfig {
 
        Authentication filter = new Authentication(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)),userService, emailDto);
         filter.setFilterProcessesUrl("/login");
+
         http.csrf().disable();
 
 //        http.authorizeHttpRequests().requestMatchers("/abcd").permitAll();

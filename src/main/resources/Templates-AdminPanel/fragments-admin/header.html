@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="html_head">
+    <meta charset="utf-8">
+    <title>[[${Title}]]</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/static-admin/assets/img/favicons/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/static-admin/assets/img/favicons/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/static-admin/assets/img/favicons/favicon-16x16.png}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/static-admin/assets/img/favicons/favicon.ico}">
+    <link rel="manifest" th:href="@{/static-admin/assets/img/favicons/manifest.json}">
+    <meta name="msapplication-TileImage" th:content="@{/static-admin/assets/img/favicons/mstile-150x150.png}">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{/static-admin/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{/static-admin/assets/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar Start -->
+    <div th:fragment="navbar">
+        <nav class="navbar navbar-expand navbar-dark px-3 px-lg-4 py-3 top_header"  >
+
+            <a href="#" class="sidebar-toggler flex-shrink-0 me-2 d-lg-none">
+                <img th:src="@{/static-admin/assets/img/icons/hamburger_icon.svg}" alt="" width="30" />
+            </a>
+
+            <div class="d-none d-md-block title_hd" >
+                <span class="h6 mb-0 text-capitalize" id="username1"> </span>
+                <small class="d-block f-small text-mute"><span id="date-time">Hey</span></small>
+            </div>
+
+            <div class="navbar-nav align-items-center ms-auto">
+
+                <div class="nav-item dropdown ms-4 p_pic">
+                    <a href="profile" class="d-flex align-items-center dropdown-toggle text-decoration-none"
+                       data-bs-toggle="dropdown"
+                    >
+
+                        <em class="me-2 avtar avtar-30 border-0"><img id="image" src="" alt="" width=""/></em>
+                        <span class="me-2" id="username2"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end border-0 m-0 w-100" >
+                        <a href="profile" class="dropdown-item">My Profile</a>
+                        <a href="/logout" class="dropdown-item">Logout</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </nav>
+    </div>
+
+<div th:fragment="sidebar">  <aside class="sidebar pb-3">
+    <button class="d-lg-none close_btn"><img th:src="@{/static-admin/assets/img/icons/close_icon.svg}" alt="Close" width="30" /></button>
+    <nav class="navbar text-left">
+        <a href="dashboard" class="navbar-brand my-4 pt-2 pb-4 m-auto text-center">
+            <img th:src="@{/static-admin/assets/img/logo.svg}" alt="Sbrigit" width="144" class="img-fluid" />
+        </a>
+
+        <ul class="navbar-nav w-100">
+            <li><a href="dashboard" class="nav-link active"><i class="me-2"><img
+                    th:src="@{/static-admin/assets/img/icons/menu_icons/dashboard_icon.svg}" width="24" alt="" /></i> Dashboard </a></li>
+
+            <li><a th:href="@{users?pageNumber=0&pageSize=6}" class="nav-link"><i class="me-2"><img
+                    th:src="@{/static-admin/assets/img/icons/menu_icons/driver_icon.svg}" width="23" alt="" /></i>
+                Users</a></li>
+
+
+        </ul>
+        <div class="logout_menu"><a href="/userLogout" class="nav-link"><i class="me-2"><img
+                th:src="@{/static-admin/assets/img/icons/menu_icons/logout_icon.svg}" width="24" alt="Logout" /></i> Log Out </a>
+        </div>
+    </nav>
+
+</aside></div>
+
+<script>
+
+
+</script>
+</body>
+</html>
