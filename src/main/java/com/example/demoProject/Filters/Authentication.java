@@ -13,10 +13,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 @Slf4j
@@ -24,22 +27,25 @@ public class Authentication extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
-    private final EmailDto emailDto;
 
-    public Authentication(AuthenticationManager authenticationManager, UserService userService, EmailDto emailDto) {
+
+    public Authentication(AuthenticationManager authenticationManager, UserService userService) {
         this.authenticationManager = authenticationManager;
 
         this.userService = userService;
-        this.emailDto = emailDto;
+
     }
 
     @Override
     public org.springframework.security.core.Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         System.out.println("Attempt authentication!!");
-        String username = emailDto.getEmail();
+        String username = request.getParameter("email");
         System.out.println(username+"]]]");
-        String password = request.getParameter("lpassword");
+        String password = request.getParameter("password");
         System.out.println(password+"]]]]");
+        String role = request.getParameter("role");
+        Collection<GrantedAuthority> authorites=new ArrayList<>();
+        log.info(role);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         org.springframework.security.core.Authentication authentication = authenticationManager.authenticate(authenticationToken);
         log.info("autho==",authentication);
@@ -54,7 +60,7 @@ public class Authentication extends UsernamePasswordAuthenticationFilter {
         UUID uuid= UUID.randomUUID();
         UserUuid uuidEntity = new UserUuid();
         uuidEntity.setUuid(uuid.toString());
-        String username = emailDto.getEmail();
+        String username = request.getParameter("email");
         System.out.println("isnide suce " + username);
         uuidEntity.setEmail(username);
 //        uuidEntity.setId(1155);

@@ -52,7 +52,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //   System.out.println(ANSI_CYAN + "security " + "1" );
 
-       Authentication filter = new Authentication(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)),userService, emailDto);
+       Authentication filter = new Authentication(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)),userService);
         filter.setFilterProcessesUrl("/login");
 
         http.csrf().disable();

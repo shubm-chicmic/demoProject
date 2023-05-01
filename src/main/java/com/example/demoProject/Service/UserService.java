@@ -75,6 +75,9 @@ public class UserService {
                 .build();
         roleRepository.save(roles);
     }
+    public void addUser(Users users) {
+        userrepo.save(users);
+    }
     /*
     public void addUser(UserDto dto) {
         System.out.println("inside adduser");
@@ -184,6 +187,9 @@ public class UserService {
 
         return uuidRepo.save(uuidEntity);
     }
+    public UserUuid getUserUuidByEmail(String email){
+       return uuidRepo.getUserUuidByEmail(email);
+    }
 
     // Email Verify
     public void setUsersEmailVerifyTrue(String email) {
@@ -200,8 +206,8 @@ public class UserService {
         return  uuidRepo.deleteByUuid(uuid);
     }
 
-    public Roles findRolesByUserId(int userId) {
-        return roleRepository.findRolesByUserId(userId);
+    public List<Integer> findRoleIdByUserId(int userId) {
+        return roleRepository.findRoleIdByUserId(userId);
     }
 
     // Count Values
@@ -210,6 +216,25 @@ public class UserService {
     }
     public Integer getTotalSoftDeletedUsers() {
         return userrepo.getTotalSoftDeletedUsers();
+    }
+
+    public String getRandomString(int n) {
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++) {
+
+            int index = (int)(AlphaNumericString.length()
+                    * Math.random());
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+
+        return sb.toString();
     }
 
 

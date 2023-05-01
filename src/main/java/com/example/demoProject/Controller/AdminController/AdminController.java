@@ -64,29 +64,31 @@ public class AdminController {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         Users users = userService.getUserByEmail(email);
-        int roleId = roleRepository.findRolesByUserId(users.getId()).getRoleId();
-        String role = usersRolesService.findRoleById(roleId);
-        if(role.equals("ADMIN") && password.equals(users.getPassword())){
-            UUID uuid= UUID.randomUUID();
-            UserUuid uuidEntity = new UserUuid();
-            uuidEntity.setUuid(uuid.toString());
-            uuidEntity.setEmail(users.getEmail());
-            userService.CreateToken(uuidEntity);
+        List<Integer> roleId = userService.findRoleIdByUserId(users.getId());
+        for(Integer roleid : roleId) {
+            String role = usersRolesService.findRoleById(roleid);
+            if (role.equals("ADMIN") && password.equals(users.getPassword())) {
+                UUID uuid = UUID.randomUUID();
+                UserUuid uuidEntity = new UserUuid();
+                uuidEntity.setUuid(uuid.toString());
+                uuidEntity.setEmail(users.getEmail());
+                userService.CreateToken(uuidEntity);
 
-            String name = users.getFirstName() + "_" + users.getLastName();
-            Cookie cookie1 = new Cookie("UserDetail", name);
-            cookie1.setMaxAge(24*60*60);
-            Cookie cookie2 = new Cookie("UserImageUrl", users.getImageUrl());
-            cookie2.setMaxAge(24*60*60);
-            Cookie cookie3 = new Cookie("UserEmail", users.getEmail());
-            cookie3.setMaxAge(24*60*60);
+                String name = users.getFirstName() + "_" + users.getLastName();
+                Cookie cookie1 = new Cookie("UserDetail", name);
+                cookie1.setMaxAge(24 * 60 * 60);
+                Cookie cookie2 = new Cookie("UserImageUrl", users.getImageUrl());
+                cookie2.setMaxAge(24 * 60 * 60);
+                Cookie cookie3 = new Cookie("UserEmail", users.getEmail());
+                cookie3.setMaxAge(24 * 60 * 60);
 
-            response.addCookie(cookie1);
-            response.addCookie(cookie2);
-            response.addCookie(cookie3);
-            request.getSession().setAttribute("Authorization", uuid.toString());
+                response.addCookie(cookie1);
+                response.addCookie(cookie2);
+                response.addCookie(cookie3);
+                request.getSession().setAttribute("Authorization", uuid.toString());
 
-            return "redirect:/admin/dashboard";
+                return "redirect:/admin/dashboard";
+            }
         }
         return "/error";
     }

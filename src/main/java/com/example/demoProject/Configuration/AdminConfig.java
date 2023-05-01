@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import java.util.UUID;
+
 @Configuration
 @PropertySource("classpath:application.properties")
 public class AdminConfig {
@@ -17,6 +19,7 @@ public class AdminConfig {
     public void createAdmin() {
         String email = "shubham@gmail.com";
 
+        String uuid = UUID.randomUUID().toString();
        Users users = userService.getUserByEmail(email);
         if(users == null) {
             String password = "1234";
@@ -26,6 +29,7 @@ public class AdminConfig {
                     .lastName("Mishra")
                     .email(email)
                     .password(password)
+                    .uuid(uuid)
                     .city("Mohali")
                     .phoneNo("9876543210")
                     .isEmailVerify(false)

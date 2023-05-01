@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 @org.springframework.web.bind.annotation.RestController
 @Slf4j
@@ -48,15 +49,15 @@ public class RestController {
                 return "Success";
     }
     @GetMapping("/getUser")
-    public UserDto updateUsers(HttpServletRequest request) {
+    public UserDto updateUsers_Error_ho_gya_h(HttpServletRequest request) {
         Users users = userRepository.findUsersById(Integer.parseInt(request.getParameter("id")));
-        Roles roles = roleRepository.findRolesByUserId(users.getId());
-        String role = userRoleRepository.findRolesById(roles.getRoleId());
+        //Roles roles = roleRepository.findRolesByUserId(users.getId());
+        //String role = userRoleRepository.findRolesById(roles.getRoleId());
         UserDto userDto = UserDto.builder()
                 .id(users.getId())
                 .city(users.getCity())
                 .email(users.getEmail())
-                .role(role)
+                .role("")
                 .firstName(users.getFirstName())
                 .lastName(users.getLastName())
                 .imageUrl(users.getImageUrl())
@@ -98,10 +99,13 @@ public class RestController {
         for (int i = 1; i <= size; i++) {
             int index = random.nextInt(role.length);
             String imageUrl = (index == 0 ?  "assets/img/profile/driver.jpg" : "assets/img/profile/rider.jpg");
+            String uuid= UUID.randomUUID().toString();
+
             Users users = Users.builder()
                     .firstName(role[index] + i)
                     .lastName("")
                     .email(role[index] + i + "@yopmail.com")
+                    .uuid(uuid)
                     .password("123456")
                     .phoneNo("9876543210")
                     .city("Mohali")

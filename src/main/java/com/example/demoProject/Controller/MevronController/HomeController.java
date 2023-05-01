@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @RequestMapping("/")
+    @RequestMapping(value = {"", "/", "home"})
     public String homePage(Model model) {
 
         model.addAttribute("index", "Mevron - HomePage");

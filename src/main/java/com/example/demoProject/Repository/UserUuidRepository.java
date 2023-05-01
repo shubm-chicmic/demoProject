@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserUuidRepository extends JpaRepository<UserUuid, Integer> {
     UserUuid getUserTokenByUuid(String uuid);
+    UserUuid getUserUuidByEmail(String email);
     int deleteByUuid(String uuid);
 }

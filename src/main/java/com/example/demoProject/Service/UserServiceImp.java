@@ -24,6 +24,7 @@ public class UserServiceImp implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         System.out.println("email = " + email);
         Users userDetails= userService.getUserByEmail(email);
+
         System.out.println(userDetails+"////");
         if (email==null || userDetails == null) {
             //log.error("User can not be found in database");
@@ -41,6 +42,6 @@ public class UserServiceImp implements UserDetailsService {
 //       authorites.add(new SimpleGrantedAuthority("ROLE_"+role.getRole().toUpperCase()));
         System.out.println("////////////////////////");
         System.out.println(authorites);
-        return new User(userDetails.getEmail(), userDetails.getPassword(), authorites);
+        return new User(userDetails.getEmail(), userDetails.getPassword(),  authorites);
     }
 }

@@ -5,6 +5,7 @@ import com.example.demoProject.Models.Users;
 import com.example.demoProject.Service.EmailService;
 import com.example.demoProject.Service.OtpService;
 import com.example.demoProject.Service.UserService;
+import com.example.demoProject.Service.UsersRolesService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,6 +22,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @Slf4j
@@ -37,6 +41,8 @@ public class ProcessController {
     OtpService otpService;
     @Autowired
     EmailService emailService;
+    @Autowired
+    UsersRolesService usersRolesService;
 
 
 
@@ -52,12 +58,13 @@ public class ProcessController {
         String password = request.getParameter("password");
         String city = request.getParameter("city");
         String inviteCode = request.getParameter("inviteCode");
-
+        String uuid= UUID.randomUUID().toString();
         String imageUrl = "assets/img/profile/driver.jpg";
         Users user = Users.builder()
                 .firstName(fName)
                 .lastName(lName)
                 .email(email)
+                .uuid(uuid)
                 .phoneNo(phNo)
                 .password(password)
                 .city(city)
@@ -114,7 +121,7 @@ public class ProcessController {
         String confirmPassword = request.getParameter("cnfPassword");
         String city = request.getParameter("city");
         String inviteCode = request.getParameter("inviteCode");
-
+        String uuid= UUID.randomUUID().toString();
         String imageUrl = "assets/img/profile/rider.jpg";
 
         if(!confirmPassword.equals(password)) {
@@ -125,6 +132,7 @@ public class ProcessController {
                 .firstName(fName)
                 .lastName(lName)
                 .email(email)
+                .uuid(uuid)
                 .phoneNo(phNo)
                 .password(password)
                 .city(city)
@@ -161,11 +169,28 @@ public class ProcessController {
         model.addAttribute("isEmailNull", "false");
         model.addAttribute("isEmailVerify", "true");
 
+        List<Integer> rolesList = userService.findRoleIdByUserId(userService.getUserByEmail(value).getId());
+        List<String> rolesName = new ArrayList<>();
+        for(Integer rolesId : rolesList) {
+                rolesName.add(usersRolesService.findRoleById(rolesId));
+        }
+        model.addAttribute("rolesList", rolesName);
+
+
         System.out.println("Model1 = " + model.getAttribute("email"));
         emailDto.setEmail(users.getEmail());
 
         System.out.println("CurUsers = "  + emailDto.getEmail());
         return "driver-password";
+    }
+    @PostMapping("processUserLoginPassword")
+    public String  processUserLoginPassword(HttpServletRequest request, Model model) {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String role = request.getParameter("role");
+
+        return "redirect:/login?email=" + email + "&password=" + password + "&role=" + role;
+
     }
 
     @RequestMapping("/driverProfile")
