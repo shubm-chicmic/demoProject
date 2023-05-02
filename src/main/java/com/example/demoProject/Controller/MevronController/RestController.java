@@ -70,7 +70,7 @@ public class RestController {
     @GetMapping("/suspendUser")
     public Boolean suspendUser(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Boolean status2 = userService.getUserById(id).getIsSuspend();
+        Boolean status2 = userService.getUserById(id).
 
         userService.suspendUserById(id);
 

@@ -16,6 +16,9 @@ public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-    int userId;
     int roleId;
+    Boolean isEmailVerify;
+    Boolean isSuspend;
+    Boolean isDelete;
+
 }
