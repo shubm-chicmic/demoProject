@@ -1,12 +1,17 @@
 package com.example.demoProject.Configuration;
 
+import com.example.demoProject.Models.Roles;
 import com.example.demoProject.Models.Users;
+import com.example.demoProject.Models.UsersRoles;
+import com.example.demoProject.Service.RolesService;
 import com.example.demoProject.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Configuration
@@ -15,29 +20,41 @@ public class AdminConfig {
 
     @Autowired
     UserService userService;
+    @Autowired
+    RolesService rolesService;
     @Bean
     public void createAdmin() {
-        String email = "shubham@gmail.com";
 
         String uuid = UUID.randomUUID().toString();
-       Users users = userService.getUserByEmail(email);
-        if(users == null) {
-            String password = "1234";
+        String adminEmail = "shubham@gmail.com";
+        if(userService.getUserByEmail(adminEmail) == null) {
 
-            Users users1 = Users.builder()
+            Users users = Users.builder()
+
                     .firstName("Shubham")
                     .lastName("Mishra")
-                    .email(email)
-                    .password(password)
+                    .email("shubham@gmail.com")
+                    .password("1234")
                     .uuid(uuid)
                     .city("Mohali")
                     .phoneNo("9876543210")
-                    .isEmailVerify(false)
-                    .isDelete(false)
-                    .isSuspend(false)
+
                     .imageUrl("/static-admin/assets/img/profile/admin.webp")
                     .build();
-            userService.addAdmin(users1);
+            Roles roles = rolesService.findByRoleName("ADMIN");
+            UsersRoles usersRoles = UsersRoles.builder()
+                    .roles(roles)
+                    .users(users)
+                    .isEmailVerify(false)
+                    .isSuspend(false)
+                    .isDelete(false)
+                    .build();
+            Set<UsersRoles> usersRolesSet = new HashSet<>();
+            usersRolesSet.add(usersRoles);
+            users.setUsersRoles(usersRolesSet);
+
+
+            userService.addUser(users);
         }
     }
 

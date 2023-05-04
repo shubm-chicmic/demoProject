@@ -29,11 +29,13 @@ public class UserServiceImp implements UserDetailsService {
         if (email==null || userDetails == null) {
             //log.error("User can not be found in database");
             throw new UsernameNotFoundException("Username not found");
-        }else if(userDetails.getIsSuspend()) {
-            throw new UsernameNotFoundException("User is Suspended");
-        }else if(!userDetails.getIsEmailVerify()) {
-            throw new UsernameNotFoundException("User is Not Verified");
         }
+//        }else if(userDetails.getIsSuspend()) {
+//            throw new UsernameNotFoundException("User is Suspended");
+//   }
+//        else if(!userDetails.getIsEmailVerify()) {
+//            throw new UsernameNotFoundException("User is Not Verified");
+//        }
 
         Collection<GrantedAuthority> authorites=new ArrayList<>();
 //

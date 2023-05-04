@@ -9,12 +9,12 @@ public class UsersRolesService {
     @Autowired
     UserRoleRepository userRoleRepository;
 
-    public int findIdByRole(String role) {
-        return userRoleRepository.findIdByRoles(role);
-    }
-    public String findRoleById(int id) {
-
-        return userRoleRepository.findRolesById(id);
-    }
+//    public int findIdByRole(String role) {
+//        return userRoleRepository.findIdByRoles();
+//    }
+//    public String findRoleById(int id) {
+//
+//        return userRoleRepository.findRolesById(id);
+//    }
 
 }

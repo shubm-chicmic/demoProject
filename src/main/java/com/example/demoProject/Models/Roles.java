@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "Roles")//,uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
 @Data
@@ -13,12 +16,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Roles {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    int roleId;
-    Boolean isEmailVerify;
-    Boolean isSuspend;
-    Boolean isDelete;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    String roleName;
+
+    @OneToMany(mappedBy = "roles")
+    Set<UsersRoles> usersRoles;
+
+
 
 }

@@ -4,6 +4,7 @@ import com.example.demoProject.Dto.UserDto;
 import com.example.demoProject.Models.Roles;
 import com.example.demoProject.Models.Users;
 import com.example.demoProject.Models.UserUuid;
+import com.example.demoProject.Models.UsersRoles;
 import com.example.demoProject.Repository.RoleRepository;
 import com.example.demoProject.Repository.UserRepository;
 import com.example.demoProject.Repository.UserRoleRepository;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -39,45 +41,101 @@ public class UserService {
     @Value("${image.path}")
     String imagePath;
 
+    //Get User
+
+    public Users getUserByEmail(String Email) {
+        System.out.println("userservice " + " 5 " + Email);
+        return userrepo.findByEmail(Email);
+
+
+    }
+    public Users getUserById(int id) {
+        System.out.println("userservice " + " 6 " + id);
+        return userrepo.findUsersById(id);
+
+
+    }
+
+    public Users getUsersByEmailorPhoneNo(String email, String phoneNo) {
+        System.out.println("email = " + email);
+        return userrepo.findUsersByEmailorPhoneNo(email, phoneNo);
+    }
+
+    public List<Users> getAllDrivers() {
+//        String role = "DRIVER";
+//        int roleId = userRoleRepository.findIdByRoles(role);
+//        System.out.println("RoleId = " + roleId);
+//        List<Integer> userIdList = roleRepository.findUserIdByRoleId(roleId);
+        List<Integer> userIdList = new ArrayList<>();
+        List<Users> usersList = new ArrayList<>();
+        for(Integer id : userIdList){
+            usersList.add(userrepo.findUsersById(id));
+        }
+        return usersList ;
+    }
+
+    public List<Users> getAllUsers(int pageNumber, int pageSize, String target, String sortBy, int order, String role) {
+        Pageable pageable;
+        if(order == 1){
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, sortBy);
+        }else {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
+
+        }
+        Page<Users> pageUsers;
+        if(target.equals("null")){
+            System.out.println("\u001B[44m" + " inside no search " + target+ "\u001B[0m");
+            pageUsers = userrepo.findAllUsers(pageable);
+        }else {
+            System.out.println("\u001B[44m" + " inside search " + target +"\u001B[0m");
+            pageUsers = userrepo.findAllUsers(pageable);
+
+        }
+        List<Users> usersList = pageUsers.getContent();
+
+        return usersList ;
+    }
+
+
     // REGISTER WORK
-    public void addAdmin(Users user) {
-        String role = "ADMIN";
-        userrepo.save(user);
-        int userId = userrepo.findByEmail(user.getEmail()).getId();
-        int roleId = userRoleRepository.findIdByRoles(role);
-        Roles roles = Roles.builder()
-                .roleId(roleId)
-                .userId(userId)
-                .build();
-        roleRepository.save(roles);
-    }
-    public void addDriver(Users user) {
-        int userId= userrepo.save(user).getId();
-        String role = "DRIVER";
-//        int userId = userrepo.findByEmail(user.getEmail()).getId();
-        int roleId = userRoleRepository.findIdByRoles(role);
-        Roles roles = Roles.builder()
-                .roleId(roleId)
-                .userId(userId)
-                .build();
-        roleRepository.save(roles);
 
-    }
-
-    public void addRider(Users user) {
-        userrepo.save(user);
-        String role = "RIDER";
-        int userId = userrepo.findByEmail(user.getEmail()).getId();
-        int roleId = userRoleRepository.findIdByRoles(role);
-        Roles roles = Roles.builder()
-                .roleId(roleId)
-                .userId(userId)
-                .build();
-        roleRepository.save(roles);
-    }
     public void addUser(Users users) {
         userrepo.save(users);
     }
+//    public void addAdmin(Users user, UsersRoles usersRoles) {
+//        String role = "ADMIN";
+//        userrepo.save(user);
+//
+//        usersRoles.setUsers(user);
+//        usersRoles.setRoles();
+//        int userId = usersRoles.getUsers().getId();
+//        int roleId = usersRoles.getRoles().getId();
+//    }
+//    public void addDriver(Users user) {
+//        int userId= userrepo.save(user).getId();
+//        String role = "DRIVER";
+////        int userId = userrepo.findByEmail(user.getEmail()).getId();
+//        int roleId =  usersRoles.getRoles().getId()
+//        Roles roles = Roles.builder()
+//                //.roleId(roleId)
+//               // .userId(userId)
+//                .build();
+//        roleRepository.save(roles);
+//
+//    }
+//
+//    public void addRider(Users user) {
+//        userrepo.save(user);
+//        String role = "RIDER";
+//        int userId = userrepo.findByEmail(user.getEmail()).getId();
+//        int roleId = userRoleRepository.findIdByRoles(role);
+//        Roles roles = Roles.builder()
+//                .roleId(roleId)
+//                .userId(userId)
+//                .build();
+//        roleRepository.save(roles);
+//    }
+
     /*
     public void addUser(UserDto dto) {
         System.out.println("inside adduser");
@@ -113,69 +171,19 @@ public class UserService {
         System.out.println("inside updateDrive second ///// " + userrepo.findByEmail(users.getEmail()).getFirstName());
 
     }
-    public Users getUserByEmail(String Email) {
-        System.out.println("userservice " + " 5 " + Email);
-        return userrepo.findByEmail(Email);
-
-
-    }
-    public Users getUserById(int id) {
-        System.out.println("userservice " + " 6 " + id);
-        return userrepo.findUsersById(id);
-
-
-    }
-
-    public Users getUsersByEmailorPhoneNo(String email, String phoneNo) {
-        System.out.println("email = " + email);
-        return userrepo.findUsersByEmailorPhoneNo(email, phoneNo);
-    }
-
-    public List<Users> getAllDrivers() {
-        String role = "DRIVER";
-        int roleId = userRoleRepository.findIdByRoles(role);
-        System.out.println("RoleId = " + roleId);
-        List<Integer> userIdList = roleRepository.findUserIdByRoleId(roleId);
-        List<Users> usersList = new ArrayList<>();
-        for(Integer id : userIdList){
-            usersList.add(userrepo.findUsersById(id));
-        }
-        return usersList ;
-    }
-
-    public List<Users> getAllUsers(int pageNumber, int pageSize, String target, String sortBy, int order) {
-        Pageable pageable;
-        if(order == 1){
-            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, sortBy);
-        }else {
-            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, sortBy);
-
-        }
-        Page<Users> pageUsers;
-        if(target.equals("null")){
-            System.out.println("\u001B[44m" + " inside no search " + target+ "\u001B[0m");
-             pageUsers = userrepo.findAllUsers(pageable);
-        }else {
-            System.out.println("\u001B[44m" + " inside search " + target +"\u001B[0m");
-             pageUsers = userrepo.findAllUsers(pageable, target);
-
-        }
-        List<Users> usersList = pageUsers.getContent();
-
-        return usersList ;
-    }
 
     //Suspend User
     public void suspendUserById(int id) {
-        Boolean status = userrepo.findUsersById(id).getIsSuspend();
+        Set<UsersRoles> usersRoles = userrepo.findUsersById(id).getUsersRoles();
+        Boolean status = true;
         status = !status;
-        userrepo.changeUserSuspendStatus(id,status);
+        //userrepo.changeUserSuspendStatus(id,status);
 
     }
     public void softDeleteUserById(int id) {
-        Boolean status = userrepo.findUsersById(id).getIsDelete();
-        status = !status;
-        userrepo.changeUserDeleteStatus(id,status);
+      //  Boolean status = userrepo.findUsersById(id).getIsDelete();
+        //status = !status;
+        //userrepo.changeUserDeleteStatus(id,status);
     }
 
     // Token work
@@ -191,9 +199,15 @@ public class UserService {
        return uuidRepo.getUserUuidByEmail(email);
     }
 
-    // Email Verify
+    //TODO
+    public List<Integer> findRoleIdByUserId(int userId) {
+//        return roleRepository.findRoleIdByUserId(userId);
+        return new ArrayList<>();
+
+    }
+     //Email Verify
     public void setUsersEmailVerifyTrue(String email) {
-        userrepo.setUsersIsEmailVerifyByEmail(email, true);
+        //userrepo.setUsersIsEmailVerifyByEmail(email, true);
     }
 
 
@@ -206,17 +220,15 @@ public class UserService {
         return  uuidRepo.deleteByUuid(uuid);
     }
 
-    public List<Integer> findRoleIdByUserId(int userId) {
-        return roleRepository.findRoleIdByUserId(userId);
-    }
+
 
     // Count Values
-    public Integer getTotalActiveUsers() {
-        return userrepo.getTotalActiveUsers();
-    }
-    public Integer getTotalSoftDeletedUsers() {
-        return userrepo.getTotalSoftDeletedUsers();
-    }
+//    public Integer getTotalActiveUsers() {
+//        return userrepo.getTotalActiveUsers();
+//    }
+//    public Integer getTotalSoftDeletedUsers() {
+//        return userrepo.getTotalSoftDeletedUsers();
+//    }
 
     public String getRandomString(int n) {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

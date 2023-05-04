@@ -3,6 +3,7 @@ package com.example.demoProject.Controller.AdminController;
 
 import com.example.demoProject.Dto.Message;
 import com.example.demoProject.Dto.UserDto;
+import com.example.demoProject.Models.Roles;
 import com.example.demoProject.Models.UserUuid;
 import com.example.demoProject.Models.Users;
 import com.example.demoProject.Models.UsersActivity;
@@ -46,13 +47,15 @@ public class AdminController {
     @Autowired
     UserService userService;
     @Autowired
+    RolesService rolesService;
+    @Autowired
     UserActivityService userActivityService;
     @Autowired
     RestTemplate restTemplate;
-    @Autowired
-    RoleRepository roleRepository;
-    @Autowired
-    UsersRolesService usersRolesService;
+//    @Autowired
+//    RoleRepository roleRepository;
+//    @Autowired
+//    UsersRolesService usersRolesService;
 
     @Value("${image.path2}")
     String imagePath;
@@ -64,10 +67,13 @@ public class AdminController {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         Users users = userService.getUserByEmail(email);
-        List<Integer> roleId = userService.findRoleIdByUserId(users.getId());
-        for(Integer roleid : roleId) {
-            String role = usersRolesService.findRoleById(roleid);
-            if (role.equals("ADMIN") && password.equals(users.getPassword())) {
+        List<Roles> rolesList = rolesService.findRoleNameByUserId(users);
+
+        log.info("\u001B[31m" + rolesList + "\u001B[0m");
+        //List<Integer> roleId = userService.findRoleIdByUserId(users.getId());
+        for(Roles roles : rolesList) {
+            //String role = //usersRolesService.findRoleById(roleid);
+            if (roles.getRoleName().equals("ADMIN") && password.equals(users.getPassword())) {
                 UUID uuid = UUID.randomUUID();
                 UserUuid uuidEntity = new UserUuid();
                 uuidEntity.setUuid(uuid.toString());

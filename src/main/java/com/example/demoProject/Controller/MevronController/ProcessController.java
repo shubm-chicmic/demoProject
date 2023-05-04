@@ -68,13 +68,11 @@ public class ProcessController {
                 .phoneNo(phNo)
                 .password(password)
                 .city(city)
-                .isSuspend(false)
-                .isDelete(false)
-                .isEmailVerify(false)
+
                 .imageUrl(imageUrl)
                 .build();
         System.out.println("////////////" + user);
-        userService.addDriver(user);
+       // userService.addDriver(user);
         return "redirect:/sendOtp/" + email;
 //        return "driver-documentation";
     }
@@ -136,13 +134,11 @@ public class ProcessController {
                 .phoneNo(phNo)
                 .password(password)
                 .city(city)
-                .isSuspend(false)
-                .isDelete(false)
-                .isEmailVerify(false)
+
                 .imageUrl(imageUrl)
                 .build();
         System.out.println("////////////" + user);
-        userService.addRider(user);
+        //userService.addRider(user);
         return "driver-documentation";
     }
 
@@ -159,12 +155,12 @@ public class ProcessController {
            model.addAttribute("isEmailVerify", "false");
            return "driver-login";
        }
-       if(!users.getIsEmailVerify()) {
-           model.addAttribute("email", value);
-           model.addAttribute("isEmailNull", "false");
-           model.addAttribute("isEmailVerify", "false");
-           return "driver-login";
-       }
+//       if(!users.getIsEmailVerify()) {
+//           model.addAttribute("email", value);
+//           model.addAttribute("isEmailNull", "false");
+//           model.addAttribute("isEmailVerify", "false");
+//           return "driver-login";
+//       }
         model.addAttribute("email", value);
         model.addAttribute("isEmailNull", "false");
         model.addAttribute("isEmailVerify", "true");
@@ -172,7 +168,7 @@ public class ProcessController {
         List<Integer> rolesList = userService.findRoleIdByUserId(userService.getUserByEmail(value).getId());
         List<String> rolesName = new ArrayList<>();
         for(Integer rolesId : rolesList) {
-                rolesName.add(usersRolesService.findRoleById(rolesId));
+                //rolesName.add(usersRolesService.findRoleById(rolesId));
         }
         model.addAttribute("rolesList", rolesName);
 

@@ -12,16 +12,11 @@ import java.util.List;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Roles, Integer> {
-    @Query(
-            "Select role.roleId From Roles role Where role.userId = :userId"
-    )
-    List<Integer> findRoleIdByUserId(@Param("userId") int userId);
 
-    @Query(
-            "Select userId From Roles role Where role.roleId = :roleId"
+    public Roles findByRoleName(String roleName);
 
-    )
-    List<Integer> findUserIdByRoleId(@Param("roleId") int roleId);
 
-    Integer countByRoleId(int roleId);
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.example.demoProject.Service;
 
 import com.example.demoProject.Models.Roles;
+import com.example.demoProject.Models.Users;
 import com.example.demoProject.Models.UsersRoles;
 import com.example.demoProject.Repository.RoleRepository;
 import com.example.demoProject.Repository.UserRoleRepository;
@@ -19,10 +20,18 @@ public class RolesService {
     RoleRepository roleRepository;
 
     public void addRoles(String role) {
-        UsersRoles usersRoles = UsersRoles.builder()
-                .Roles(role).build();
+        Roles roles = Roles.builder().roleName(role).build();
 
-        userRoleRepository.save(usersRoles);
+        roleRepository.save(roles);
+    }
+
+    public Roles findByRoleName(String roleName) {
+        return roleRepository.findByRoleName(roleName);
+
+    }
+    public List<Roles> findRoleNameByUserId(Users users) {
+//        List<UsersRoles> usersRoles = userRoleRepository.findByUserId(userId);
+       return userRoleRepository.findByUsers(users);
     }
 
 }

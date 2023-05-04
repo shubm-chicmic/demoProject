@@ -38,37 +38,37 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
     )
     void updateUserByEmail(@Param("email") String email, @Param("userDto") UserDto userDto);
     Users findUsersById(@Param("id") int id);
-    @Transactional
-    @Modifying
-    @Query(
-            value = "Update Users us Set us.isSuspend = ?2 Where us.id = ?1"
-    )
-    void changeUserSuspendStatus(int id,Boolean status);
-    @Transactional
-    @Modifying
-    @Query(
-            value = "Update Users us Set us.isDelete = ?2 Where us.id = ?1"
-    )
-    void changeUserDeleteStatus(int id,Boolean status);
-    @Query("select us from Users us where us.isDelete = false")
+//    @Transactional
+//    @Modifying
+//    @Query(
+//            value = "Update Users us Set us.isSuspend = ?2 Where us.id = ?1"
+//    )
+//    void changeUserSuspendStatus(int id,Boolean status);
+//    @Transactional
+//    @Modifying
+//    @Query(
+//            value = "Update Users us Set us.isDelete = ?2 Where us.id = ?1"
+//    )
+//    void changeUserDeleteStatus(int id,Boolean status);
+    @Query("select us from Users us")
     Page<Users> findAllUsers(Pageable pageable);
-    @Query("select us from Users us where us.isDelete = false And " +
-            "(us.firstName like concat('%' , :target , '%') or us.email like concat('%',:target,'%'))")
-    Page<Users> findAllUsers(Pageable pageable, @Param("target") String target);
-    @Transactional
-    @Modifying
-    @Query(
-            value = "Update Users us Set us.isEmailVerify = ?2 Where us.email = ?1"
-    )
-    void setUsersIsEmailVerifyByEmail(String email, Boolean isEmailVerify);
-    @Query(
-          "select count(us) from Users us where us.isSuspend = false and us.isDelete = false"
-    )
-    Integer getTotalActiveUsers();
-    @Query(
-            "select count(us) from Users us where us.isDelete = true"
-    )
-    Integer getTotalSoftDeletedUsers();
+//    @Query("select us from Users us where us.isDelete = false And " +
+//            "(us.firstName like concat('%' , :target , '%') or us.email like concat('%',:target,'%'))")
+//    Page<Users> findAllUsers(Pageable pageable, @Param("target") String target);
+//    @Transactional
+//    @Modifying
+//    @Query(
+//            value = "Update Users us Set us.isEmailVerify = ?2 Where us.email = ?1"
+//    )
+//    void setUsersIsEmailVerifyByEmail(String email, Boolean isEmailVerify);
+//    @Query(
+//          "select count(us) from Users us where us.isSuspend = false and us.isDelete = false"
+//    )
+//    Integer getTotalActiveUsers();
+//    @Query(
+//            "select count(us) from Users us where us.isDelete = true"
+//    )
+//    Integer getTotalSoftDeletedUsers();
 
 
 //

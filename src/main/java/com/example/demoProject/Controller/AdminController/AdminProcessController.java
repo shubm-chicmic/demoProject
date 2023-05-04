@@ -31,12 +31,7 @@ public class AdminProcessController {
     @Value("${serverAddress}")
     String serverAdd;
 
-    @Message("Admin Added a Role ")
-    @PostMapping("/addRoles")
-    @ResponseBody
-    public void addRoles(@RequestParam String role) {
-        rolesService.addRoles(role);
-    }
+
 
     //softDelete
     @Message("Admin softDelete a Driver ")

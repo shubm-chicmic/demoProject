@@ -82,7 +82,8 @@ public class UserController {
 
     ) {
         System.out.println("\u001B[33m" + pageNumber + " " + pageSize + " " + target + "\u001B[0m");
-        List<Users> UsersList = userService.getAllUsers(pageNumber, pageSize, target, sortBy, order);
+        String role = "Admin";
+        List<Users> UsersList = userService.getAllUsers(pageNumber, pageSize, target, sortBy, order, role);
 
         return UsersList;
     }
@@ -144,7 +145,7 @@ public class UserController {
         if(newPassword.equals(cnfPassword)) {
             Users users = userService.getUserByEmail(email);
             users.setPassword(newPassword);
-            userService.addUser(users);
+            //userService.addUser(user);
             model.addAttribute("alert", "Password Reset Successfully !");
             model.addAttribute("email", email);
             //delete token
