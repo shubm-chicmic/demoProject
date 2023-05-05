@@ -67,7 +67,7 @@ public class AdminController {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         Users users = userService.getUserByEmail(email);
-        List<Roles> rolesList = rolesService.findRoleNameByUserId(users);
+        List<Roles> rolesList = rolesService.findRolesByUsers(users);
 
         log.info("\u001B[31m" + rolesList + "\u001B[0m");
         //List<Integer> roleId = userService.findRoleIdByUserId(users.getId());

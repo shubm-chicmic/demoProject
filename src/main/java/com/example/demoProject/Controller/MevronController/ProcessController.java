@@ -1,12 +1,15 @@
 package com.example.demoProject.Controller.MevronController;
 
 import com.example.demoProject.Dto.EmailDto;
+import com.example.demoProject.Dto.UserDto;
+import com.example.demoProject.Models.Roles;
 import com.example.demoProject.Models.Users;
-import com.example.demoProject.Service.EmailService;
-import com.example.demoProject.Service.OtpService;
-import com.example.demoProject.Service.UserService;
-import com.example.demoProject.Service.UsersRolesService;
+import com.example.demoProject.Models.UsersRoles;
+import com.example.demoProject.Service.*;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.mail.MessagingException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -14,17 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @Slf4j
@@ -43,167 +41,135 @@ public class ProcessController {
     EmailService emailService;
     @Autowired
     UsersRolesService usersRolesService;
+    @Autowired
+    RolesService rolesService;
 
+    public Boolean findUserAlreadyExistedWithRole(String email, String role) {
+        Users users = userService.getUserByEmail(email);
 
-
-
-    @RequestMapping("/processDriverRegister")
-    public String processDriverRegister(HttpServletRequest request) {
-        System.out.println("\u001B[33m" + "inside driver register" + "\u001B[0m");
-
-        String fName = request.getParameter("fname");
-        String lName = request.getParameter("lname");
-        String email = request.getParameter("email");
-        String phNo = (request.getParameter("phone"));
-        String password = request.getParameter("password");
-        String city = request.getParameter("city");
-        String inviteCode = request.getParameter("inviteCode");
-        String uuid= UUID.randomUUID().toString();
-        String imageUrl = "assets/img/profile/driver.jpg";
-        Users user = Users.builder()
-                .firstName(fName)
-                .lastName(lName)
-                .email(email)
-                .uuid(uuid)
-                .phoneNo(phNo)
-                .password(password)
-                .city(city)
-
-                .imageUrl(imageUrl)
-                .build();
-        System.out.println("////////////" + user);
-       // userService.addDriver(user);
-        return "redirect:/sendOtp/" + email;
-//        return "driver-documentation";
+        if(users != null){
+            Set<UsersRoles> usersRolesSet = users.getUsersRoles();
+            for (UsersRoles usersRoles : usersRolesSet) {
+                if(usersRoles.getRoles().getRoleName().equals(role)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
+    public void setCookie(String name, String value, int age, HttpServletResponse response) {
+        Cookie cookie = new Cookie(name, value);
+        cookie.setMaxAge(age);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+    }
+    @PostMapping("processUserRegister")
+    public String processUserRegister(UserDto userDto, @CookieValue("role") String role) {
+
+        Boolean isUserExistWithRole = findUserAlreadyExistedWithRole(userDto.getEmail(), role);
+        if(isUserExistWithRole) {
+
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        log.info("\u001B[31m" + userDto + "\u001B[0m");
+
+        Users users = mapper.convertValue(userDto, Users.class);
+        log.info("\u001B[31m" + users + "\u001B[0m");
+
+        Roles roles = rolesService.findByRoleName("DRIVER");
+        UsersRoles usersRoles = UsersRoles.builder()
+                .roles(roles)
+                .users(users)
+                .isEmailVerify(false)
+                .isSuspend(false)
+                .isDelete(false)
+                .build();
+        Set<UsersRoles> usersRolesSet = new HashSet<>();
+        usersRolesSet.add(usersRoles);
+        users.setUsersRoles(usersRolesSet);
+
+
+        userService.addUser(users);
+        return "redirect:/sendOtp/" + users.getEmail();
+    }
+
+
     @RequestMapping("/sendOtp/{email}")
     public String sendOtpToEmail(@PathVariable("email") String email) throws MessagingException {
         int otp = otpService.generateOTP(email);
-        log.info("\u001B[33m" + otp + "\u001B[0m");
-        log.info("\u001B[33m" + email + "\u001B[0m");
-
         emailService.sendOtpMessage(email, "Welcome to Mevron: ", "Your OTP For Verification is : " + Integer.toString(otp));
-        return "redirect:/driverEmailVerify?email=" + email;
+        return "redirect:/UserEmailVerify?email=" + email;
     }
-    @RequestMapping("/driverEmailVerify")
-    public String driverEmailVerify(@RequestParam("email") String email, Model model) {
+    @RequestMapping("/UserEmailVerify")
+    public String UserEmailVerify(@RequestParam("email") String email, Model model) {
         model.addAttribute("email", email);
 
-        System.out.println("inside driver Email Verify : " + email );
-        return "driver-email-verification";
+        System.out.println("inside User Email Verify : " + email );
+        return "user-email-verification";
     }
     @PostMapping("/verifyEmail")
-    public String emailVerification(@RequestParam("email") String email, @RequestParam("otp") Integer otpEntered) {
+    public String emailVerification(@RequestParam("email") String email, @RequestParam("otp") Integer otpEntered, @CookieValue("role") String role) {
         int otp = otpService.getOtp(email);
         log.info("\u001B[33m" + "otp of email " + otp + "\u001B[0m");
         log.info("\u001B[33m" + "otp of entered " + otpEntered + "\u001B[0m");
 
         if(otp == otpEntered){
-            userService.setUsersEmailVerifyTrue(email);
+            userService.setUsersEmailVerifyTrue(email, role);
             otpService.clearOTP(email);
         }else {
-            return "redirect:/driverEmailVerify?email=" + email;
+            return "redirect:/UserEmailVerify?email=" + email;
         }
         log.info("\u001B[33m" + email + "\u001B[0m");
 
         return "redirect:/driverLogin?email=" + email;
     }
-    @RequestMapping("/processRiderRegister")
-    public String processRiderRegister(HttpServletRequest request) {
-        System.out.println("\u001B[33m" + "inside rider register" + "\u001B[0m");
-        String fName = request.getParameter("fname");
-        String lName = request.getParameter("lname");
-        String email = request.getParameter("email");
-        String phNo = (request.getParameter("phone"));
-        String password = request.getParameter("password");
-        String confirmPassword = request.getParameter("cnfPassword");
-        String city = request.getParameter("city");
-        String inviteCode = request.getParameter("inviteCode");
-        String uuid= UUID.randomUUID().toString();
-        String imageUrl = "assets/img/profile/rider.jpg";
 
-        if(!confirmPassword.equals(password)) {
-            System.out.println("//////////////////" + "inside");
-            return "error";
+    @PostMapping("/processUserEmail")
+    public String processUserEmail(@RequestParam("email") String email, Model model) {
+        System.out.println("\u001B[31m" + "processUser call ho gya" + "\u001B[0m" );
+        Users users =  userService.getUsersByEmailorPhoneNo(email, email);
+
+        if(users == null){
+            System.out.println("\u001B[31m" + "ifcalled " + email + "\u001B[0m" );
+            return "email-not-exist";
+
         }
-        Users user = Users.builder()
-                .firstName(fName)
-                .lastName(lName)
-                .email(email)
-                .uuid(uuid)
-                .phoneNo(phNo)
-                .password(password)
-                .city(city)
+        model.addAttribute("email", email);
 
-                .imageUrl(imageUrl)
-                .build();
-        System.out.println("////////////" + user);
-        //userService.addRider(user);
-        return "driver-documentation";
+        Set<UsersRoles> usersRolesSet = users.getUsersRoles();
+        List<String> rolesList = new ArrayList<>();
+        for (UsersRoles usersRoles : usersRolesSet) {
+            rolesList.add(usersRoles.getRoles().getRoleName());
+        }
+        model.addAttribute("rolesList", rolesList);
+
+
+        return "user-role-selection";
     }
+    @RequestMapping("/processUserLogin/{role}")
+    public String processUserLoginViaRole(@PathVariable String role, Model model,
+         @RequestParam("email") String email, HttpServletResponse response
 
-    @RequestMapping("/processDriverLogin")
-    public String processDriverLogin(HttpServletRequest request, Model model) {
-        String value = request.getParameter("mob");
-       // System.out.println("///////////////" + value);
-       Users users =  userService.getUsersByEmailorPhoneNo(value, value);
+    ) {
+        setCookie("role", role, 24*60*60, response);
+        model.addAttribute("email", email);
 
-       if(users == null){
-           model.addAttribute("email", value);
-           model.addAttribute("isEmailNull", "true");
-
-           model.addAttribute("isEmailVerify", "false");
-           return "driver-login";
-       }
-//       if(!users.getIsEmailVerify()) {
-//           model.addAttribute("email", value);
-//           model.addAttribute("isEmailNull", "false");
-//           model.addAttribute("isEmailVerify", "false");
-//           return "driver-login";
-//       }
-        model.addAttribute("email", value);
-        model.addAttribute("isEmailNull", "false");
-        model.addAttribute("isEmailVerify", "true");
-
-        List<Integer> rolesList = userService.findRoleIdByUserId(userService.getUserByEmail(value).getId());
-        List<String> rolesName = new ArrayList<>();
-        for(Integer rolesId : rolesList) {
-                //rolesName.add(usersRolesService.findRoleById(rolesId));
-        }
-        model.addAttribute("rolesList", rolesName);
-
-
-        System.out.println("Model1 = " + model.getAttribute("email"));
-        emailDto.setEmail(users.getEmail());
-
-        System.out.println("CurUsers = "  + emailDto.getEmail());
         return "driver-password";
     }
-    @PostMapping("processUserLoginPassword")
-    public String  processUserLoginPassword(HttpServletRequest request, Model model) {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String role = request.getParameter("role");
-
-        return "redirect:/login?email=" + email + "&password=" + password + "&role=" + role;
-
+    @PostMapping("/processUserLogin")
+    public String processUserLogin(@RequestParam("password") String password, @CookieValue("role") String role
+                               , @RequestParam("email") String email
+    ) {
+        return "redirect:/login?email=" + email + "&password=" + password;
     }
 
     @RequestMapping("/driverProfile")
-    public String processDriverPasswordLogin(HttpServletRequest request, Model model, Principal principal) {
-       // String password = request.getParameter("lpassword");
+    public String processDriverPasswordLogin(Model model, Principal principal) {
         System.out.println("Inside processDriverLogin");
-      //  System.out.println("Password = " + password);
-//        String uri = "http://localhost:8080/hello";
-//
         String email = principal.getName();
         Users users = userService.getUserByEmail(email);
-
-        model.addAttribute("fName", users.getFirstName());
-        model.addAttribute("lName", users.getLastName());
-        model.addAttribute("email", users.getEmail());
-        model.addAttribute("phNo", users.getPhoneNo());
-
+        model.addAttribute("user", users);
         return "driver-profile";
     }
     @PostMapping("/profileSetting")
@@ -219,7 +185,7 @@ public class ProcessController {
                 .firstName(fName)
                 .lastName(lName)
                 .email(email)
-                .phoneNo(phone)
+                .phone(phone)
                 .build();
         userService.updateDriver(users);
         String redirectUrl = "http://localhost:8080/driverProfile";

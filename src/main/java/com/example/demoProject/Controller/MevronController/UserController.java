@@ -3,6 +3,7 @@ package com.example.demoProject.Controller.MevronController;
 import com.example.demoProject.Dto.EmailDto;
 
 import com.example.demoProject.Models.PasswordReset;
+import com.example.demoProject.Models.Roles;
 import com.example.demoProject.Models.UserUuid;
 import com.example.demoProject.Models.Users;
 import com.example.demoProject.Service.EmailService;
@@ -10,7 +11,9 @@ import com.example.demoProject.Service.PasswordService;
 import com.example.demoProject.Service.RolesService;
 import com.example.demoProject.Service.UserService;
 import jakarta.mail.MessagingException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,17 +43,29 @@ public class UserController {
     @Value("${myDomain}")
     String myDomain;
 
-    @RequestMapping("/driverRegister")
-    public String driverRegister(User user) {
-        System.out.println(user + "########################");
-        return "signup-driver";
+    @PostMapping("selectRoles")
+    public String selectRole(@RequestParam("email") String email) {
+        Users users = userService.getUserByEmail(email);
+        List<Roles> rolesList = rolesService.findRolesByUsers(users);
+
+        log.info("\u001B[31m" + rolesList + "\u001B[0m");
+        return "user-role-selection";
+    }
+    @RequestMapping("userRegister/{role}")
+    public String userRegister(@PathVariable("role") String role, HttpServletResponse response) {
+        Cookie cookie = new Cookie("role", role);
+        cookie.setMaxAge(60*60);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        if(role.equals("DRIVER")){
+            return "signup-driver";
+        }else if(role.equals("RIDER")){
+            return "signup-rider";
+        }
+        return "";
     }
 
-    @RequestMapping("/riderRegister")
-    public String riderRegister() {
-        System.out.println("///////////////////");
-        return "signup-rider";
-    }
     @RequestMapping("/driverLogin")
     public String driverLogin(HttpServletRequest request, Model model) {
         model.addAttribute("email", request.getParameter("email"));

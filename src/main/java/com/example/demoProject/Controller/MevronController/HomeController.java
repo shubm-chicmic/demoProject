@@ -16,6 +16,7 @@ public class HomeController {
     public String homePage(Model model) {
 
         model.addAttribute("index", "Mevron - HomePage");
+        model.addAttribute("isEmailNull", "false");
         return "index";
     }
 

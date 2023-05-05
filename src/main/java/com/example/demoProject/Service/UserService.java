@@ -56,9 +56,9 @@ public class UserService {
 
     }
 
-    public Users getUsersByEmailorPhoneNo(String email, String phoneNo) {
+    public Users getUsersByEmailorPhoneNo(String email, String phone) {
         System.out.println("email = " + email);
-        return userrepo.findUsersByEmailorPhoneNo(email, phoneNo);
+        return userrepo.findUsersByEmailorPhoneNo(email, phone);
     }
 
     public List<Users> getAllDrivers() {
@@ -206,7 +206,16 @@ public class UserService {
 
     }
      //Email Verify
-    public void setUsersEmailVerifyTrue(String email) {
+    public void setUsersEmailVerifyTrue(String email, String role) {
+        Users users = getUserByEmail(email);
+        Set<UsersRoles> usersRolesSet = users.getUsersRoles();
+        for(UsersRoles usersRoles : usersRolesSet) {
+            if(usersRoles.getRoles().getRoleName().equals(role)) {
+                usersRoles.setIsEmailVerify(true);
+            }
+        }
+        users.setUsersRoles(usersRolesSet);
+        userrepo.save(users);
         //userrepo.setUsersIsEmailVerifyByEmail(email, true);
     }
 

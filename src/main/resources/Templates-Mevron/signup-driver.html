@@ -70,21 +70,21 @@
 									<h3 class="text-left d-block my-4">Drive with Mevron. Go places with us!</h3>
 								</div>						
 							</div><!-- End Title Box -->
-						</div>	
-						
+						</div>
+
 						<div class="col-lg-7 pt-4">
 							<div class="bg-white p-5">
 								<h3 class="text-left font-weight-bold mb-4">Sign Up!</h3>
-								<form id="myForm" action="/processDriverRegister" rel="" class="form-sign">
+								<form id="myForm" th:action="@{/processUserRegister}" rel="" class="form-sign" method="post">
 									<div class="row">
 										<div class="col-md-6 px-2">
 											<div class="form-group">
-												<input type="text" name="fname" placeholder="First Name" class="form-control">
+												<input type="text" name="firstName" placeholder="First Name" class="form-control">
 											</div>
 										</div>
 										<div class="col-md-6 px-2">
 											<div class="form-group">						
-												<input type="text" name="lname" placeholder="Last Name" class="form-control">
+												<input type="text" name="lastName" placeholder="Last Name" class="form-control">
 											</div>
 										</div>
 									</div> 

@@ -37,7 +37,7 @@ public class AdminConfig {
                     .password("1234")
                     .uuid(uuid)
                     .city("Mohali")
-                    .phoneNo("9876543210")
+                    .phone("9876543210")
 
                     .imageUrl("/static-admin/assets/img/profile/admin.webp")
                     .build();

@@ -61,20 +61,34 @@ public class Authentication extends UsernamePasswordAuthenticationFilter {
         UserUuid uuidEntity = new UserUuid();
         uuidEntity.setUuid(uuid.toString());
         String username = request.getParameter("email");
-        System.out.println("isnide suce " + username);
+        System.out.println("inside successful " + username);
         uuidEntity.setEmail(username);
 //        uuidEntity.setId(1155);
         userService.CreateToken(uuidEntity);
 
         // userService.saveUser(user1);
         System.out.println("login successfully!!!");
+        String role = "";
+        for(Cookie cookie:request.getCookies()){
+            if("role".equals(cookie.getName())){
+                role = cookie.getValue();
+                break;
+            }
+        }
 //        users2 users2 = UserService.getUserByEmail(request.getParameter("email"));
 //
 //        authority.setAuthority(rolesService.findRolesByUserId(users2.getId()));
        //  new ObjectMapper().writeValue(response.getOutputStream(),"Logged in " + uuid.toString());
       //  processController.processDriverPasswordLogin();
          //  new ObjectMapper().writeValue(response.getOutputStream(),uuid.toString());
-        String redirectUrl = "/driverProfile";
+        String redirectUrl = "";
+        if(role.equals("DRIVER")) {
+            redirectUrl = "/driverProfile";
+        }else if(role.equals("ADMIN")) {
+            redirectUrl = "dashboard";
+        }else {
+            redirectUrl = "/riderProfile";
+        }
 //        response.addHeader("Authorization","Subham Kumar");
 
         request.getSession().setAttribute("Authorization", uuid.toString());

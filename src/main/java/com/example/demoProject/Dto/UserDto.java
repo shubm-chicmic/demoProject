@@ -20,9 +20,11 @@ public class UserDto {
     String imageUrl = "";
     String city;
     String password;
+    String cnfPassword;
     String role;
     Boolean isSuspend;
     Boolean isDelete;
-
+    String promoCode;
+    String inviteCode;
 }
 

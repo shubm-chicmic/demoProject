@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "Users",uniqueConstraints={@UniqueConstraint(columnNames={"email", "phoneNo"})})
+@Table(name = "Users",uniqueConstraints={@UniqueConstraint(columnNames={"email", "phone"})})
 @Getter
 @Setter
 @Builder
@@ -28,7 +28,7 @@ public class Users {
             message = "Invalid Email Enter !"
     )
     String email;
-    String phoneNo;
+    String phone;
     String password;
     String city;
     String imageUrl;

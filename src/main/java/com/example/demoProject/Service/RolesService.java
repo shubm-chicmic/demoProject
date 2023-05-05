@@ -29,9 +29,9 @@ public class RolesService {
         return roleRepository.findByRoleName(roleName);
 
     }
-    public List<Roles> findRoleNameByUserId(Users users) {
+    public List<Roles> findRolesByUsers(Users users) {
 //        List<UsersRoles> usersRoles = userRoleRepository.findByUserId(userId);
-       return userRoleRepository.findByUsers(users);
+       return userRoleRepository.findRolesByUsers(users);
     }
 
 }

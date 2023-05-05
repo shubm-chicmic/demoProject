@@ -104,7 +104,7 @@ public class RestController {
                     .email(role[index] + i + "@yopmail.com")
                     .uuid(uuid)
                     .password("123456")
-                    .phoneNo("9876543210")
+                    .phone("9876543210")
                     .city("Mohali")
 
                     .imageUrl(imageUrl)

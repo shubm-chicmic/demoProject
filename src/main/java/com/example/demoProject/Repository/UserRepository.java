@@ -20,9 +20,9 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
     Users findByEmail(String email);
 
     @Query(
-            "Select user From Users user Where user.email = :email OR user.phoneNo = :phoneNo"
+            "Select user From Users user Where user.email = :email OR user.phone = :phone"
     )
-    Users findUsersByEmailorPhoneNo(@Param("email") String email, @Param("phoneNo") String phoneNo);
+    Users findUsersByEmailorPhoneNo(@Param("email") String email, @Param("phone") String phone);
 
 //    @Transactional
 //    @Modifying
@@ -34,7 +34,7 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
     @Modifying
     @Query(
             value = "Update Users us Set us.firstName = :#{#userDto.firstName},us.lastName = :#{#userDto.lastName}," +
-                    " us.phoneNo = :#{#userDto.phone}, us.city = :#{#userDto.city} , us.imageUrl = :#{#userDto.url} Where us.email = :email"
+                    " us.phone = :#{#userDto.phone}, us.city = :#{#userDto.city} , us.imageUrl = :#{#userDto.url} Where us.email = :email"
     )
     void updateUserByEmail(@Param("email") String email, @Param("userDto") UserDto userDto);
     Users findUsersById(@Param("id") int id);

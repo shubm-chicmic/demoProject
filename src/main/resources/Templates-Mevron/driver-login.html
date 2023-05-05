@@ -47,7 +47,7 @@
 
 								<h4 class="text-center font-weight-bold mb-5">Sign In</h3>
 
-								<form action="processDriverLogin" rel="" class="form-sign px-0 px-sm-5" method="POST">
+								<form th:action="@{processUserEmail}" rel="" class="form-sign px-0 px-sm-5" method="POST">
 									<div class="row text-justify-center">
 										<div class="col-md-12 px-0 px-sm-5">
 											<div class="form-group">
@@ -110,14 +110,12 @@
 		console.log([[${isEmailNull}]]);
 		console.log([[${isEmailVerify}]]);
 		console.log('[[${email}]]');
-		if([[${isEmailNull}]] == true) {
+		var isEmailNull= [[${isEmailNull}]];
+		if( isEmailNull == true) {
 			alert("This Email Does Not Exist")
 
 		}
-		if([[${isEmailVerify}]] == false) {
-			alert("Your Email is Not Verified")
 
-		}
 
 
 	</script>
