@@ -57,6 +57,15 @@ public class ProcessController {
         }
         return false;
     }
+    Integer findUserAlreadyExist(String email) {
+        Users users  = userService.getUserByEmail(email);
+        if(users != null) {
+            return users.getId();
+        }else {
+            return null;
+        }
+    }
+
     public void setCookie(String name, String value, int age, HttpServletResponse response) {
         Cookie cookie = new Cookie(name, value);
         cookie.setMaxAge(age);
@@ -67,17 +76,21 @@ public class ProcessController {
     public String processUserRegister(UserDto userDto, @CookieValue("role") String role) {
 
         Boolean isUserExistWithRole = findUserAlreadyExistedWithRole(userDto.getEmail(), role);
+        Integer id = findUserAlreadyExist(userDto.getEmail());
         if(isUserExistWithRole) {
-
+            return "redirect:/userRegister/" + role + "?error=" + role + " Already Register With Same Email";
         }
         ObjectMapper mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        log.info("\u001B[31m" + userDto + "\u001B[0m");
+        log.info("\u001B[41m" + userDto + "\u001B[0m");
 
         Users users = mapper.convertValue(userDto, Users.class);
-        log.info("\u001B[31m" + users + "\u001B[0m");
+        if(id != null)
+        users.setId(id);
+        users.setUuid(UUID.randomUUID().toString());
+        log.info("\u001B[41m" + users + "\u001B[0m");
 
-        Roles roles = rolesService.findByRoleName("DRIVER");
+        Roles roles = rolesService.findByRoleName(role);
         UsersRoles usersRoles = UsersRoles.builder()
                 .roles(roles)
                 .users(users)
@@ -122,7 +135,7 @@ public class ProcessController {
         }
         log.info("\u001B[33m" + email + "\u001B[0m");
 
-        return "redirect:/driverLogin?email=" + email;
+        return "redirect:/home?email=" + email;
     }
 
     @PostMapping("/processUserEmail")
@@ -164,14 +177,17 @@ public class ProcessController {
         return "redirect:/login?email=" + email + "&password=" + password;
     }
 
-    @RequestMapping("/driverProfile")
-    public String processDriverPasswordLogin(Model model, Principal principal) {
-        System.out.println("Inside processDriverLogin");
+    @RequestMapping("/profile/{role}")
+    public String driverProfile(@PathVariable("role") String role, Model model, Principal principal) {
+        System.out.println("Inside profile " + role);
         String email = principal.getName();
         Users users = userService.getUserByEmail(email);
         model.addAttribute("user", users);
+        if(role.equals("DRIVER"))
         return "driver-profile";
+        return "rider-profile";
     }
+
     @PostMapping("/profileSetting")
     public void profileSetting(HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("inside Profile setting /////////////");
@@ -195,31 +211,31 @@ public class ProcessController {
     }
 
 
-    @RequestMapping("/registerSuccess")
-    public String registerDriverSuccess() {
-        return "register-success";
-    }
+//    @RequestMapping("/registerSuccess")
+//    public String registerDriverSuccess() {
+//        return "register-success";
+//    }
+//
+//    public String getCurEmail() {
+//        System.out.println("//////////////////////////////////// " + emailDto.getEmail());
+//        return emailDto.getEmail();
+//    }
 
-    public String getCurEmail() {
-        System.out.println("//////////////////////////////////// " + emailDto.getEmail());
-        return emailDto.getEmail();
-    }
 
-
-    @RequestMapping("/processRiderLogin")
-    public String processRiderLogin(HttpServletRequest request, Model model) {
-        emailDto.setEmail(request.getParameter("mob"));
-        System.out.println("\u001B[33m" + " inside processriderlogin================ " + emailDto + "\u001B[0m");
-        model.addAttribute("emailDto", request.getParameter("mob"));
-//        ra.addFlashAttribute("savedEmail", emailDto1);
-        return "rider-password";
-    }
-    @PostMapping("/processRiderPassword")
-    public String processRiderPassword(HttpServletRequest request) {
-        emailDto.setPassword(request.getParameter("password"));
-        System.out.println("\u001B[33m" + " inside processriderpassword===== " + emailDto + "\u001B[0m");
-
-        return "redirect:/login";
-    }
+//    @RequestMapping("/processRiderLogin")
+//    public String processRiderLogin(HttpServletRequest request, Model model) {
+//        emailDto.setEmail(request.getParameter("mob"));
+//        System.out.println("\u001B[33m" + " inside processriderlogin================ " + emailDto + "\u001B[0m");
+//        model.addAttribute("emailDto", request.getParameter("mob"));
+////        ra.addFlashAttribute("savedEmail", emailDto1);
+//        return "rider-password";
+//    }
+//    @PostMapping("/processRiderPassword")
+//    public String processRiderPassword(HttpServletRequest request) {
+//        emailDto.setPassword(request.getParameter("password"));
+//        System.out.println("\u001B[33m" + " inside processriderpassword===== " + emailDto + "\u001B[0m");
+//
+//        return "redirect:/login";
+//    }
 
 }

@@ -1,17 +1,17 @@
 package com.example.demoProject.Controller.AdminController;
 
 
+import com.example.demoProject.Controller.MevronController.RestController;
 import com.example.demoProject.Dto.Message;
 import com.example.demoProject.Dto.UserDto;
-import com.example.demoProject.Models.Roles;
-import com.example.demoProject.Models.UserUuid;
-import com.example.demoProject.Models.Users;
-import com.example.demoProject.Models.UsersActivity;
+import com.example.demoProject.Models.*;
 import com.example.demoProject.Repository.RoleRepository;
 import com.example.demoProject.Service.RolesService;
 import com.example.demoProject.Service.UserActivityService;
 import com.example.demoProject.Service.UserService;
 import com.example.demoProject.Service.UsersRolesService;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -36,9 +36,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -51,7 +49,7 @@ public class AdminController {
     @Autowired
     UserActivityService userActivityService;
     @Autowired
-    RestTemplate restTemplate;
+    RestController restController;
 //    @Autowired
 //    RoleRepository roleRepository;
 //    @Autowired
@@ -102,16 +100,11 @@ public class AdminController {
     @Message("Admin visited dashboard ")
 
     public String adminDashboard(HttpSession session, Model model) {
-        String getUsersUrl = serverAdd + "/getTotalDrivers";
-        int TotalDrivers =  restTemplate.getForObject(getUsersUrl, Integer.class);
-        getUsersUrl = serverAdd + "/getTotalRiders";
-        int TotalRiders =  restTemplate.getForObject(getUsersUrl, Integer.class);
-        getUsersUrl = serverAdd + "/getTotalUsers";
-        int TotalUsers =  restTemplate.getForObject(getUsersUrl, Integer.class);
-        getUsersUrl = serverAdd + "/getTotalActiveUsers";
-        int TotalActiveUsers =  restTemplate.getForObject(getUsersUrl, Integer.class);
-        getUsersUrl = serverAdd + "/getTotalSoftDeletedUsers";
-        int TotalSoftDeletedUsers =  restTemplate.getForObject(getUsersUrl, Integer.class);
+        long TotalDrivers =  rolesService.findUsersByRole("DRIVER");
+        long TotalRiders =  rolesService.findUsersByRole("RIDER");
+        long TotalUsers =  rolesService.findUsersByRole("");
+        long TotalActiveUsers =  rolesService.findSuspend(false);
+        long TotalSoftDeletedUsers =  rolesService.findDeletedUsers(true);
 
         System.out.println("\u001B[33m" + "adminDashboard " + "\u001B[0m");
 
@@ -148,16 +141,12 @@ public class AdminController {
 
 
         String folder = imagePath;
-        System.out.println(imagePath);
         byte[] bytes = multipartFile.getBytes();
         Path path = Paths.get(folder +  multipartFile.getOriginalFilename());
-        System.out.println("\u001B[33m" + path + "\u001B[0m" );
         Files.write(path, bytes);
 
-        System.out.println("\u001B[33m" + "updateProfile =  " + userDto + "\u001B[0m");
         String fileName = multipartFile.getOriginalFilename();
         Users users = userService.updateUserByEmail(userDto.getEmail(), userDto, fileName);
-        System.out.println("\u001B[33m" + "updateProfile =  " + users + "\u001B[0m");
 
         String name = users.getFirstName() +"_"+ users.getLastName();
         Cookie cookie1 = new Cookie("UserDetail", name);
@@ -176,24 +165,30 @@ public class AdminController {
 
     public String Users(Model model, HttpServletRequest request) {
         System.out.println("inside Users ");
-        String pageNumber = request.getParameter("pageNumber");
-        String pageSize = request.getParameter("pageSize");
-        String target = request.getParameter("search");
-        String sortBy = request.getParameter("sortBy");
-        String order = request.getParameter("order");
-        if(pageSize == null) pageSize = "6";
+        Integer pageNumber = null;
+        Integer pageSize = null;
+        String target = null;
+        String sortBy = null;
+        Integer order = null;
 
-        if(pageNumber == null) pageNumber = "0";
-        if(sortBy == null) sortBy = "firstName";
-        if(order ==  null) order = "1";
 
+        try {
+            pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+            pageSize = Integer.parseInt(request.getParameter("pageSize"));
+            target = request.getParameter("search");
+            sortBy = request.getParameter("sortBy");
+            order = Integer.parseInt(request.getParameter("order"));
+        }catch (Exception e) {
+            if (pageSize == null) pageSize = 6;
+
+            if (pageNumber == null) pageNumber = 0;
+            if (sortBy == null) sortBy = "firstName";
+            if (order == null) order = 1;
+        }
 
 
         System.out.println("\u001B[33m" + pageNumber + " " + pageSize + "\u001B[0m");
-        String getUsersUrl = serverAdd + "/getAllUsers?pageNumber=" + pageNumber + "&pageSize=" + pageSize + "&search=" + target + "&sortBy=" + sortBy + "&order=" + order;
-        Object[] drivers = restTemplate.getForObject(getUsersUrl, Object[].class);
-        List<Object> driversList = Arrays.asList(drivers);
-
+        List<Users> driversList = restController.getAllUsers(pageNumber,pageSize,target,sortBy,order);
         System.out.println(driversList);
         //Model
 
@@ -218,14 +213,14 @@ public class AdminController {
     @Message("Admin viewed User Profile of ")
 
     public String userProfile(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id");
+        Integer id = Integer.parseInt(request.getParameter("id"));
         System.out.println("id = " + id);
         String getUsersUrl = serverAdd +  "/getUser?id=" + id;
         System.out.println(getUsersUrl);
-        UserDto user = restTemplate.getForObject(getUsersUrl, UserDto.class);
-        System.out.println(user);
+        Users users = userService.getUserById(id);
 
-        model.addAttribute("User", user);
+
+        model.addAttribute("User", users);
         return "all-user-profile";
     }
 
@@ -236,24 +231,6 @@ public class AdminController {
 
 
         String getUsersUrl = "/updateUsers";
-//         create request body
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("firstName", "123");
-        jsonObject.put("password", "1234");
-
-// set headers
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> entity = new HttpEntity<String>(jsonObject.toString(), headers);
-
-// send request and parse result
-        ResponseEntity<String> loginResponse = restTemplate
-                .exchange(getUsersUrl, HttpMethod.POST, entity, String.class);
-        if (loginResponse.getStatusCode() == HttpStatus.OK) {
-            // JSONObject userJson = new JSONObject(loginResponse.getBody());
-        } else if (loginResponse.getStatusCode() == HttpStatus.UNAUTHORIZED) {
-            // nono... bad credentials
-        }
         return "all-user-profile";
     }
 
@@ -269,19 +246,21 @@ public class AdminController {
 
     public String addDriverByAdmin(UserDto userDto) {
         String getUsersUrl = "/processDriverRegister";
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(getUsersUrl)
-                // Add query parameter
-                .queryParam("fname", userDto.getFirstName())
-                .queryParam("lname", userDto.getLastName())
-                .queryParam("phone", userDto.getPhone())
-                .queryParam("email", userDto.getEmail())
-                .queryParam("city", userDto.getCity());
-
-        System.out.println("\u001B[33m" + builder.buildAndExpand(getUsersUrl).toUri() + "\u001B[0m");
-        getUsersUrl = builder.buildAndExpand(getUsersUrl).toUri().toString();
-        String response = restTemplate.getForObject(getUsersUrl, String.class);
-
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        Users users = mapper.convertValue(userDto, Users.class);
+        Roles roles = rolesService.findByRoleName("DRIVER");
+        UsersRoles usersRoles = UsersRoles.builder()
+                .roles(roles)
+                .users(users)
+                .isEmailVerify(false)
+                .isSuspend(false)
+                .isDelete(false)
+                .build();
+        Set<UsersRoles> usersRolesSet = new HashSet<>();
+        usersRolesSet.add(usersRoles);
+        users.setUsersRoles(usersRolesSet);
+        userService.addUser(users);
         return "add-driver";
     }
 

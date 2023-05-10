@@ -38,7 +38,7 @@ public class Users {
     @Temporal(TemporalType.TIMESTAMP)
     protected Date createdDate;
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     Set<UsersRoles> usersRoles;
 
 

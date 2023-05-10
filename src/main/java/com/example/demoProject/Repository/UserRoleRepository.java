@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.management.relation.Role;
 import java.util.List;
 
 @Repository
@@ -25,5 +26,8 @@ public interface UserRoleRepository extends JpaRepository<UsersRoles, Integer> {
             "Select roles From UsersRoles ur where ur.users = :users"
     )
     public List<Roles> findRolesByUsers(@Param("users") Users users);
+    long countByRoles(Roles roles);
+    public List<UsersRoles> findUsersRolesByisSuspend(Boolean isSuspend);
+    public List<UsersRoles> findUsersRolesByisDelete(Boolean isDelete);
 
 }

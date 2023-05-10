@@ -33,5 +33,19 @@ public class RolesService {
 //        List<UsersRoles> usersRoles = userRoleRepository.findByUserId(userId);
        return userRoleRepository.findRolesByUsers(users);
     }
+    public Long findUsersByRole(String role) {
+        Roles roles = roleRepository.findByRoleName(role);
+        if(roles != null) {
+            return userRoleRepository.countByRoles(roles);
+        }
+        return  userRoleRepository.count();
+    }
+    public long findSuspend(Boolean isSuspend) {
+        return userRoleRepository.findUsersRolesByisSuspend(isSuspend).size();
+
+    }
+    public long findDeletedUsers(Boolean isDelete) {
+        return userRoleRepository.findUsersRolesByisDelete(isDelete).size();
+    }
 
 }

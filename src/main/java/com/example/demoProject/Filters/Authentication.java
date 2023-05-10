@@ -3,6 +3,7 @@ package com.example.demoProject.Filters;
 
 import com.example.demoProject.Dto.EmailDto;
 import com.example.demoProject.Models.UserUuid;
+import com.example.demoProject.Models.Users;
 import com.example.demoProject.Service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -75,22 +76,20 @@ public class Authentication extends UsernamePasswordAuthenticationFilter {
                 break;
             }
         }
-//        users2 users2 = UserService.getUserByEmail(request.getParameter("email"));
+
 //
 //        authority.setAuthority(rolesService.findRolesByUserId(users2.getId()));
        //  new ObjectMapper().writeValue(response.getOutputStream(),"Logged in " + uuid.toString());
       //  processController.processDriverPasswordLogin();
          //  new ObjectMapper().writeValue(response.getOutputStream(),uuid.toString());
         String redirectUrl = "";
-        if(role.equals("DRIVER")) {
-            redirectUrl = "/driverProfile";
-        }else if(role.equals("ADMIN")) {
+        if(role.equals("ADMIN")) {
             redirectUrl = "dashboard";
         }else {
-            redirectUrl = "/riderProfile";
+            redirectUrl = "/profile/" + role;
         }
 //        response.addHeader("Authorization","Subham Kumar");
-
+        Users users = userService.getUserByEmail(username);
         request.getSession().setAttribute("Authorization", uuid.toString());
 
         new DefaultRedirectStrategy().sendRedirect(request,response,redirectUrl);

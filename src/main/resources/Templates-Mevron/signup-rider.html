@@ -167,11 +167,11 @@
 	
 	
     <!-- JavaScript files-->
-    <script src="static-mevron/vendor/jquery/jquery.min.js"></script>
-    <script src="static-mevron/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- Animate JS -->
-    <script src="static-mevron/vendor/wow/wow.min.js"></script>
-	<!-- Custom JS -->
-    <script src="static-mevron/js/custom.js"></script>
+
+<script th:inline="javascript" >
+	 var error = /*[[${error}]]*/ null;
+		 console.log(error)
+		if(error != null)alert(error);
+</script>
 </body>
 </html>

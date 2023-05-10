@@ -1,7 +1,12 @@
 package com.example.demoProject.Service;
 
+import com.example.demoProject.Models.Roles;
 import com.example.demoProject.Models.Users;
+import com.example.demoProject.Models.UsersRoles;
+import jakarta.servlet.http.Cookie;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,8 +15,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Component
+@Slf4j
 public class UserServiceImp implements UserDetailsService {
     UserService userService;
 
@@ -23,10 +31,10 @@ public class UserServiceImp implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         System.out.println("email = " + email);
-        Users userDetails= userService.getUserByEmail(email);
+        Users users= userService.getUserByEmail(email);
 
-        System.out.println(userDetails+"////");
-        if (email==null || userDetails == null) {
+        System.out.println(users+"////");
+        if (email==null || users == null) {
             //log.error("User can not be found in database");
             throw new UsernameNotFoundException("Username not found");
         }
@@ -38,12 +46,7 @@ public class UserServiceImp implements UserDetailsService {
 //        }
 
         Collection<GrantedAuthority> authorites=new ArrayList<>();
-//
-//        users2 user = service.getUserByEmail(email);
-//       Roles role = rolesService.findRolesByUserId(user.getId());
-//       authorites.add(new SimpleGrantedAuthority("ROLE_"+role.getRole().toUpperCase()));
-        System.out.println("////////////////////////");
-        System.out.println(authorites);
-        return new User(userDetails.getEmail(), userDetails.getPassword(),  authorites);
+
+        return new User(users.getEmail(), users.getPassword(),  authorites);
     }
 }

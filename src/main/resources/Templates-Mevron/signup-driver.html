@@ -196,46 +196,45 @@
 	
 	
     <!-- JavaScript files-->
-    <script src="static-mevron/vendor/jquery/jquery.min.js"></script>
-    <script src="static-mevron/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-	<!-- Animate JS -->
-	<script src="static-mevron/vendor/wow/wow.min.js"></script>
-	<!-- Custom JS -->
-    <script src="static-mevron/js/custom.js"></script>
-	<script>
-		jQuery("#myForm").validate({
-			rules:{
-				email:"required",
-				fname:"required",
-				password:{
-				          required:true,
-				          minlength:2
-				          },
-				phone:{
-				required:true,
-				minlength:10
-				}
-			}
-			,messages:{
-				email:"Email is a required field!",
-				fname:"First name is required",
-				password:{
-					required:"Password cannot be empty",
-					minlength:"At least 2 characters needed"
-				},
-				phone:{
-					required:"Phone number Required",
-					minlength:"Phone number should at least be 10 digits"
-				}
-			},
-				highlight: function (element) {
-            	$(element).parent().addClass('error')
-        		},
-        		unhighlight: function (element) {
-           		 $(element).parent().removeClass('error')
-        	}
-		});
+
+	<script th:inline="javascript" >
+
+<!--		jQuery("#myForm").validate({-->
+<!--			rules:{-->
+<!--				email:"required",-->
+<!--				fname:"required",-->
+<!--				password:{-->
+<!--				          required:true,-->
+<!--				          minlength:2-->
+<!--				          },-->
+<!--				phone:{-->
+<!--				required:true,-->
+<!--				minlength:10-->
+<!--				}-->
+<!--			}-->
+<!--			,messages:{-->
+<!--				email:"Email is a required field!",-->
+<!--				fname:"First name is required",-->
+<!--				password:{-->
+<!--					required:"Password cannot be empty",-->
+<!--					minlength:"At least 2 characters needed"-->
+<!--				},-->
+<!--				phone:{-->
+<!--					required:"Phone number Required",-->
+<!--					minlength:"Phone number should at least be 10 digits"-->
+<!--				}-->
+<!--			},-->
+<!--				highlight: function (element) {-->
+<!--            	$(element).parent().addClass('error')-->
+<!--        		},-->
+<!--        		unhighlight: function (element) {-->
+<!--           		 $(element).parent().removeClass('error')-->
+<!--        	}-->
+<!--		});-->
+		 var error = /*[[${error}]]*/ null;
+		 console.log(error)
+		if(error != null)alert(error);
+
 
 	</script>
 </body>

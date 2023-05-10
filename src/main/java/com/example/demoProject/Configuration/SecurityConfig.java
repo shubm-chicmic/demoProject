@@ -57,7 +57,7 @@ public class SecurityConfig {
 
         http.csrf().disable();
 
-//        http.authorizeHttpRequests().requestMatchers("/abcd").permitAll();
+//        http.authorizeHttpRequests().requestMatchers("/profile/**").permitAll();
 //        http.authorizeHttpRequests().requestMatchers("/public/rider/register").permitAll();
 
 //

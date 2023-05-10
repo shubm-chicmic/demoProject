@@ -68,9 +68,13 @@
                                 <input type="search" name="search" placeholder="Search any retailer..." class="form-control" />
                             </div>
                         </form>
-<!--                        <div class="mb-2 text-right">-->
-<!--                            <a href="#" class="btn btn-md btn-primary text-capitalize">Sort Users By Name</a>-->
-<!--                        </div>-->
+                        <div class="mb-2 text-right">
+                            <a href="#" class="btn btn-md btn-primary text-capitalize">Drivers</a>
+                        </div>
+
+                        <div class="mb-2 text-right">
+                            <a href="#" class="btn btn-md btn-primary text-capitalize">Riders</a>
+                        </div>
                     </div>
 
                      <div class="table-responsive">
@@ -112,10 +116,10 @@
                                         </div>
                                     </td>
                                     <td data-label="Email" th:text="${tempDriver.email}"></td>
-                                    <td data-label="Phone" th:text="${tempDriver.phoneNo}"></td>
+                                    <td data-label="Phone" th:text="${tempDriver.phone}"></td>
                                     <td data-label="Status">
-                                        <span th:if="${tempDriver.isSuspend}" class="rounded-pill badge badge bg-warning">Inactive</span>
-                                        <span th:if="${!tempDriver.isSuspend}" class="rounded-pill badge badge bg-success">Active</span>
+                                        <span th:if="${true}" class="rounded-pill badge badge bg-warning">Inactive</span>
+                                        <span th:if="${false}" class="rounded-pill badge badge bg-success">Active</span>
 
                                     </td>
                                     <td data-label="Action">
@@ -126,10 +130,10 @@
                                             <a th:href="@{/userProfile?id={uid}(uid=${tempDriver.id})}" class="btn btn-transparent driver_update"><img
                                                     th:src="@{/static-admin/assets/img/icons/edit_icon.svg}" width=""
                                                     height="10" /></a>
-                                            <a th:if="${tempDriver.isSuspend}" th:href="@{/suspend?(id=${tempDriver.id},search=${searchValue}, pageNumber=${currentPage},sortBy=firstName,order=${order})}" class="btn btn-transparent"><img
+                                            <a  th:href="@{/suspend?(id=${tempDriver.id},search=${searchValue}, pageNumber=${currentPage},sortBy=firstName,order=${order})}" class="btn btn-transparent"><img
                                                     th:src="@{/static-admin/assets/img/icons/lock-icon.svg}" width="50"
                                                     height="50" /></a>
-                                            <a th:if="${!tempDriver.isSuspend}" th:href="@{/suspend?(id=${tempDriver.id},search=${searchValue}, pageNumber=${currentPage},sortBy=firstName,order=${order})}" class="btn btn-transparent"><img
+                                            <a  th:href="@{/suspend?(id=${tempDriver.id},search=${searchValue}, pageNumber=${currentPage},sortBy=firstName,order=${order})}" class="btn btn-transparent"><img
                                                     th:src="@{/static-admin/assets/img/icons/unlocked-icon.svg}" width="50"
                                                     height="50" /></a>
                                             <a th:href="@{/softDelete?id={uid}(uid=${tempDriver.id})}" class="btn btn-transparent"><img

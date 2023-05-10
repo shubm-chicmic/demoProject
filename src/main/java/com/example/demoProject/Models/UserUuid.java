@@ -10,7 +10,7 @@ import lombok.Data;
 public class UserUuid {
     String uuid;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String email;
 }

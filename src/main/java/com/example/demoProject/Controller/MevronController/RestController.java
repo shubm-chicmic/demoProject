@@ -45,24 +45,6 @@ public class RestController {
         users = userRepository.save(users);
                 return "Success";
     }
-    @GetMapping("/getUser")
-    public void updateUsers_Error_ho_gya_h(HttpServletRequest request) {
-//        Users users = userRepository.findUsersById(Integer.parseInt(request.getParameter("id")));
-//        //Roles roles = roleRepository.findRolesByUserId(users.getId());
-//        //String role = userRoleRepository.findRolesById(roles.getRoleId());
-//        UserDto userDto = UserDto.builder()
-//                .id(users.getId())
-//                .city(users.getCity())
-//                .email(users.getEmail())
-//                .role("")
-//                .firstName(users.getFirstName())
-//                .lastName(users.getLastName())
-//                .imageUrl(users.getImageUrl())
-//                .build();
-//
-//        System.out.println("userDto  =  " + userDto);
-//        return userDto;
-    }
 
     @GetMapping("/suspendUser")
     public Boolean suspendUser(HttpServletRequest request) {
@@ -95,8 +77,8 @@ public class RestController {
         Random random = new Random();
         for (int i = 1; i <= size; i++) {
             int index = random.nextInt(role.length);
-            String imageUrl = (index == 0 ?  "assets/img/profile/driver.jpg" : (index == 1 ?"assets/img/profile/rider.jpg" : "assets/img/profile/rider.jpg"));
-            String uuid= UUID.randomUUID().toString();
+            String imageUrl = (index == 0 ? "assets/img/profile/driver.jpg" : (index == 1 ? "assets/img/profile/rider.jpg" : "assets/img/profile/rider.jpg"));
+            String uuid = UUID.randomUUID().toString();
 
             Users users = Users.builder()
                     .firstName(role[index] + i)
@@ -123,50 +105,36 @@ public class RestController {
             usersRolesSet.add(usersRoles);
             users.setUsersRoles(usersRolesSet);
             userService.addUser(users);
-
-//            if(index == 0) {
-//                userService.addDriver(users);
-//            }else {
-//                userService.addRider(users);
-//            }
+        }
+            return "Success";
         }
 
 
-        return "Success";
+    public List<Users> getAllUsers(
+            @RequestParam(value = "pageNumber", defaultValue = "1", required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10",required = false) Integer pageSize,
+            @RequestParam(value = "search", defaultValue = "" ,required = false) String target,
+            @RequestParam(value = "sortBy", defaultValue = "" ,required = false) String sortBy,
+            @RequestParam(value = "order", defaultValue = "1" ,required = false) Integer order
+
+    ) {
+        System.out.println("\u001B[33m" + pageNumber + " " + pageSize + " " + target + "\u001B[0m");
+        String role = "Admin";
+        List<Users> UsersList = userService.getAllUsers(pageNumber, pageSize, target, sortBy, order, role);
+
+        return UsersList;
+    }
+    @RequestMapping("/getAllDrivers")
+    @ResponseBody
+    public List<Users> getAllDrivers() {
+        List<Users> UsersList = userService.getAllDrivers();
+        return UsersList;
     }
 
-//    @RequestMapping("/getTotalDrivers")
-//    public Integer getTotalDrivers(){
-//        String role = "DRIVER";
-//        int roleId = usersRolesService.findIdByRole(role);
-//        Integer count = 0;//(int) roleRepository.countByRoleId(roleId);
-//        return count;
-//    }
-//    @RequestMapping("/getTotalRiders")
-//    public Integer getTotalRiders(){
-//        String role = "RIDER";
-//        int roleId = usersRolesService.findIdByRole(role);
-//        Integer count = 0;// (int) roleRepository.countByRoleId(roleId);
-//        return count;
-//    }
-    @RequestMapping("/getTotalUsers")
-    public Integer getTotalUser(){
 
-        Integer count = (int) roleRepository.count();
-        return count;
-    }
-//    @RequestMapping("/getTotalActiveUsers")
-//    public Integer getTotalActiveUsers(){
-//
-//        Integer count = userService.getTotalActiveUsers();
-//        return count;
-//    }
-//    @RequestMapping("/getTotalSoftDeletedUsers")
-//    public Integer getTotalSoftDeletedUsers(){
-//
-//        Integer count = userService.getTotalSoftDeletedUsers();
-//        return count;
-//    }
+
+
+
 
 
 

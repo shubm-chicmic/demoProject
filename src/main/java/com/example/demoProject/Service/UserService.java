@@ -60,6 +60,9 @@ public class UserService {
         System.out.println("email = " + email);
         return userrepo.findUsersByEmailorPhoneNo(email, phone);
     }
+    public Users getUsersByUuid(String uuid) {
+        return userrepo.findUsersByUuid(uuid);
+    }
 
     public List<Users> getAllDrivers() {
 //        String role = "DRIVER";
@@ -83,7 +86,7 @@ public class UserService {
 
         }
         Page<Users> pageUsers;
-        if(target.equals("null")){
+        if(target == null){
             System.out.println("\u001B[44m" + " inside no search " + target+ "\u001B[0m");
             pageUsers = userrepo.findAllUsers(pageable);
         }else {

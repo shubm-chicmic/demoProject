@@ -134,7 +134,7 @@
 											<div class="tab_box p-4">
 												<h3 class="mb-3">Want a comfortable Ride at affordable prices?</h2>
 												<p>Request a ride now and get 25% off your next 10 rides</p>
-												<a href="book-ride.html" class="btn btn-primary my-3">Request a ride now</a>
+												<a href="/bookRide" class="btn btn-primary my-3">Request a ride now</a>
 										  </div>
 										</div>
 										<div class="col-md-7">
@@ -454,13 +454,14 @@
 	</div-->
 
     <!-- JavaScript files-->
-    <script src="static-mevron/vendor/jquery/jquery.min.js"></script>
-    <script src="static-mevron/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- Animate JS -->
-    <script src="static-mevron/vendor/wow/wow.min.js"></script>
-	<!-- Custom JS -->
-    <script src="static-mevron/js/custom.js"></script>
-<script>
+
+	<script th:inline="javascript">
+
+		     var error = /*[[${error}]]*/ 'User Name';
+				if(error != null) {
+					alert(error);
+				}
+
 
 	document.querySelector("form").addEventListener("submit",async (e)=>{
 	console.log("Hello World");

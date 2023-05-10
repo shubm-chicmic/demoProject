@@ -23,7 +23,7 @@ public class Roles {
 
     String roleName;
 
-    @OneToMany(mappedBy = "roles")
+    @OneToMany(mappedBy = "roles" ,fetch = FetchType.EAGER)
     Set<UsersRoles> usersRoles;
 
 

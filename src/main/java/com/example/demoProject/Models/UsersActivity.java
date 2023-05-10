@@ -17,9 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UsersActivity {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.AUTO
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String url;

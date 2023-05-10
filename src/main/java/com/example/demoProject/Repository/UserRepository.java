@@ -18,6 +18,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Integer> {
     Users findByEmail(String email);
+    Users findUsersByUuid(String uuid);
 
     @Query(
             "Select user From Users user Where user.email = :email OR user.phone = :phone"

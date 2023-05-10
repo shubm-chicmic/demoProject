@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: html_head">
+</head>
+<body>
+	<main>
+		<!-- navbar-->
+		<div th:replace="fragments/header :: navbar-rider-profile"></div>
+		<!-- End Header -->
+
+		<div class="map_location">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8070159.280816103!2d4.179722895373622!3d9.017386083643228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0baf7da48d0d%3A0x99a8fe4168c50bc8!2sNigeria!5e0!3m2!1sen!2sin!4v1568016470066!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+		</div><!-- End map_location -->
+
+
+		<div class="layout_fixed">
+
+			<div class="book_ride">
+
+				<div class="d-flex flex-column bg-white book_div position-relative">
+					<div class="bg-light-grey book_header">
+						<form rel="" th:action="@{/locationFind}">
+							<div class="location_ride">
+								<div class="form-group">
+									<div class="input-group">
+									   <div class="input-group-prepend"><i class="fa fa-home"></i></div>
+									   <input type="text" name="pick_location" id="pic_location" class="form-control" placeholder="Pick-up Location">
+									</div>
+								</div>
+								<div class="form-group m-0">
+									<div class="input-group">
+									   <div class="input-group-prepend"><i class="fa fa-map-pin"></i></div>
+									   <input type="text" name="drop_location" id="droff_location" class="form-control" placeholder="Drop-off Location">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 px-2">
+										<div class="form-group text-left">
+											<input type="submit" value="Submit" class="btn btn-lg btn-primary">
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</form>
+
+					</div><!-- End book_header -->
+
+					<div class="choose_vechicle">
+
+						<ul class="p-0 m-0 location_list">
+							<li class="d-flex flex-row align-items-start">
+								<i class="d-flex sm_icon">
+									<img src="/static-mevron/img/time_icon.svg" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Quarkcity India Pvt Ltd.</span>
+									<p>A-40 A, Industrial Focal Point, Phase 8 B Extension, Mohali, Sahibzada Ajit Singh Nagar, Punjab</p>
+								</div>
+							</li>
+							<li class="d-flex flex-row align-items-start">
+								<i class="d-flex sm_icon">
+									<img src="/static-mevron/img/time_icon.svg" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Quarkcity India Pvt Ltd.</span>
+									<p>A-40 A, Industrial Focal Point, Phase 8 B Extension, Mohali, Sahibzada Ajit Singh Nagar, Punjab</p>
+								</div>
+							</li>
+							<li class="d-flex flex-row align-items-start">
+								<i class="d-flex sm_icon">
+									<img src="/static-mevron/img/time_icon.svg" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Quarkcity India Pvt Ltd.</span>
+									<p>A-40 A, Industrial Focal Point, Phase 8 B Extension, Mohali, Sahibzada Ajit Singh Nagar, Punjab</p>
+								</div>
+							</li>
+							<li class="d-flex flex-row align-items-start">
+								<i class="d-flex sm_icon">
+									<img src="/static-mevron/img/time_icon.svg" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Quarkcity India Pvt Ltd.</span>
+									<p>A-40 A, Industrial Focal Point, Phase 8 B Extension, Mohali, Sahibzada Ajit Singh Nagar, Punjab</p>
+								</div>
+							</li>
+							<li class="d-flex flex-row align-items-start">
+								<i class="d-flex sm_icon">
+									<img src="/static-mevron/img/time_icon.svg" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Quarkcity India Pvt Ltd.</span>
+									<p>A-40 A, Industrial Focal Point, Phase 8 B Extension, Mohali, Sahibzada Ajit Singh Nagar, Punjab</p>
+								</div>
+							</li>
+						</ul>
+
+						<ul class="p-0 m-0 car_list" style="display:none;">
+							<li class="d-flex flex-row">
+								<i class="d-flex vechile_icon">
+									<img src="/static-mevron/img/car_icon.png" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Mevron Go</span>
+									<span class="est_time">In 5 mins. 2:35pm</span>
+								</div>
+								<span class="ride_price">₦200</span>
+							</li>
+							<li class="d-flex flex-row">
+								<i class="d-flex vechile_icon">
+									<img src="/static-mevron/img/car_icon.png" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Mevron Mini (3)</span>
+									<span class="est_time">In 5 mins. 2:35pm</span>
+								</div>
+								<span class="ride_price">₦150</span>
+							</li>
+							<li class="d-flex flex-row">
+								<i class="d-flex vechile_icon">
+									<img src="/static-mevron/img/car_icon.png" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Mevron LG</span>
+									<span class="est_time">In 5 mins. 2:35pm</span>
+								</div>
+								<span class="ride_price">₦240</span>
+							</li>
+							<li class="d-flex flex-row">
+								<i class="d-flex vechile_icon">
+									<img src="/static-mevron/img/car_icon.png" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Mevron Go</span>
+									<span class="est_time">In 5 mins. 2:35pm</span>
+								</div>
+								<span class="ride_price">₦180</span>
+							</li>
+							<li class="d-flex flex-row">
+								<i class="d-flex vechile_icon">
+									<img src="/static-mevron/img/car_icon.png" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Mevron Go</span>
+									<span class="est_time">In 5 mins. 2:35pm</span>
+								</div>
+								<span class="ride_price">₦165</span>
+							</li>
+							<li class="d-flex flex-row">
+								<i class="d-flex vechile_icon">
+									<img src="/static-mevron/img/car_icon.png" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Mevron Go</span>
+									<span class="est_time">In 5 mins. 2:35pm</span>
+								</div>
+								<span class="ride_price">₦225</span>
+							</li>
+							<li class="d-flex flex-row">
+								<i class="d-flex vechile_icon">
+									<img src="/static-mevron/img/car_icon.png" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Mevron Go</span>
+									<span class="est_time">In 5 mins. 2:35pm</span>
+								</div>
+								<span class="ride_price">₦250</span>
+							</li>
+							<li class="d-flex flex-row">
+								<i class="d-flex vechile_icon">
+									<img src="/static-mevron/img/car_icon.png" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Mevron Go</span>
+									<span class="est_time">In 5 mins. 2:35pm</span>
+								</div>
+								<span class="ride_price">₦299</span>
+							</li>
+							<li class="d-flex flex-row">
+								<i class="d-flex vechile_icon">
+									<img src="/static-mevron/img/car_icon.png" alt="">
+								</i>
+								<div class="go_ride">
+									<span class="vec_title">Mevron Go</span>
+									<span class="est_time">In 5 mins. 2:35pm</span>
+								</div>
+								<span class="ride_price">₦159</span>
+							</li>
+						</ul>
+
+						<!-- Start schedule_ride -->
+						<div class="schedule_ride text-center">
+							<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#schedule-ride">Request FOR later</button>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div><!-- End Book Ride -->
+
+		</div><!-- End layout_fixed -->
+
+	</main>
+
+	<!-- Start Schedule Modal -->
+	<div class="modal fade" id="schedule-ride" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<button type="button" class="close-modal" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+
+		  <div class="modal-body p-5">
+			<h4 class="text-center mb-4">Choose Date & Time when you want to Ride?</h4>
+			<form action="">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group mb-4 select-drop">
+							<select class="form-control rounded-0">
+								<option value="">Today, Tuesday, 9 Sep</option>
+								<option value="">Tomorrow, Wed, 6 Sep</option>
+								<option value="">Thu, 6 Sep</option>
+							</select>
+						</div>
+
+						<div class="form-group mb-4 select-drop">
+							<select class="form-control rounded-0">
+								<option value="">10:00 AM  -  10:10 Am</option>
+								<option value="">11:00 AM  -  12:10 Am</option>
+								<option value="">10:00 AM  -  10:10 Am</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="text-center">
+					<button type="cancel" class="btn btn-lg btn-cancel mb-2 mb-sm-0">Save date & Time</button>
+					<input type="submit" value="Request Now" class="btn btn-lg btn-primary">
+				</div>
+			</form>
+				</div>
+
+
+
+		  </div>
+		</div>
+	</div>
+	<!-- End Schedule Modal -->
+
+    <!-- JavaScript files-->
+
+	
+</body>
+</html>

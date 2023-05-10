@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Mevron - Driver Earning</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<!-- Bootstrap CSS-->	
+<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">    
+<!-- Animation CSS-->
+<link rel="stylesheet" href="css/animate.css">
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet" href="css/style.css">
+<!-- Favicon-->
+<link rel="shortcut icon" href="img/favicon.png">
+<!-- Tweaks for older IEs--><!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<body>
+	<main>
+		<!-- navbar-->
+		<header class="header">
+		  <nav class="navbar navbar-expand-lg">
+			<div class="container">
+				<a href="index.html" class="navbar-brand"><img src="img/front/mevron_logo.png" alt="" class="img-fluid"></a>
+				<div class="nav align-items-center"> 	
+					<a href="#" class="nav-item">Help </a>  
+					<div class="dropdown-user ml-0 ml-sm-3">
+						<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Adrian</a>
+						<div class="dropdown-menu">
+							<a href="booking-history.html" class="dropdown-item">Booking History</a>
+							<a href="driver-profile.html" class="dropdown-item">Profile Setting</a>
+							<a href="index.html" class="dropdown-item">Logout</a>
+						</div>
+					</div>				
+				</div>		
+							
+			</div>
+			
+		  </nav>
+		  
+		</header>
+		<!-- End Header -->
+		
+		<div class="layout_fixed">
+		
+			<div class="d-flex flex-wrap min_height py-5">
+								
+				<div class="container">
+					<div class="row mt-0 my-sm-3">
+						<div class="col-md-12">
+							<div class="bg-white">					
+							
+								<div class="row user_login">
+									<div class="col-lg-3 col-md-4">
+										<ul class="nav flex-column" id="nav-tab">
+											<li class="d-block">	
+												<a href="driver-profile.html" class="nav-item">
+													<i><img src="img/profile_icon.svg" alt=""></i> Profile
+												</a>
+											</li>
+											<li class="d-block">
+												<a href="booking-history.html" class="nav-item">
+													<i><img src="img/booking_icon.png" alt=""></i> Booking History
+												</a>
+											</li>
+											<li class="d-block">
+												<a href="#collapse_menu" class="nav-item has-children active" data-toggle="collapse" href="#collapse_menu" aria-expanded="true" aria-controls="collapse_menu">
+													<i><img src="img/payment_icon.svg" alt=""></i> Payments
+												</a>	
+													
+												<ul id="collapse_menu" class="collapse show">
+													<li class="">
+														<a href="payment.html">Cards</a>
+													</li>
+													<li class="active">
+														<a href="driver-earning.html">Earnings</a>
+													</li>
+												</ul>													
+											</li>
+											<li class="d-block">
+												<a href="referral.html" class="nav-item">
+													<i><img src="img/referal_icon.svg" alt=""></i> Referral
+												</a>
+											</li>										 
+										</ul>
+									</div>
+									
+									<div class="col-lg-9 col-md-8 tab-content py-4 py-sm-5">
+									
+										<div class="pr-3 pl-3 pl-md-0 pr-md-4" id="driver_earning">
+											<ul class="nav earning-nav d-flex" role="tablist">
+												<li class="d-block">
+													<a class="nav-item active" data-toggle="tab" href="#daily-tab" role="tab" aria-selected="true">Daily</a>
+												</li>
+												<li class="d-block">
+													<a class="nav-item" data-toggle="tab" href="#weekly-tab" role="tab"  aria-selected="false">Weekly</a>
+												</li>
+												<li class="d-block">
+													<a class="nav-item" data-toggle="tab" href="#monthly-tab" role="tab" aria-selected="false">Monthly</a>
+												</li>				 
+											</ul>
+											
+											<div class="tab-content">
+												<div class="tab-pane fade show active" id="daily-tab" role="tabpanel" aria-labelledby="nav-daily-tab">
+											
+													<div class="card-body radius-5">												
+														<div class="row earning_blocks">
+															<div class="col-lg-4 col-md-12 mb-2 mb-lg-0">
+															  <div class="card text-center border-0">
+																<div class="card-body bg-white radius-5">
+																	<span>Total Earnings</span>
+																	<h2>$162.20</h2>								  
+																</div>
+															  </div>													  
+															</div>
+															
+															<div class="col-lg-4 col-md-12 mb-2 mb-lg-0">
+															  <div class="card text-center border-0">
+																<div class="card-body bg-white radius-5">
+																	<span>Completed Trips</span>
+																	<h2>18</h2>								  
+																</div>
+															  </div>
+															</div>
+															
+															<div class="col-lg-4 col-md-12 mb-2 mb-lg-0">
+																<div class="card text-center border-0">
+																	<div class="card-body bg-white radius-5">
+																		<span>Online Hours</span>
+																		<h2>8h 40m</h2>								  
+																	</div>
+																</div>													  
+															</div>													
+														</div><!-- End Blocks -->	
+														
+														<div class="row my-4">
+															<div class="col-md-12">
+																<div class="card-header bg-white border-0 mb-3">
+																	<h6 class="mb-0">Today Earning</h6>
+																</div>
+																
+																<div class="table-responsive">
+																	
+																	<table class="table table-borderless m-0">	
+																		<tr>
+																		  <th scope="row">Earnings</th>
+																		  <td>$163.81</td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Payouts</th>
+																			<td>$-128.41</td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Previous Balance<br/>
+																				<small>This is your end of Week Balance carried forward from the previous week. It shows how much Mevron owed you or how much you owed Mevron before this week started.</small>
+																			</th>
+																			<td>$-0.50</td>
+																		</tr>
+																		
+																		<tr>
+																			<th scope="row">Current Balance<br/>
+																			<small>This amount shows how much Mevron owes you or how much you owe so far this week. Check your transaction details for more information.</small> 
+																			</th>
+																			<td>$4279.57</td>
+																		</tr>
+																	</table>	
+																</div>
+															</div>	
+														</div>
+													
+														<div class="row my-4">
+															<div class="col-md-12">
+																<div class="card-header bg-white border-0 mb-3">
+																	<h6 class="mb-0">Daily Earnings</h6>
+																</div>
+																<div class="table-responsive">
+																	
+																	<table class="table table-borderless text-center mb-0">	
+																		<thead>
+																			<tr>
+																			  <th>Wed Aug 28  </th>
+																			  <th>Thu Aug 29</th>
+																			  <th>Fri Aug 30</th>
+																			  <th>Sat Aug31</th>
+																			  <th>Sun Sep1</th>
+																			  <th>Mon Sep2</th>
+																			  <th>Tue Sep3</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>$47.38</td>
+																				<td>$147</td>
+																				<td>$417</td>
+																				<td>$78.00</td>
+																				<td>$57.00</td>
+																				<td>$31.15</td>
+																				<td>$0.00</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>	
+																<hr style="border-color:#d5d5d5">
+																<div class="table-responsive">
+																	
+																	<table class="table table-borderless text-center m-0">	
+																		<thead>
+																			<tr>
+																			  <th>Pickup Time</th>
+																			  <th>Vehicle</th>
+																			  <th> Duration</th>
+																			  <th> Distance(mi)</th>
+																			  <th>Total</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td> 11:51 am</td>
+																				<td>Mevron X</td>
+																				<td>10min 15 sec</td>
+																				<td>2.29 mi</td>
+																				<td>$4.15</td>
+																			</tr>
+																			<tr>
+																				<td> 11:51 am</td>
+																				<td>Mevron X</td>
+																				<td>10min 15 sec</td>
+																				<td>2.29 mi</td>
+																				<td>$4.15</td>
+																			</tr>
+																			<tr>
+																				<td> 11:51 am</td>
+																				<td>Mevron X</td>
+																				<td>10min 15 sec</td>
+																				<td>2.29 mi</td>
+																				<td>$4.15</td>
+																			</tr>
+																			<tr>
+																				<td> 11:51 am</td>
+																				<td>Mevron X</td>
+																				<td>10min 15 sec</td>
+																				<td>2.29 mi</td>
+																				<td>$4.15</td>
+																			</tr>
+																			<tr>
+																				<td> 11:51 am</td>
+																				<td>Mevron X</td>
+																				<td>10min 15 sec</td>
+																				<td>2.29 mi</td>
+																				<td>$4.15</td>
+																			</tr>
+																			<tr>
+																				<td> 11:51 am</td>
+																				<td>Mevron X</td>
+																				<td>10min 15 sec</td>
+																				<td>2.29 mi</td>
+																				<td>$4.15</td>
+																			</tr>
+																			<tr>
+																				<td> 11:51 am</td>
+																				<td>Mevron X</td>
+																				<td>10min 15 sec</td>
+																				<td>2.29 mi</td>
+																				<td>$4.15</td>
+																			</tr>
+																		</tbody>
+																	</table>	
+																</div>
+															</div>	
+														</div>													
+													</div>
+												</div><!-- End Daily Earning -->
+												
+												<div class="tab-pane fade" id="weekly-tab" role="tabpanel">
+											
+													<div class="card-body radius-5">												
+														<div class="row earning_blocks">
+														
+															<div class="col-lg-4 col-md-12 mb-2 mb-lg-0">
+															  <div class="card text-center border-0">
+																<div class="card-body bg-white radius-5">
+																	<span>Total Earnings</span>
+																	<h2>$162.20</h2>								  
+																</div>
+															  </div>													  
+															</div>
+															
+															<div class="col-lg-4 col-md-12 mb-2 mb-lg-0">
+															  <div class="card text-center border-0">
+																<div class="card-body bg-white radius-5">
+																	<span>Completed Trips</span>
+																	<h2>18</h2>								  
+																</div>
+															  </div>
+															</div>
+															
+															<div class="col-lg-4 col-md-12 mb-2 mb-lg-0">
+																<div class="card text-center border-0">
+																	<div class="card-body bg-white radius-5">
+																		<span>Online Hours</span>
+																		<h2>8h 40m</h2>								  
+																	</div>
+																</div>													  
+															</div>													
+														</div><!-- End Blocks -->	
+														
+														<div class="row my-4">
+															<div class="col-md-12">
+																<div class="card-header bg-white border-0 mb-3">
+																	<h6 class="mb-0">Weekly Earnings</h6>
+																</div>
+																
+																<div class="table-responsive">
+																	
+																	<table class="table table-borderless m-0">	
+																		<tr>
+																		  <th scope="row">Earnings</th>
+																		  <td>$163.81</td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Payouts</th>
+																			<td>$-128.41</td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Previous Balance<br/>
+																				<small>This is your end of Week Balance carried forward from the previous week. It shows how much Mevron owed you or how much you owed Mevron before this week started.</small>
+																			</th>
+																			<td>$-0.50</td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Current Balance<br/>
+																			<small>This amount shows how much Mevron owes you or how much you owe so far this week. Check your transaction details for more information.</small> 
+																			</th>
+																			<td>$4279.57</td>
+																		</tr>
+																	</table>	
+																</div>
+															</div>	
+														</div>
+																								
+													</div>
+												</div>	<!-- End Weekly Earning -->
+												
+												<div class="tab-pane fade" id="monthly-tab" role="tabpanel">
+											
+													<div class="card-body radius-5">												
+														<div class="row earning_blocks">
+														
+															<div class="col-lg-4 col-md-12 mb-2 mb-lg-0">
+															  <div class="card text-center border-0">
+																<div class="card-body bg-white radius-5">
+																	<span>Total Earnings</span>
+																	<h2>$4540.10</h2>								  
+																</div>
+															  </div>													  
+															</div>
+															
+															<div class="col-lg-4 col-md-12 mb-2 mb-lg-0">
+															  <div class="card text-center border-0">
+																<div class="card-body bg-white radius-5">
+																	<span>Completed Trips</span>
+																	<h2>510</h2>								  
+																</div>
+															  </div>
+															</div>
+															
+															<div class="col-lg-4 col-md-12 mb-2 mb-lg-0">
+																<div class="card text-center border-0">
+																	<div class="card-body bg-white radius-5">
+																		<span>Online Hours</span>
+																		<h2>240h 30m</h2>								  
+																	</div>
+																</div>													  
+															</div>		
+															
+														</div><!-- End Blocks -->	
+														
+														<div class="row my-4">
+															<div class="col-md-12">
+																<div class="card-header bg-white border-0 mb-3">
+																	<h6 class="mb-0">Monthly Earnings</h6>
+																</div>
+																
+																<div class="table-responsive">
+																	
+																	<table class="table table-borderless m-0">	
+																		<tr>
+																		  <th scope="row">Earnings</th>
+																		  <td>$163.81</td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Payouts</th>
+																			<td>$-128.41</td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Previous Balance<br/>
+																				<small>This is your end of Week Balance carried forward from the previous week. It shows how much Mevron owed you or how much you owed Mevron before this week started.</small>
+																			</th>
+																			<td>$-0.50</td>
+																		</tr>
+																		
+																		<tr>
+																			<th scope="row">Current Balance<br/>
+																			<small>This amount shows how much Mevron owes you or how much you owe so far this week. Check your transaction details for more information.</small> 
+																			</th>
+																			<td>$4279.57</td>
+																		</tr>
+																	</table>	
+																</div>
+															</div>	
+														</div>
+													
+													</div>
+												</div><!-- End Monthly -->
+												
+												
+											</div>
+										</div><!-- End Driver Earning -->	
+									</div>	
+								</div>	
+								  
+							</div>	
+						</div>
+					</div>		
+
+				</div>	
+				
+				</div>
+			</div><!-- Front Banner -->
+			
+		</div><!-- End layout_fixed -->
+	
+	</main>	
+	
+	<!-- Chat Button -->
+	<div class="chat_button">
+		<svg focusable="false" viewBox="0 0 28 32"><path d="M28,32 C28,32 23.2863266,30.1450667 19.4727818,28.6592 L3.43749107,28.6592 C1.53921989,28.6592 0,27.0272 0,25.0144 L0,3.6448 C0,1.632 1.53921989,0 3.43749107,0 L24.5615088,0 C26.45978,0 27.9989999,1.632 27.9989999,3.6448 L27.9989999,22.0490667 L28,22.0490667 L28,32 Z M23.8614088,20.0181333 C23.5309223,19.6105242 22.9540812,19.5633836 22.5692242,19.9125333 C22.5392199,19.9392 19.5537934,22.5941333 13.9989999,22.5941333 C8.51321617,22.5941333 5.48178311,19.9584 5.4277754,19.9104 C5.04295119,19.5629428 4.46760991,19.6105095 4.13759108,20.0170667 C3.97913051,20.2124916 3.9004494,20.4673395 3.91904357,20.7249415 C3.93763774,20.9825435 4.05196575,21.2215447 4.23660523,21.3888 C4.37862552,21.5168 7.77411059,24.5386667 13.9989999,24.5386667 C20.2248893,24.5386667 23.6203743,21.5168 23.7623946,21.3888 C23.9467342,21.2215726 24.0608642,20.9827905 24.0794539,20.7254507 C24.0980436,20.4681109 24.0195551,20.2135019 23.8614088,20.0181333 Z"></path></svg>
+	</div>
+	<!-- End Chat Button -->
+		
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Animate JS -->
+    <script src="vendor/wow/wow.min.js"></script>
+	<!-- Custom JS -->
+    <script src="js/custom.js"></script>
+	
+</body>
+</html>

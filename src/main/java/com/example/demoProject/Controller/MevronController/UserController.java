@@ -14,6 +14,7 @@ import jakarta.mail.MessagingException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,12 +53,12 @@ public class UserController {
         return "user-role-selection";
     }
     @RequestMapping("userRegister/{role}")
-    public String userRegister(@PathVariable("role") String role, HttpServletResponse response) {
+    public String userRegister(@PathVariable("role") String role, HttpServletResponse response, Model  model, HttpServletRequest request) {
         Cookie cookie = new Cookie("role", role);
         cookie.setMaxAge(60*60);
         cookie.setPath("/");
         response.addCookie(cookie);
-
+        model.addAttribute("error", request.getParameter("error"));
         if(role.equals("DRIVER")){
             return "signup-driver";
         }else if(role.equals("RIDER")){
@@ -78,30 +79,11 @@ public class UserController {
 
 
 
-    @RequestMapping("/getAllDrivers")
-    @ResponseBody
-    public List<Users> getAllDrivers() {
-        List<Users> UsersList = userService.getAllDrivers();
-        return UsersList;
-    }
 
 
-    @RequestMapping("/getAllUsers")
-    @ResponseBody
-    public List<Users> getAllUsers(
-              @RequestParam(value = "pageNumber", defaultValue = "1", required = false) Integer pageNumber,
-              @RequestParam(value = "pageSize", defaultValue = "10",required = false) Integer pageSize,
-              @RequestParam(value = "search", defaultValue = "" ,required = false) String target,
-              @RequestParam(value = "sortBy", defaultValue = "" ,required = false) String sortBy,
-              @RequestParam(value = "order", defaultValue = "1" ,required = false) Integer order
 
-    ) {
-        System.out.println("\u001B[33m" + pageNumber + " " + pageSize + " " + target + "\u001B[0m");
-        String role = "Admin";
-        List<Users> UsersList = userService.getAllUsers(pageNumber, pageSize, target, sortBy, order, role);
 
-        return UsersList;
-    }
+
     @RequestMapping("/getUserById/{id}")
     @ResponseBody
     public Users getUserById(@PathVariable("id") Integer id) {
@@ -175,4 +157,16 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/UserLogout")
+    public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        session.invalidate();
+        Cookie[] cookies = request.getCookies();
+        for (int i = 0; i < cookies.length; i++) {
+            cookies[i].setValue(null);
+            cookies[i].setMaxAge(0);
+            response.addCookie(cookies[i]);
+        }
+        return "redirect:/";
     }
+
+}

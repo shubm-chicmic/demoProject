@@ -34,7 +34,11 @@ public class AuthorizationFilter extends OncePerRequestFilter {
         //filterChain.doFilter(request,response);
          System.out.println("\u001B[33m" + "Authorization -----> " + request.getServletPath() +"\u001B[0m");
 
-        if(request.getServletPath().equals("/driverProfile")){
+        if(request.getServletPath().equals("/profile/RIDER")
+         || request.getServletPath().equals("/profile/DRIVER")
+                || request.getServletPath().equals("/bookRide")
+
+        ){
             log.info("Else Block {}",request.getServletPath());
 //        String AuthorizationHeader = Arrays.stream(request.getCookies())
 //                    .filter(c -> c.getName().equals("Authorization"))
@@ -43,8 +47,8 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 //                    .orElse(null);
             String AuthorizationHeader = (String)request.getSession().getAttribute("Authorization");
             System.out.println("Authorization header = " + AuthorizationHeader);
-            System.out.println(UserService.getToken(AuthorizationHeader.substring(0)));
-            UserUuid userUuid = UserService.getToken(AuthorizationHeader.substring(0));
+            System.out.println(UserService.getToken(AuthorizationHeader));
+            UserUuid userUuid = UserService.getToken(AuthorizationHeader);
             //if authorization header is invalid or null!!!
             if(AuthorizationHeader==null||userUuid==null){
                 System.out.println("control inside@@@");
@@ -65,11 +69,21 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
 //            Users user = UserService.getUserByEmail(userUuid.getEmail());
 //            Roles role = UserService.findRolesByUserId(user.getId());
-           // authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getRole().toUpperCase()));
+            String role = "";
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("role")) {
+                        role = cookie.getValue();
+                    }
+                }
+            }
+
+            authorities.add(new SimpleGrantedAuthority("ROLE_"+role.toUpperCase()));
 
 
-            System.out.println("\u001B[34m" + userUuid.getEmail() + "\u001B[0m");
-            System.out.println(authorities);
+//            System.out.println("\u001B[34m" + userUuid.getEmail() + "\u001B[0m");
+            System.out.println("\u001B[42m" + authorities + "\u001B[0m");
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken=
                     new UsernamePasswordAuthenticationToken(userUuid.getEmail(),null,authorities);
             System.out.println("HELLLOOOOOOOOO "+usernamePasswordAuthenticationToken.getName());
