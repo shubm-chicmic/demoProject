@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build;
 
@@ -28,6 +29,9 @@ public class RolesService {
     public Roles findByRoleName(String roleName) {
         return roleRepository.findByRoleName(roleName);
 
+    }
+    public Set<UsersRoles> findUsersRolesByUsers(Users users) {
+        return userRoleRepository.findUsersRolesByUsers(users);
     }
     public List<Roles> findRolesByUsers(Users users) {
 //        List<UsersRoles> usersRoles = userRoleRepository.findByUserId(userId);

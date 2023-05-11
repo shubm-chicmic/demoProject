@@ -25,6 +25,8 @@ public class UsersRoles {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "users_id")
     Users users;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_id")
+    Vehicle vehicle;
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.management.relation.Role;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface UserRoleRepository extends JpaRepository<UsersRoles, Integer> {
@@ -21,7 +22,7 @@ public interface UserRoleRepository extends JpaRepository<UsersRoles, Integer> {
 //              "Select Roles From UsersRoles ur Where ur.id = :id"
 //      )
 //      String findRolesById(@Param("id") int id);
-
+    Set<UsersRoles> findUsersRolesByUsers(Users users);
     @Query(
             "Select roles From UsersRoles ur where ur.users = :users"
     )

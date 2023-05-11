@@ -2,6 +2,7 @@ package com.example.demoProject.Controller.MevronController;
 
 import com.example.demoProject.Models.Users;
 import com.example.demoProject.Service.UserService;
+import com.example.demoProject.Service.VehicleService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,6 +28,8 @@ public class HomeController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    VehicleService vehicleService;
     @RequestMapping(value = {"", "/", "home"})
     public String homePage(Model model, HttpServletRequest request) {
 
@@ -100,6 +103,8 @@ public class HomeController {
         }
         Users users = userService.getUserByEmail(principal.getName());
         model.addAttribute("user", users);
+
+        model.addAttribute("vehicleList", vehicleService.findAll());
         return "book-ride";
     }
     @ExceptionHandler(AccessDeniedException.class)

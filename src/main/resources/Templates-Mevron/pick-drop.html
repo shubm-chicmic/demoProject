@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: html_head">
+
+</head>
+<body>
+	<main>
+		<!-- navbar-->
+		<header class="header position-fixed w-100">
+		  <nav class="navbar navbar-expand-lg">
+			<div class="container">
+				<a href="index.html" class="navbar-brand"><img src="/static-mevron/img/front/mevron_logo.png" alt="" class="img-fluid"></a>
+				
+				<div class="nav align-items-center"> 
+					<a href="#" class="nav-item">Help </a> 				
+					<div class="dropdown-user ml-0 ml-sm-3">
+						<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Adrian</a>
+						<div class="dropdown-menu">
+							<a href="book-ride.html" class="dropdown-item">Request a Ride</a>
+							<a href="rider-profile.html" class="dropdown-item">Profile Setting</a>
+							<a href="index.html" class="dropdown-item">Logout</a>
+						</div>
+					</div>
+				</div>							
+			</div>
+		  </nav>
+		  
+		</header>
+		<!-- End Header -->
+		
+		<div class="map_location">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8070159.280816103!2d4.179722895373622!3d9.017386083643228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0baf7da48d0d%3A0x99a8fe4168c50bc8!2sNigeria!5e0!3m2!1sen!2sin!4v1568016470066!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>	
+		</div><!-- End map_location -->
+		
+		
+		<div class="layout_fixed">
+		
+			<form action="ride.html" class="book_ride">
+			
+				<div class="d-flex flex-column bg-white book_div position-relative">
+					<div class="bg-light-grey book_header">
+						<div class="car_info">
+							<figure class="justify-content-center d-flex mt-4">
+								<img src="/static-mevron/img/car_pic.png" alt=""/>
+							</figure>
+							<div class="d-flex justify-content-between my-3">
+								<h5>Mevron Go</h5>
+								<span>₦200 <i class="ml-1"><img src="/static-mevron/img/fare_icon.png" alt=""></i></span>
+							</div>
+							<span class="info_ride">
+								In 5 mins. 2:35 drop-off <br/> 
+								4 seats. Affordable, compact ruides						
+							</span>
+						</div>
+							
+					</div><!-- End book_header -->
+					
+					<div class="choose_vechicle">					
+						<div class="fare_ride">
+							<table class="table-border">
+								<tr>
+									<th>Base fare</th>
+									<td>₦200</td>
+								</tr>
+								<tr>
+									<th>Per minute</th>
+									<td>₦5.5</td>
+								</tr>
+								<tr>
+									<th>Per Km</th>
+									<td>₦55</td>
+								</tr>
+								<tr>
+									<th>Tip</th>
+									<td>₦0%+Tip of <br/>5% Max</td>
+								</tr>							
+							</table>
+							
+							<div class="d-flex justify-content-between payment_type" data-toggle="modal" data-target="#payment_type">
+								<label><i><img src="/static-mevron/img/cash_icon.png" alt=""></i> Cash</label>
+								<span class=""><img src="/static-mevron/img/dropdown_arrow.png" alt=""></span>
+							</div>
+							
+							<div class="add_promo position-relative my-3">
+								<input type="text" class="form-control" id="coupon_code" placeholder="Add Promocode" name="coupon_code">
+								<label for="promo_code">Apply</label>
+							</div>
+							<!-- End Promocode -->
+						</div>	
+						
+					</div>
+					<!-- Start Book Ride -->
+					<div class="p-4 book_request text-center">
+						<button type="submit" class="btn btn-lg btn-primary w-100">Request Mevron GO</button>
+					</div>
+					
+				</div>
+								
+			</form><!-- End Book Ride -->
+			
+		</div><!-- End layout_fixed -->
+	
+	</main>	
+	
+	<!-- Start Payment Modal -->
+	<div class="modal fade" id="payment_type" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+		<div class="modal-content">		  
+			<button type="button" class="close-modal" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+
+			<div class="modal-body p-5">
+				<h4 class="text-center mb-5 mb-sm-5">Choose Payment method</h4>
+				<form action="">
+					<div class="row mb-4 mb-sm-4">
+						<div class="col-md-6">
+							<label class="select_chk">
+								Cash
+								<input type="radio" id="cash" name="customRadio" checked="checked">
+								<span class="checkmark" value="cash"></span>
+							</label>
+						</div>						
+					
+						<div class="col-md-6">
+							<label class="select_chk">
+								Credit Card
+								<input type="radio" id="Creditc" name="customRadio">
+								<span class="checkmark" value="Creditc"></span>
+							</label>
+						</div>						
+					</div>
+					<div class="text-center">	
+						<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#add_payment">Add payment Method</button>
+					</div>				
+				</form>
+			</div>		  
+		</div>
+	  </div>	
+	</div>
+	<!-- End Payment Modal -->
+	
+	<!-- Start Add Payment Modal -->
+	<div class="modal fade" id="add_payment" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+		<div class="modal-content">		  
+			<button type="button" class="close-modal" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+
+			<div class="modal-body p-5">
+				<h4 class="text-center mb-4 mb-sm-5">Select Payment Method</h4>
+				<form action="">
+					<div class="row mb-4 mb-sm-4">
+						<div class="col-md-6">
+							<label class="select_chk">
+								Paytm
+								<input type="radio" id="pa" name="customRadio">
+								<span class="checkmark" value="pa"></span>
+							</label>
+						</div>						
+					
+						<div class="col-md-6">
+							<label class="select_chk">
+								Mevron Gift Card
+								<input type="radio" id="cm" name="customRadio">
+								<span class="checkmark" value="cm"></span>
+							</label>
+						</div>						
+					</div>
+					<div class="row mb-4 mb-sm-4">
+						<div class="col-md-6">
+							<label class="select_chk">
+								Credit Card
+								<input type="radio" id="Card" name="customRadio">
+								<span class="checkmark" for="Card"></span>
+							</label>
+						</div>						
+					
+						<div class="col-md-6">
+							<label class="select_chk">
+								Debit Card
+								<input type="radio" id="debit" name="customRadio">
+								<span class="checkmark" for="debit"></span>
+							</label>
+						</div>						
+					</div>
+					<div class="text-center">	
+						<button type="button" class="btn btn-lg btn-primary">Add Payment Method</button>
+					</div>				
+				</form>
+			</div>		  
+		</div>
+	  </div>	
+	</div>
+	<!-- End Schedule Modal -->
+	
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Animate JS -->
+    <script src="vendor/wow/wow.min.js"></script>
+	<!-- Custom JS -->
+    <script src="js/custom.js"></script>
+	
+</body>
+</html>
