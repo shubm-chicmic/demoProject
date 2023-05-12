@@ -9,7 +9,20 @@
 		<!-- End Header -->
 
 		<div class="map_location">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8070159.280816103!2d4.179722895373622!3d9.017386083643228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0baf7da48d0d%3A0x99a8fe4168c50bc8!2sNigeria!5e0!3m2!1sen!2sin!4v1568016470066!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+<!--			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8070159.280816103!2d4.179722895373622!3d9.017386083643228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0baf7da48d0d%3A0x99a8fe4168c50bc8!2sNigeria!5e0!3m2!1sen!2sin!4v1568016470066!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>-->
+		<iframe
+			width="300"
+			height="170"
+			frameborder="0"
+			scrolling="no"
+			marginheight="0"
+			marginwidth="0"
+			th:src="@{https://www.google.com/maps/dir/33.93729,-106.85761/33.91629,-106.866761/@33.9104743,-106.8778692,12z/data=!3m1!4b1}">
+
+<!--			th:src="@{https://maps.google.com/maps?q=30.7132627,76.6910232|28.6139391,77.2090212&hl=es&z=14&amp;output=embed}">-->
+<!--			th:src="@{https://www.google.com/maps/dir/33.93729,-106.85761/33.91629,-106.866761/@33.9104743,-106.8778692,12z/data=!3m1!4b1}">-->
+
+		</iframe>
 		</div><!-- End map_location -->
 
 
@@ -99,11 +112,11 @@
 						<ul class="p-0 m-0 car_list" style="display:none;">
 							<th:block th:each="vehicle,state : ${vehicleList}">
 
-							<li class="d-flex flex-row" id="carselect" >
+							<li class="d-flex flex-row" id="carselect" th:attr="onclick=|loadContent('/pickDrop?id=${vehicle.id}')|" >
 								<i class="d-flex vechile_icon">
 									<img th:src="${vehicle.imageUrl}" alt="">
 								</i>
-								<div hidden th:text="$vehicle.id" th:id="vehicleId"></div>
+
 								<div class="go_ride">
 									<span class="vec_title" th:text="${vehicle.name}" ></span>
 									<span class="est_time">In 5 mins. 2:35pm</span>
@@ -183,14 +196,19 @@
   jQuery(".car_list").show();
   jQuery(".location_list").hide();
 });
-$(document).on('click', '#carselect',function(){
-var data=$('#vehicleId').text();
-console.log(data+"ok");
-fetch("/pickDrop?id="+data, { method: 'POST'})
-});
+<!--$(document).on('click', '#carselect',function(){-->
+<!--var data=$('#vehicleId').text();-->
+<!--console.log(data+"ok");-->
+<!--fetch("/pickDrop?id="+data, { method: 'POST'})-->
+<!--});-->
 </script>
     <!-- JavaScript files-->
   <script>
+   function loadContent(url) {
+                console.log(url)
+               window.location.assign(url)
+    }
+
   var pickUpLocation = null;
   var dropLocation = null;
   var cnt = 0;

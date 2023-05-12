@@ -35,21 +35,21 @@
 		
 		<div class="layout_fixed">
 		
-			<form action="ride.html" class="book_ride">
+			<form th:action="@{/processRidePayment}" class="book_ride">
 			
 				<div class="d-flex flex-column bg-white book_div position-relative">
 					<div class="bg-light-grey book_header">
 						<div class="car_info">
 							<figure class="justify-content-center d-flex mt-4">
-								<img src="/static-mevron/img/car_pic.png" alt=""/>
+								<img th:src="${vehicle.imageUrl}" alt=""/>
 							</figure>
 							<div class="d-flex justify-content-between my-3">
-								<h5>Mevron Go</h5>
-								<span>₦200 <i class="ml-1"><img src="/static-mevron/img/fare_icon.png" alt=""></i></span>
+								<h5 th:text="${vehicle.name}"></h5>
+								<span th:text="'₹ ' + ${vehicle.rate}"><i class="ml-1"><img src="/static-mevron/img/fare_icon.png" alt=""></i></span>
 							</div>
 							<span class="info_ride">
 								In 5 mins. 2:35 drop-off <br/> 
-								4 seats. Affordable, compact ruides						
+								4 seats. Affordable, compact ruides
 							</span>
 						</div>
 							
@@ -194,14 +194,14 @@
 	  </div>	
 	</div>
 	<!-- End Schedule Modal -->
-	
+
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- Animate JS -->
-    <script src="vendor/wow/wow.min.js"></script>
+    <script src="/vendor/wow/wow.min.js"></script>
 	<!-- Custom JS -->
-    <script src="js/custom.js"></script>
-	
+    <script src="/js/custom.js"></script>
+
 </body>
 </html>
