@@ -73,13 +73,6 @@ public class HomeController {
         return "driver-documentation";
     }
 
-    @Value("${stripe.public.key}")
-    String stripePublicKey;
-    @RequestMapping("/payment")
-    public String payment(Model model) {
-        model.addAttribute("stripePublicKey", stripePublicKey);
-        return "payment-checkout";
-    }
 
     @PreAuthorize("hasRole('RIDER')")
     @RequestMapping("/bookRide")

@@ -1,9 +1,10 @@
 // This is your test publishable API key.
 
 const stripe = Stripe(stripePublicKey);
-
+ var price = /*[[${price}]]*/ 0;
+ console.log("price = " + price)
 // The items the customer wants to buy
-const items = [{ id: "xl-tshirt" }];
+const items = [{ price }];
 
 let elements;
 

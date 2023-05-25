@@ -35,13 +35,13 @@
 		
 		<div class="layout_fixed">
 		
-			<form th:action="@{/processRidePayment}" class="book_ride">
+			<form th:action="@{'/payment?price=' + ${vehicle.rate}}" class="book_ride">
 			
 				<div class="d-flex flex-column bg-white book_div position-relative">
 					<div class="bg-light-grey book_header">
 						<div class="car_info">
 							<figure class="justify-content-center d-flex mt-4">
-								<img th:src="${vehicle.imageUrl}" alt=""/>
+								<img th:src="${vehicle.imageUrl}" width="70px" height="20px" alt=""/>
 							</figure>
 							<div class="d-flex justify-content-between my-3">
 								<h5 th:text="${vehicle.name}"></h5>
@@ -59,20 +59,20 @@
 						<div class="fare_ride">
 							<table class="table-border">
 								<tr>
-									<th>Base fare</th>
-									<td>₦200</td>
+									<th >Base Fare</th>
+									<td th:text="'₹ ' + ${vehicle.rate}"></td>
 								</tr>
 								<tr>
 									<th>Per minute</th>
-									<td>₦5.5</td>
+									<td>₹5.5</td>
 								</tr>
 								<tr>
 									<th>Per Km</th>
-									<td>₦55</td>
+									<td>₹55</td>
 								</tr>
 								<tr>
 									<th>Tip</th>
-									<td>₦0%+Tip of <br/>5% Max</td>
+									<td>₹0%+Tip of <br/>5% Max</td>
 								</tr>							
 							</table>
 							
